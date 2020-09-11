@@ -2,9 +2,10 @@
   "name": "furnish",
   "version": "1.0.0",
   "description": "a mern stack ecommerce application",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server",
+    "server": "nodemon server"
   },
   "author": "adnan",
   "license": "ISC",
