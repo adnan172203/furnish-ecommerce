@@ -4,8 +4,7 @@
   "description": "a mern stack ecommerce application",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server"
+    "start": "nodemon server"
   },
   "author": "adnan",
   "license": "ISC",
