@@ -1,5 +1,7 @@
 const { validationResult } = require('express-validator');
 
+//model
+const User = require('../models/User');
 
 // fetch all users
 module.exports.getUsersController = async () => {
