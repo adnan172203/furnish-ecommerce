@@ -21,7 +21,7 @@ module.exports.addUserController = async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { firstName,lastName, email } = req.body;
+  const { firstName, lastName, email, password, isAdmin } = req.body;
 
   try {
     let user = await User.findOne({ email });
@@ -32,12 +32,13 @@ module.exports.addUserController = async (req, res) => {
     user = new User({
       firstName,
       lastName,
-      email
+      email,
+      password,
+      isAdmin,
     });
 
     const newUser = await user.save();
     res.send(newUser);
- 
   } catch (err) {
     res.status(500).send('server error');
   }
