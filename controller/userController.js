@@ -14,6 +14,20 @@ module.exports.getUsersController = async (req, res) => {
   }
 };
 
+
+//get single  user
+
+module.exports.getUserController = async (req, res) => {
+  const id = req.user._id;
+  try {
+    const user = await User.findById(id, '-password');
+    if (!user) return res.status(404).json({msg:'user not exist'});
+    res.send(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 // add user
 module.exports.addUserController = async (req, res) => {
   const errors = validationResult(req);

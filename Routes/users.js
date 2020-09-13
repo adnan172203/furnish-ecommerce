@@ -2,20 +2,22 @@ const express = require('express');
 const { check } = require('express-validator');
 const router = express.Router();
 
-
-//midleware
-const {auth} = require('../middleware/auth');
-
+//middleware
+const { auth } = require('../middleware/auth');
 
 //controller
 const {
   getUsersController,
+  getUserController,
   addUserController,
-  loginController
+  loginController,
 } = require('../controller/userController');
 
 //get all users
-router.get('/',auth, getUsersController);
+router.get('/', auth, getUsersController);
+
+//get single user
+router.get('/me',auth, getUserController);
 
 //add new user
 router.post(
