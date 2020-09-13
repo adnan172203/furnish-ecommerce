@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const User = require('../models/User');
 
 module.exports.auth = async (req, res, next) => {
   if (req.signedCookies) {

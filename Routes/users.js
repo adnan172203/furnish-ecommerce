@@ -2,6 +2,11 @@ const express = require('express');
 const { check } = require('express-validator');
 const router = express.Router();
 
+
+//midleware
+const {auth} = require('../middleware/auth');
+
+
 //controller
 const {
   getUsersController,
@@ -10,7 +15,7 @@ const {
 } = require('../controller/userController');
 
 //get all users
-router.get('/', getUsersController);
+router.get('/',auth, getUsersController);
 
 //add new user
 router.post(

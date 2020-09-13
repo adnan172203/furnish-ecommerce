@@ -7,8 +7,8 @@ const User = require('../models/User');
 // fetch all users
 module.exports.getUsersController = async (req, res) => {
   try {
-    const users = User.find();
-    res.json(users);
+    const users = await User.find();
+    res.send(users);
   } catch (err) {
     res.status(500).send(err);
   }
