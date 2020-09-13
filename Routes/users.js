@@ -6,6 +6,7 @@ const router = express.Router();
 const {
   getUsersController,
   addUserController,
+  loginController
 } = require('../controller/userController');
 
 //get all users
@@ -24,5 +25,11 @@ router.post(
   ],
   addUserController
 );
+
+
+//login
+router.post('/login', loginController);
+
+
 
 module.exports = router;

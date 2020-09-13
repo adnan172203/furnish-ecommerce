@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 //model
 const User = require('../models/User');
@@ -41,5 +42,37 @@ module.exports.addUserController = async (req, res) => {
     res.send(newUser);
   } catch (err) {
     res.status(500).send('server error');
+  }
+};
+
+//login user
+module.exports.loginController = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    //check user email
+    const user = await User.findOne({ email });
+
+    if (!user)
+      return res.send(400).json({ errors: [{ msg: 'Unable to login' }] });
+
+    //check user password
+    const isMatched = bcrypt.compare(password, user.password);
+    if (!isMatched)
+      return res.status(400).json({ errors: [{ msg: 'Unable to login' }] });
+
+    //Successfully log in user
+    const token = user.generateAuthToken();
+
+    res.cookie('auth', token, {
+      httpOnly: true,
+      sameSite: true,
+      signed: true,
+      maxAge: 4 * 60 * 60 * 1000,
+    });
+
+    res.send('Success');
+  } catch (err) {
+    res.status(500).send(err);
   }
 };
