@@ -37,6 +37,4 @@ router.post(
 //login
 router.post('/login', loginController);
 
-
-
 module.exports = router;
