@@ -25,8 +25,7 @@ const productSchema = new Schema({
     type: Number,
   },
   image: {
-    data: Buffer,
-    contentType: String,
+   type:Object
   },
   shipping: {
     required: false,
