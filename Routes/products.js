@@ -9,4 +9,5 @@ const { addProductController } = require('../controller/productController');
 
 router.post('/', addProductController);
 
+
 module.exports = router;

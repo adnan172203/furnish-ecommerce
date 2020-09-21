@@ -3,6 +3,9 @@ const { validationResult } = require('express-validator');
 //model
 const Product = require('../models/Product');
 
+
+//add product
+
 module.exports.addProductController = async (req, res) => {
   
   const {
