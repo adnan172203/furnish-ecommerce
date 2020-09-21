@@ -3,6 +3,16 @@ const { validationResult } = require('express-validator');
 //model
 const Product = require('../models/Product');
 
+//Get All Product
+module.exports.getProductsController = async (req, res) => {
+  try {
+    const products = await Product.find();
+    res.send(products);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 
 //add product
 

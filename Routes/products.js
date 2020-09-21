@@ -3,11 +3,16 @@ const { check } = require('express-validator');
 const router = express.Router();
 
 
-const { addProductController } = require('../controller/productController');
+const { addProductController, getProductsController } = require('../controller/productController');
+
+//get product
+router.get('/', getProductsController);
+
 
 //add product
-
 router.post('/', addProductController);
+
+
 
 
 module.exports = router;
