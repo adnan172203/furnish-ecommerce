@@ -10,11 +10,11 @@ connectDB();
 app.use(express.json());
 app.use(cookieParser('secretKey'));
 
-//Route
+// Route files
 const usersRoute = require('./routes/users');
 const productsRoute = require('./routes/products');
 
-//Handling Route
+// Mount routers
 app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/products', productsRoute);
 

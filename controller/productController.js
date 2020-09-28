@@ -14,6 +14,23 @@ module.exports.getProductsController = async (req, res) => {
 };
 
 
+//get single Product
+module.exports.getProductController = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(404).send(errors.array());
+  }
+
+  try {
+    const id = req.params.id;
+    const product = await Product.findById(id);
+    if (!product) return res.status(404).send('No Note Found!!');
+    res.send(product);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+} 
+
 //add product
 
 module.exports.addProductController = async (req, res) => {
