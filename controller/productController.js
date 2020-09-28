@@ -7,7 +7,7 @@ const Product = require('../models/Product');
 module.exports.getProductsController = async (req, res) => {
   try {
     const products = await Product.find();
-    res.send(products);
+    res.json(products);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -25,7 +25,9 @@ module.exports.getProductController = async (req, res) => {
     const id = req.params.id;
     const product = await Product.findById(id);
     if (!product) return res.status(404).send('No Note Found!!');
-    res.send(product);
+
+    res.json(product);
+
   } catch (err) {
     res.status(500).send(err);
   }
@@ -64,7 +66,18 @@ module.exports.addProductController = async (req, res) => {
   if (newProduct) {
     return res
       .status(201)
-      .send({ message: 'New Product Created', data: newProduct });
+      .json({ message: 'New Product Created', data: newProduct });
   }
   return res.status(500).send({ message: ' Error in Creating Product.' });
 };
+
+
+module.exports.deleteProductController = ( req, res ) => {
+  try{
+    const product = await Product.findOneAndDelete(req.params.id);
+    if (!product) return res.status(404).send({message:'Product not found'});
+  }
+  catch(err){
+    res.status(500).json({message:err});
+  }
+}
