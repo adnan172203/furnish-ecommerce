@@ -1,10 +1,11 @@
 const { validationResult } = require('express-validator');
+const ErrorResponse = require('../utils/errorResponse');
 
 //model
 const Product = require('../models/Product');
 
 //Get All Product
-module.exports.getProductsController = async (req, res) => {
+module.exports.getProductsController = async (req, res, next) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -13,9 +14,8 @@ module.exports.getProductsController = async (req, res) => {
   }
 };
 
-
 //get single Product
-module.exports.getProductController = async (req, res) => {
+module.exports.getProductController = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(404).send(errors.array());
@@ -24,19 +24,22 @@ module.exports.getProductController = async (req, res) => {
   try {
     const id = req.params.id;
     const product = await Product.findById(id);
-    if (!product) return res.status(404).send('No Note Found!!');
+    if (!product)
+      return next(
+        new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+      );
 
     res.json(product);
-
   } catch (err) {
-    res.status(500).send(err);
+    next(
+      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+    );
   }
-} 
+};
 
 //add product
 
 module.exports.addProductController = async (req, res) => {
-  
   const {
     name,
     description,
@@ -49,7 +52,7 @@ module.exports.addProductController = async (req, res) => {
     stock,
     reviews,
   } = req.body;
-  
+
   const product = new Product({
     name,
     description,
@@ -71,13 +74,15 @@ module.exports.addProductController = async (req, res) => {
   return res.status(500).send({ message: ' Error in Creating Product.' });
 };
 
+//update product
 
-module.exports.deleteProductController = ( req, res ) => {
-  try{
+//delete product
+module.exports.deleteProductController = async (req, res) => {
+  try {
     const product = await Product.findOneAndDelete(req.params.id);
-    if (!product) return res.status(404).send({message:'Product not found'});
+    if (!product) return res.status(404).send({ message: 'Product not found' });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ message: err });
   }
-  catch(err){
-    res.status(500).json({message:err});
-  }
-}
+};

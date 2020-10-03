@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db'); 
 const app = express();
 const cookieParser = require('cookie-parser');
+const errorHandler = require('./middleware/error');
 
 //connect Database
 connectDB();
@@ -18,6 +19,8 @@ const productsRoute = require('./routes/products');
 app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/products', productsRoute);
 
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
