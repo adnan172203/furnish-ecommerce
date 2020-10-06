@@ -32,7 +32,7 @@ module.exports.getProductController = async (req, res, next) => {
     res.json(product);
   } catch (err) {
     next(
-      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+      err
     );
   }
 };
