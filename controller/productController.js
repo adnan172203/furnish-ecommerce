@@ -65,6 +65,22 @@ module.exports.addProductController = asyncHandler(async (req, res) => {
 });
 
 //update product
+module.exports.updateProductController = asyncHandler(async(req,res,next) =>{
+  let product = Product.findById(req.params.id);
+
+  if(!product){
+    return next(
+      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+    );
+  }
+
+  product = await Product.findOneAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true
+  });
+
+  res.status(200).json(product);
+});
 
 //delete product
 module.exports.deleteProductController = asyncHandler(async (req, res) => {
