@@ -1,35 +1,27 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+const asyncHandler = require('../middleware/async');
 
 //model
 const User = require('../models/User');
 
 // fetch all users
-module.exports.getUsersController = async (req, res) => {
-  try {
-    const users = await User.find();
-    res.send(users);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
-
+module.exports.getUsersController = asyncHandler(async (req, res) => {
+  const users = await User.find();
+  res.status(200).json(users);
+});
 
 //get single  user
 
-module.exports.getUserController = async (req, res) => {
+module.exports.getUserController = asyncHandler(async (req, res) => {
   const id = req.user._id;
-  try {
-    const user = await User.findById(id, '-password');
-    if (!user) return res.status(404).json({msg:'user not exist'});
-    res.send(user);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
+  const user = await User.findById(id, '-password');
+  if (!user) return res.status(404).json({ msg: 'user not exist' });
+  res.status(200).json(user);
+});
 
 // add user
-module.exports.addUserController = async (req, res) => {
+module.exports.addUserController = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -38,7 +30,6 @@ module.exports.addUserController = async (req, res) => {
 
   const { firstName, lastName, email, password, isAdmin } = req.body;
 
-  try {
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
@@ -53,17 +44,14 @@ module.exports.addUserController = async (req, res) => {
     });
 
     const newUser = await user.save();
-    res.send(newUser);
-  } catch (err) {
-    res.status(500).send('server error');
-  }
-};
+    res.status(200).json(newUser);
+
+});
 
 //login user
-module.exports.loginController = async (req, res) => {
+module.exports.loginController = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  try {
     //check user email
     const user = await User.findOne({ email });
 
@@ -85,8 +73,6 @@ module.exports.loginController = async (req, res) => {
       maxAge: 4 * 60 * 60 * 1000,
     });
 
-    res.send('Success');
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
+    res.status(200).json('Success');
+
+});
