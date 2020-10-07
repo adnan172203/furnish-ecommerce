@@ -1,45 +1,36 @@
 const { validationResult } = require('express-validator');
 const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
 
 //model
 const Product = require('../models/Product');
 
 //Get All Product
-module.exports.getProductsController = async (req, res, next) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (err) {
-    res.status(500).send(err);
-  }
-};
+module.exports.getProductsController = asyncHandler(async (req, res, next) => {
+  const products = await Product.find();
+  res.status(200).json(products);
+});
 
 //get single Product
-module.exports.getProductController = async (req, res, next) => {
+module.exports.getProductController = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(404).send(errors.array());
   }
 
-  try {
-    const id = req.params.id;
-    const product = await Product.findById(id);
-    if (!product)
-      return next(
-        new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
-      );
-
-    res.json(product);
-  } catch (err) {
-    next(
-      err
+  const id = req.params.id;
+  const product = await Product.findById(id);
+  if (!product)
+    return next(
+      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
     );
-  }
-};
+
+  res.status(200).json(product);
+});
 
 //add product
 
-module.exports.addProductController = async (req, res) => {
+module.exports.addProductController = asyncHandler(async (req, res) => {
   const {
     name,
     description,
@@ -71,18 +62,15 @@ module.exports.addProductController = async (req, res) => {
       .status(201)
       .json({ message: 'New Product Created', data: newProduct });
   }
-  return res.status(500).send({ message: ' Error in Creating Product.' });
-};
+});
 
 //update product
 
 //delete product
-module.exports.deleteProductController = async (req, res) => {
-  try {
-    const product = await Product.findOneAndDelete(req.params.id);
-    if (!product) return res.status(404).send({ message: 'Product not found' });
-    res.json(product);
-  } catch (err) {
-    res.status(500).json({ message: err });
-  }
-};
+module.exports.deleteProductController = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) return res.status(404).send({ message: 'Product not found' });
+  product.remove();
+
+  res.status(200).json({ message: 'product removed' });
+});
