@@ -7,7 +7,21 @@ const Product = require('../models/Product');
 
 //Get All Product
 module.exports.getProductsController = asyncHandler(async (req, res, next) => {
-  const products = await Product.find();
+  let query;
+
+  // Copy req.query
+  const reqQuery = { ...req.query };
+  
+  // Create query string
+  let queryStr = JSON.stringify(reqQuery);
+  
+  // Create operators ($gt, $gte, etc)
+  queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
+  
+
+  query = Product.find(JSON.parse(queryStr));
+
+  const products = await query;
   res.status(200).json(products);
 });
 
