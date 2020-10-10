@@ -11,18 +11,52 @@ module.exports.getProductsController = asyncHandler(async (req, res, next) => {
 
   // Copy req.query
   const reqQuery = { ...req.query };
-  
+
+  // Fields to exclude
+  const removeFields = ['page', 'limit'];
+
+  // Loop over removeFields and delete them from reqQuery
+  removeFields.forEach((param) => delete reqQuery[param]);
+
   // Create query string
   let queryStr = JSON.stringify(reqQuery);
-  
+
   // Create operators ($gt, $gte, etc)
-  queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
-  
+  queryStr = queryStr.replace( /\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`);
 
   query = Product.find(JSON.parse(queryStr));
 
+  // Pagination
+  const page = parseInt(req.query.page, 10) || 1;
+  const limit = parseInt(req.query.limit, 10) || 12;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+  const total = await Product.countDocuments();
+
+  query = query.skip(startIndex).limit(limit);
+
+
+
   const products = await query;
-  res.status(200).json(products);
+
+    // Pagination result
+    const pagination = {};
+
+    if (endIndex < total) {
+      pagination.next = {
+        page: page + 1,
+        limit
+      };
+    }
+  
+    if (startIndex > 0) {
+      pagination.prev = {
+        page: page - 1,
+        limit
+      };
+    }
+
+  res.status(200).json({pagination,products});
 });
 
 //get single Product
@@ -79,22 +113,24 @@ module.exports.addProductController = asyncHandler(async (req, res) => {
 });
 
 //update product
-module.exports.updateProductController = asyncHandler(async(req,res,next) =>{
-  let product = Product.findById(req.params.id);
+module.exports.updateProductController = asyncHandler(
+  async (req, res, next) => {
+    let product = Product.findById(req.params.id);
 
-  if(!product){
-    return next(
-      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
-    );
+    if (!product) {
+      return next(
+        new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+      );
+    }
+
+    product = await Product.findOneAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json(product);
   }
-
-  product = await Product.findOneAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true
-  });
-
-  res.status(200).json(product);
-});
+);
 
 //delete product
 module.exports.deleteProductController = asyncHandler(async (req, res) => {
