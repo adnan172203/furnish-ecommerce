@@ -1,8 +1,13 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const connectDB = require('./config/db'); 
 const app = express();
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
+
+
+// Load env vars
+dotenv.config({ path: './config/config.env' });
 
 //connect Database
 connectDB();
