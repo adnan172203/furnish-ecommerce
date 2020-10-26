@@ -6,12 +6,12 @@ const jwt = require('jsonwebtoken');
 const userSchema = new Schema({
   firstName: {
     type: String,
-    required: true,
+    required: [true, 'Please add your firstName'],
   },
 
   lastName: {
     type: String,
-    required: true,
+    required: [true, 'Please add your lastName'],
   },
 
   email: {
@@ -19,6 +19,10 @@ const userSchema = new Schema({
     unique: true,
     required: true,
     trim: true,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      'Please add a valid email',
+    ],
   },
 
   password: {
@@ -42,14 +46,12 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ id: this._id, isAdmin: this.isAdmin }, 'secretKey', {
     expiresIn: '4h',
   });
   return token;
 };
-
 
 const User = mongoose.model('User', userSchema);
 
