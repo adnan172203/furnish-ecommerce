@@ -14,7 +14,7 @@ connectDB();
 
 //middleware
 app.use(express.json());
-app.use(cookieParser('secretKey'));
+app.use(cookieParser(process.env.JWT_SECRET));
 
 // Route files
 const usersRoute = require('./routes/users');

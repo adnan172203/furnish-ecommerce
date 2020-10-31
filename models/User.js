@@ -47,9 +47,13 @@ userSchema.pre('save', async function (next) {
 });
 
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ id: this._id, isAdmin: this.isAdmin }, 'secretKey', {
-    expiresIn: '4h',
-  });
+  const token = jwt.sign(
+    { id: this._id, isAdmin: this.isAdmin },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    }
+  );
   return token;
 };
 
