@@ -51,11 +51,17 @@ module.exports.addUserController = asyncHandler(async (req, res) => {
 module.exports.loginController = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  // Validate emil & password
+  if (!email || !password) {
+    return next(new ErrorResponse('Please provide an email and password', 400));
+  }
+
   //check user email
   const user = await User.findOne({ email });
 
-  if (!user)
-    return res.send(400).json({ errors: [{ msg: 'Unable to login' }] });
+  if (!user) {
+    return next(new ErrorResponse('Invalid credentials', 401));
+  }
 
   //check user password
   const isMatched = bcrypt.compare(password, user.password);
