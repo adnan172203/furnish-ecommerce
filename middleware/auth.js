@@ -4,7 +4,7 @@ const User = require('../models/User');
 module.exports.auth = async (req, res, next) => {
   if (req.signedCookies) {
     //accessing token
-    const token = req.signedCookies['auth'];
+    const token = req.signedCookies['token'];
 
     try {
       //verify token

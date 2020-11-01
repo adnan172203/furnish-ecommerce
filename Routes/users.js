@@ -11,6 +11,7 @@ const {
   getUserController,
   addUserController,
   loginController,
+  logOutController
 } = require('../controller/userController');
 
 //get all users
@@ -36,5 +37,8 @@ router.post(
 
 //login
 router.post('/login', loginController);
+
+//logout user route
+router.post('/logout',auth, logOutController);
 
 module.exports = router;

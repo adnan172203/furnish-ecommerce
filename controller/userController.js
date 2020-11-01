@@ -48,7 +48,7 @@ module.exports.addUserController = asyncHandler(async (req, res) => {
 });
 
 //login user
-module.exports.loginController = asyncHandler(async (req, res) => {
+exports.loginController = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   // Validate emil & password
@@ -56,27 +56,49 @@ module.exports.loginController = asyncHandler(async (req, res) => {
     return next(new ErrorResponse('Please provide an email and password', 400));
   }
 
-  //check user email
-  const user = await User.findOne({ email });
+  // Check for user
+  const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
     return next(new ErrorResponse('Invalid credentials', 401));
   }
 
-  //check user password
-  const isMatched = bcrypt.compare(password, user.password);
-  if (!isMatched)
-    return res.status(400).json({ errors: [{ msg: 'Unable to login' }] });
+  // Check if password matches
+  const isMatch = await bcrypt.compare(password, user.password);
 
-  //Successfully log in user
+  if (!isMatch) {
+    return next(new ErrorResponse('Invalid credentials', 401));
+  }
+
+  sendTokenResponse(user, 200, res);
+});
+
+//log out user controller
+module.exports.logOutController = async (req, res) => {
+  res.clearCookie('token');
+  res.send('log out succesfully');
+};
+
+// Get token from model, create cookie and send response
+const sendTokenResponse = (user, statusCode, res) => {
+  // Create token
   const token = user.generateAuthToken();
 
-  res.cookie('auth', token, {
+  const options = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+    ),
     httpOnly: true,
     sameSite: true,
     signed: true,
-    maxAge: 4 * 60 * 60 * 1000,
-  });
+  };
 
-  res.status(200).json('Success');
-});
+  if (process.env.NODE_ENV === 'production') {
+    options.secure = true;
+  }
+
+  res.status(statusCode).cookie('token', token, options).json({
+    success: true,
+    token,
+  });
+};
