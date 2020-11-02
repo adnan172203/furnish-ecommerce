@@ -10,6 +10,8 @@ const {
   updateProductController
 } = require('../controller/productController');
 
+const { auth, authorize } = require('../middleware/auth');
+
 //get product
 router.get('/', getProductsController);
 
@@ -17,12 +19,12 @@ router.get('/', getProductsController);
 router.get('/:id', getProductController);
 
 //add product
-router.post('/', addProductController);
+router.post('/',auth,authorize('publisher','admin'),addProductController);
 
 //update product
-router.put('/:id', updateProductController);
+router.put('/:id',auth,authorize('publisher','admin'),updateProductController);
 
 //delete product
-router.delete('/:id', deleteProductController);
+router.delete('/:id',auth,authorize('publisher','admin'),deleteProductController);
 
 module.exports = router;
