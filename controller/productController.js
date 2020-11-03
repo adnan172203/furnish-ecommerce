@@ -22,7 +22,10 @@ module.exports.getProductsController = asyncHandler(async (req, res, next) => {
   let queryStr = JSON.stringify(reqQuery);
 
   // Create operators ($gt, $gte, etc)
-  queryStr = queryStr.replace( /\b(gt|gte|lt|lte|in)\b/g, (match) => `$${match}`);
+  queryStr = queryStr.replace(
+    /\b(gt|gte|lt|lte|in)\b/g,
+    (match) => `$${match}`
+  );
 
   query = Product.find(JSON.parse(queryStr));
 
@@ -35,28 +38,26 @@ module.exports.getProductsController = asyncHandler(async (req, res, next) => {
 
   query = query.skip(startIndex).limit(limit);
 
-
-
   const products = await query;
 
-    // Pagination result
-    const pagination = {};
+  // Pagination result
+  const pagination = {};
 
-    if (endIndex < total) {
-      pagination.next = {
-        page: page + 1,
-        limit
-      };
-    }
-  
-    if (startIndex > 0) {
-      pagination.prev = {
-        page: page - 1,
-        limit
-      };
-    }
+  if (endIndex < total) {
+    pagination.next = {
+      page: page + 1,
+      limit,
+    };
+  }
 
-  res.status(200).json({pagination,products});
+  if (startIndex > 0) {
+    pagination.prev = {
+      page: page - 1,
+      limit,
+    };
+  }
+
+  res.status(200).json({ pagination, products });
 });
 
 //get single Product
@@ -79,6 +80,7 @@ module.exports.getProductController = asyncHandler(async (req, res, next) => {
 //add product
 
 module.exports.addProductController = asyncHandler(async (req, res) => {
+
   const {
     name,
     description,
@@ -92,6 +94,8 @@ module.exports.addProductController = asyncHandler(async (req, res) => {
     reviews,
   } = req.body;
 
+
+
   const product = new Product({
     name,
     description,
@@ -102,7 +106,7 @@ module.exports.addProductController = asyncHandler(async (req, res) => {
     image,
     shipping,
     stock,
-    reviews,
+    reviews
   });
   const newProduct = await product.save();
   if (newProduct) {
@@ -115,7 +119,7 @@ module.exports.addProductController = asyncHandler(async (req, res) => {
 //update product
 module.exports.updateProductController = asyncHandler(
   async (req, res, next) => {
-    let product = Product.findById(req.params.id);
+    let product = await Product.findById(req.params.id);
 
     if (!product) {
       return next(
@@ -123,7 +127,16 @@ module.exports.updateProductController = asyncHandler(
       );
     }
 
-    product = await Product.findOneAndUpdate(req.params.id, req.body, {
+    // Make sure user is product owner
+    if ( req.user.role !== 'admin') {
+      return next(
+        new ErrorResponse(
+          `User ${req.params.id} is not authorized to update this product`,
+          401
+        )
+      );
+    }
+    product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -135,7 +148,9 @@ module.exports.updateProductController = asyncHandler(
 //delete product
 module.exports.deleteProductController = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
+
   if (!product) return res.status(404).send({ message: 'Product not found' });
+
   product.remove();
 
   res.status(200).json({ message: 'product removed' });

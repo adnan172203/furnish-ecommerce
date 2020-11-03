@@ -30,9 +30,9 @@ const userSchema = new Schema({
     required: true,
   },
 
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
+    default: 'user'
   },
 });
 
@@ -48,7 +48,7 @@ userSchema.pre('save', async function (next) {
 
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { id: this._id, isAdmin: this.isAdmin },
+    { id: this._id },
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRE,

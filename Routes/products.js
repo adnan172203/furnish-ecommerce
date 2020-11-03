@@ -7,7 +7,7 @@ const {
   getProductsController,
   getProductController,
   deleteProductController,
-  updateProductController
+  updateProductController,
 } = require('../controller/productController');
 
 const { auth, authorize } = require('../middleware/auth');
@@ -19,12 +19,12 @@ router.get('/', getProductsController);
 router.get('/:id', getProductController);
 
 //add product
-router.post('/',auth,authorize('publisher','admin'),addProductController);
+router.post('/', auth, authorize('admin'), addProductController);
 
 //update product
-router.put('/:id',auth,authorize('publisher','admin'),updateProductController);
+router.put('/:id', auth, authorize('admin'), updateProductController);
 
 //delete product
-router.delete('/:id',auth,authorize('publisher','admin'),deleteProductController);
+router.delete('/:id', auth, authorize('admin'), deleteProductController);
 
 module.exports = router;
