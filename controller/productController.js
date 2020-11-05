@@ -6,7 +6,7 @@ const asyncHandler = require('../middleware/async');
 const Product = require('../models/Product');
 
 //Get All Product
-module.exports.getProductsController = asyncHandler(async (req, res, next) => {
+module.exports.getProducts = asyncHandler(async (req, res, next) => {
   let query;
 
   // Copy req.query
@@ -61,7 +61,7 @@ module.exports.getProductsController = asyncHandler(async (req, res, next) => {
 });
 
 //get single Product
-module.exports.getProductController = asyncHandler(async (req, res, next) => {
+module.exports.getProduct = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(404).send(errors.array());
@@ -79,7 +79,7 @@ module.exports.getProductController = asyncHandler(async (req, res, next) => {
 
 //add product
 
-module.exports.addProductController = asyncHandler(async (req, res) => {
+module.exports.addProduct = asyncHandler(async (req, res) => {
 
   const {
     name,
@@ -117,7 +117,7 @@ module.exports.addProductController = asyncHandler(async (req, res) => {
 });
 
 //update product
-module.exports.updateProductController = asyncHandler(
+module.exports.updateProduct = asyncHandler(
   async (req, res, next) => {
     let product = await Product.findById(req.params.id);
 
@@ -146,7 +146,7 @@ module.exports.updateProductController = asyncHandler(
 );
 
 //delete product
-module.exports.deleteProductController = asyncHandler(async (req, res) => {
+module.exports.deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) return res.status(404).send({ message: 'Product not found' });

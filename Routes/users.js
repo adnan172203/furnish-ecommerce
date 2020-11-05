@@ -7,18 +7,18 @@ const { auth } = require('../middleware/auth');
 
 //controller
 const {
-  getUsersController,
-  getUserController,
-  addUserController,
-  loginController,
-  logOutController
+  getUsers,
+  getUser,
+  addUser,
+  login,
+  logOut,
 } = require('../controller/userController');
 
 //get all users
-router.get('/', auth, getUsersController);
+router.get('/', auth, getUsers);
 
 //get single user
-router.get('/me',auth, getUserController);
+router.get('/me', auth, getUser);
 
 //add new user
 router.post(
@@ -31,14 +31,13 @@ router.post(
     check('password', 'password is required').notEmpty(),
     check('password', 'password must be 6 character').isLength({ min: 6 }),
   ],
-  addUserController
+  addUser
 );
 
-
 //login
-router.post('/login', loginController);
+router.post('/login', login);
 
 //logout user route
-router.post('/logout',auth, logOutController);
+router.post('/logout', auth, logOut);
 
 module.exports = router;

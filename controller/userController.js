@@ -6,14 +6,14 @@ const asyncHandler = require('../middleware/async');
 const User = require('../models/User');
 
 // fetch all users
-module.exports.getUsersController = asyncHandler(async (req, res) => {
+module.exports.getUsers = asyncHandler(async (req, res) => {
   const users = await User.find();
   res.status(200).json(users);
 });
 
 //get single  user
 
-module.exports.getUserController = asyncHandler(async (req, res) => {
+module.exports.getUser = asyncHandler(async (req, res) => {
   const id = req.user._id;
   const user = await User.findById(id, '-password');
   if (!user) return res.status(404).json({ msg: 'user not exist' });
@@ -21,7 +21,7 @@ module.exports.getUserController = asyncHandler(async (req, res) => {
 });
 
 // add user
-module.exports.addUserController = asyncHandler(async (req, res) => {
+module.exports.addUser = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -48,7 +48,7 @@ module.exports.addUserController = asyncHandler(async (req, res) => {
 });
 
 //login user
-exports.loginController = asyncHandler(async (req, res, next) => {
+module.exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
 
   // Validate emil & password
@@ -74,10 +74,10 @@ exports.loginController = asyncHandler(async (req, res, next) => {
 });
 
 //log out user controller
-module.exports.logOutController = async (req, res) => {
+module.exports.logOut = asyncHandler(async (req, res) => {
   res.clearCookie('token');
   res.send('log out succesfully');
-};
+});
 
 // Get token from model, create cookie and send response
 const sendTokenResponse = (user, statusCode, res) => {

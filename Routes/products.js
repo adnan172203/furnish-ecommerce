@@ -3,28 +3,28 @@ const { check } = require('express-validator');
 const router = express.Router();
 
 const {
-  addProductController,
-  getProductsController,
-  getProductController,
-  deleteProductController,
-  updateProductController,
+  addProduct,
+  getProducts,
+  getProduct,
+  deleteProduct,
+  updateProduct,
 } = require('../controller/productController');
 
 const { auth, authorize } = require('../middleware/auth');
 
 //get product
-router.get('/', getProductsController);
+router.get('/', getProducts);
 
 //get single product
-router.get('/:id', getProductController);
+router.get('/:id', getProduct);
 
 //add product
-router.post('/', auth, authorize('admin'), addProductController);
+router.post('/', auth, authorize('admin'), addProduct);
 
 //update product
-router.put('/:id', auth, authorize('admin'), updateProductController);
+router.put('/:id', auth, authorize('admin'), updateProduct);
 
 //delete product
-router.delete('/:id', auth, authorize('admin'), deleteProductController);
+router.delete('/:id', auth, authorize('admin'), deleteProduct);
 
 module.exports = router;
