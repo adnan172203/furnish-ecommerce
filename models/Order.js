@@ -28,7 +28,7 @@ const paymentSchema = {
   },
 };
 
-const orderItemSchema = new mongoose.Schema({
+const orderItemSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -46,8 +46,59 @@ const orderItemSchema = new mongoose.Schema({
     required: true,
   },
   product: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: 'Product',
     required: true,
   },
 });
+
+const orderSchema = new Schema(
+  {
+    user: {
+      type: ObjectId,
+      ref: 'User',
+      required: true,
+    },
+
+    orderItems: [orderItemSchema],
+
+    shipping: shippingSchema,
+
+    payment: paymentSchema,
+
+    itemsPrice: {
+      type: Number,
+    },
+    taxPrice: {
+      type: Number,
+    },
+    shippingPrice: {
+      type: Number,
+    },
+    totalPrice: {
+      type: Number,
+    },
+    isPaid: {
+      type: Boolean,
+      default: false,
+    },
+    paidAt: {
+      type: Date,
+    },
+    isDelivered: {
+      type: Boolean,
+      default: false,
+    },
+    deliveredAt: {
+      type: Date,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+
+const orderModel = mongoose.model("Order", orderSchema);
+
+module.exports = orderModel;
