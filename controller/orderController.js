@@ -5,12 +5,27 @@ const asyncHandler = require('../middleware/async');
 const Order = require('../models/Order');
 
 //get all orders
-
 module.exports.getOrders = asyncHandler(async (req, res) => {
   const orders = await Order.find({}).populate('user', 'id name');
   res.json(orders);
 });
 
+// get order by id
+module.exports.getOrderById = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id).populate(
+    'user',
+    'name email'
+  );
+
+  if (order) {
+    res.json(order);
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+});
+
+//add order
 module.exports.addOrder = asyncHandler(async (req, res, next) => {
   const {
     orderItems,
