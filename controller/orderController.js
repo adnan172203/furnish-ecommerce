@@ -6,7 +6,7 @@ const Order = require('../models/Order');
 
 //get all orders
 module.exports.getOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).populate('user', 'id name');
+  const orders = await Order.find({}).populate('user', 'id firstName');
   res.json(orders);
 });
 
@@ -29,8 +29,8 @@ module.exports.getOrderById = asyncHandler(async (req, res) => {
 module.exports.addOrder = asyncHandler(async (req, res, next) => {
   const {
     orderItems,
-    shipping,
-    payment,
+    shippingAddress,
+    paymentMethod,
     itemsPrice,
     taxPrice,
     shippingPrice,
@@ -43,8 +43,8 @@ module.exports.addOrder = asyncHandler(async (req, res, next) => {
     const order = new Order({
       user: req.user._id,
       orderItems,
-      shipping,
-      payment,
+      shippingAddress,
+      paymentMethod,
       itemsPrice,
       taxPrice,
       shippingPrice,

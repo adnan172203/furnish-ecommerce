@@ -6,12 +6,12 @@ const { getOrders,getOrderById,addOrder } = require('../controller/orderControll
 const { auth, authorize } = require('../middleware/auth');
 
 //get orders
-router.get('/', auth, authorize('admin'), getOrders);
+router.get('/', auth, authorize('admin'),  getOrders);
 
 //get orders by id
-router.get('/:id', auth, authorize('admin'), getOrderById);
+router.get('/:id', auth, getOrderById);
 
 //add new orders
-router.post('/', auth, authorize('admin'), addOrder);
+router.post('/', auth, addOrder);
 
 module.exports = router;
