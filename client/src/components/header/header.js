@@ -1,6 +1,12 @@
 import React from 'react';
-import './header.css';
 import Logo from '../../assets/logo.png';
+import { Link } from 'react-router-dom';
+
+//icon
+import { FaSearch, FaShoppingCart, FaRegHeart } from 'react-icons/fa';
+
+//css
+import './header.css';
 
 const Header = () => {
   return (
@@ -23,7 +29,9 @@ const Header = () => {
           <i className='fa fa-bars navbar-toggler-icon'></i>
         </button>
         <div className='logo'>
-          <img src={Logo} alt='' />
+          <Link to='/'>
+            <img src={Logo} alt='' />
+          </Link>
         </div>
 
         <div className='dot-icon'>
@@ -45,9 +53,11 @@ const Header = () => {
             </ul>
           </div>
           <div className='shop-essentials-icon'>
-            <i className='fas fa-search'></i>
-            <i className='fas fa-shopping-cart'></i>
-            <i className='far fa-heart'></i>
+            <FaSearch className="header_icon" />
+
+            <FaShoppingCart className="header_icon" />
+
+            <FaRegHeart className="header_icon" />
             <span>log in</span>
           </div>
 
