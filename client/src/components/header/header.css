@@ -1,39 +1,165 @@
 .main-header {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem;
+}
+
+.main-header nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.navbar ul li a {
+  padding: 0.75rem;
+  text-decoration: none;
+  color: rgb(19, 18, 18);
+}
+
+.navbar-toggler {
+  display: none;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #707070;
+}
+
+.navbar-toggler .bars {
+  padding: 0rem;
+  font-size: 1.5rem;
+  background: #fff;
+  border: none;
+  outline: none;
+}
+
+.main-header .shop-essentials .header_icon {
+  padding: 0.75rem;
+}
+
+.dot-icon {
+  display: none;
+}
+
+.shop-essentials {
+  display: flex;
+  align-items: center;
+}
+
+/* responsive code */
+
+@media screen and (max-width: 600px) {
+  .logo {
+    padding: 0 20%;
   }
-  
-  .main-header nav ul {
+
+  .navbar-toggler {
+    float: right;
+    display: block;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  .show-menu > .navbar {
+    display: block;
+    position: absolute;
+    width: 34%;
+    background: #fff;
+    text-align: center;
+    margin-top: 14rem;
+    box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+    z-index: 2;
+    left: 9%;
+  }
+
+  .show-menu > .navbar ul {
     display: flex;
+    flex-direction: column;
+  }
+
+  .show-menu > .navbar ul li {
+    padding: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .show-menu > .navbar ul li a {
+    border-bottom: 1px solid #ececec;
+  }
+
+  .show-menu > .navbar ul {
+    animation-name: slidenavAnimation;
+    animation-duration: 200ms;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: slidenavAnimation;
+    -webkit-animation-duration: 200ms;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-name: slidenavAnimation;
+    -moz-animation-duration: 200ms;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-out;
+    -moz-animation-fill-mode: forwards;
+  }
+
+  @keyframes slidenavAnimation {
+    from {
+      margin-top: -30px;
+      opacity: 0;
+    }
+    to {
+      margin-top: 0;
+      opacity: 1;
+    }
+  }
+
+  .featured-products .featured-items,
+  .items-on-sale .on-sale-items {
+    margin-left: 5rem;
+  }
+
+  /* shop essentials text */
+
+  .shop-essentials-text,
+  .shop-essentials-icon {
+    display: none;
+  }
+
+  .show-essential > .shop-essentials-text {
+    display: block !important;
+  }
+
+  .dot-icon {
+    display: block;
+  }
+
+  .show-essential > .shop-essentials-text ul {
     list-style: none;
   }
-  
-  .navbar ul li a {
-    padding: 0.75rem;
-    text-decoration: none;
-    color: rgb(19, 18, 18);
-  }
-  
-  .navbar-toggler {
-    display: none;
-    background: #fff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    color: #707070;
-  }
-  
-  .navbar-toggler i {
-    padding: 0rem;
-    font-size: 1.5rem;
-    background: #fff;
-    border: none;
-    outline: none;
-  }
-  
 
-  .main-header .shop-essentials .header_icon {
-    padding: 0.75rem;
+  .show-essential > .shop-essentials-icon {
+    display: none;
+    margin: 0;
+    padding: 0;
   }
+
+  .show-essential > .shop-essentials-text {
+    display: block;
+    position: absolute;
+    top: 13%;
+    z-index: 2;
+    right: 9%;
+    background: #fff;
+    box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+    width: 32%;
+    text-align: center;
+  }
+
+  .show-essential > .shop-essentials-text ul li {
+    padding: 1rem;
+  }
+}
