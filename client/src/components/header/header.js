@@ -1,10 +1,12 @@
 import React from 'react';
+import './header.css';
+import Logo from '../../assets/logo.png';
 
 const Header = () => {
   return (
     <div>
-      <header class='main-header'>
-        <nav class='navbar'>
+      <header className='main-header'>
+        <nav className='navbar'>
           <ul>
             <li>
               <a href='#home'>Home</a>
@@ -17,19 +19,19 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <button class='navbar-toggler'>
-          <i class='fa fa-bars navbar-toggler-icon'></i>
+        <button className='navbar-toggler'>
+          <i className='fa fa-bars navbar-toggler-icon'></i>
         </button>
-        <div class='logo'>
-          <img src='./img/logo.png' alt='' />
+        <div className='logo'>
+          <img src={Logo} alt='' />
         </div>
 
-        <div class='dot-icon'>
-          <i class='fas fa-ellipsis-v'></i>
+        <div className='dot-icon'>
+          <i className='fas fa-ellipsis-v'></i>
         </div>
 
-        <div class='shop-essentials'>
-          <div class='shop-essentials-text'>
+        <div className='shop-essentials'>
+          <div className='shop-essentials-text'>
             <ul>
               <li>
                 <a href='#home'>Cart(3)</a>
@@ -42,73 +44,73 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div class='shop-essentials-icon'>
-            <i class='fas fa-search'></i>
-            <i class='fas fa-shopping-cart'></i>
-            <i class='far fa-heart'></i>
+          <div className='shop-essentials-icon'>
+            <i className='fas fa-search'></i>
+            <i className='fas fa-shopping-cart'></i>
+            <i className='far fa-heart'></i>
             <span>log in</span>
           </div>
 
           {/* Header dropdown minicart  */}
-          <div class='header-cart-dropdown'>
-            <div class='header-minicart'>
-              <div class='header-dropdown-item scroll-style'>
+          <div className='header-cart-dropdown'>
+            <div className='header-minicart'>
+              <div className='header-dropdown-item scroll-style'>
                 {/* <!-- item one --> */}
-                <div class='header-cart-item'>
-                  <div class='header-cart-item-img'>
+                <div className='header-cart-item'>
+                  <div className='header-cart-item-img'>
                     <img src='./img/hover/cart/product1.png' alt='' />
                   </div>
-                  <div class='header-cart-item-name'>
+                  <div className='header-cart-item-name'>
                     <a href=''>
                       <p>Slim Wooden Stool</p>
                     </a>
                     <p>2 x 125</p>
                   </div>
-                  <div class='header-cart-item-delete'>
-                    <i class='far fa-times-circle'></i>
+                  <div className='header-cart-item-delete'>
+                    <i className='far fa-times-circle'></i>
                   </div>
                 </div>
                 {/* <!-- item two --> */}
-                <div class='header-cart-item'>
-                  <div class='header-cart-item-img'>
+                <div className='header-cart-item'>
+                  <div className='header-cart-item-img'>
                     <img src='./img/hover/cart/product2.png' alt='' />
                   </div>
-                  <div class='header-cart-item-name'>
+                  <div className='header-cart-item-name'>
                     <a href=''>
                       <p>White Comfy Silver</p>
                     </a>
                     <p>2 x 125</p>
                   </div>
-                  <div class='header-cart-item-delete'>
-                    <i class='far fa-times-circle'></i>
+                  <div className='header-cart-item-delete'>
+                    <i className='far fa-times-circle'></i>
                   </div>
                 </div>
                 {/* <!-- item three --> */}
-                <div class='header-cart-item'>
-                  <div class='header-cart-item-img'>
+                <div className='header-cart-item'>
+                  <div className='header-cart-item-img'>
                     <img src='./img/hover/cart/product3.png' alt='' />
                   </div>
-                  <div class='header-cart-item-name'>
+                  <div className='header-cart-item-name'>
                     <a href=''>
                       <p>Yellow Comfort</p>
                     </a>
                     <p>2 x 125</p>
                   </div>
-                  <div class='header-cart-item-delete'>
-                    <i class='far fa-times-circle'></i>
+                  <div className='header-cart-item-delete'>
+                    <i className='far fa-times-circle'></i>
                   </div>
                 </div>
               </div>
-              <div class='header-cart-total'>
+              <div className='header-cart-total'>
                 <p>Total</p>
                 <p>$900</p>
               </div>
-              <div class='header-view-cart'>
+              <div className='header-view-cart'>
                 <a href='#'>
                   <button>View Cart</button>
                 </a>
               </div>
-              <div class='header-checkout'>
+              <div className='header-checkout'>
                 <a href='#'>
                   {' '}
                   <button>Checkout</button>
@@ -119,59 +121,59 @@ const Header = () => {
 
           {/* <!-- ************ Header Wishlist ********************* --> */}
 
-          <div class='header-wishlist-dropdown'>
-            <div class='header-wishlist'>
-              <div class='wishlist-items wishlist-scroll-style'>
+          <div className='header-wishlist-dropdown'>
+            <div className='header-wishlist'>
+              <div className='wishlist-items wishlist-scroll-style'>
                 {/* <!-- item one --> */}
-                <div class='header-wishlist-item'>
-                  <div class='header-wishlist-item-img'>
+                <div className='header-wishlist-item'>
+                  <div className='header-wishlist-item-img'>
                     <img src='./img/hover/wishlist/product1.png' alt='' />
                   </div>
-                  <div class='header-wishlist-item-name'>
+                  <div className='header-wishlist-item-name'>
                     <a href=''>
                       <p>Slim Wooden Stool</p>
                     </a>
                     <p>Add To Cart</p>
                   </div>
-                  <div class='header-wishlist-item-delete'>
-                    <i class='far fa-times-circle'></i>
+                  <div className='header-wishlist-item-delete'>
+                    <i className='far fa-times-circle'></i>
                   </div>
                 </div>
 
                 {/* <!-- item two --> */}
-                <div class='header-wishlist-item'>
-                  <div class='header-wishlist-item-img'>
+                <div className='header-wishlist-item'>
+                  <div className='header-wishlist-item-img'>
                     <img src='./img/hover/wishlist/product2.png' alt='' />
                   </div>
-                  <div class='header-wishlist-item-name'>
+                  <div className='header-wishlist-item-name'>
                     <a href=''>
                       <p>White comfy silver</p>
                     </a>
                     <p>Add To Cart</p>
                   </div>
-                  <div class='header-wishlist-item-delete'>
-                    <i class='far fa-times-circle'></i>
+                  <div className='header-wishlist-item-delete'>
+                    <i className='far fa-times-circle'></i>
                   </div>
                 </div>
 
                 {/* <!-- item three --> */}
-                <div class='header-wishlist-item'>
-                  <div class='header-wishlist-item-img'>
+                <div className='header-wishlist-item'>
+                  <div className='header-wishlist-item-img'>
                     <img src='./img/hover/wishlist/product3.png' alt='' />
                   </div>
-                  <div class='header-wishlist-item-name'>
+                  <div className='header-wishlist-item-name'>
                     <a href=''>
                       <p>Yellow Comfort</p>
                     </a>
                     <p>Add To Cart</p>
                   </div>
-                  <div class='header-wishlist-item-delete'>
-                    <i class='far fa-times-circle'></i>
+                  <div className='header-wishlist-item-delete'>
+                    <i className='far fa-times-circle'></i>
                   </div>
                 </div>
               </div>
 
-              <div class='header-view-wishlist'>
+              <div className='header-view-wishlist'>
                 <a href='#'>
                   <button>Go to wishlist</button>
                 </a>
