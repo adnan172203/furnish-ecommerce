@@ -10,7 +10,7 @@
   list-style: none;
 }
 
-.navbar ul li a {
+.navbar ul a {
   padding: 0.75rem;
   text-decoration: none;
   color: rgb(19, 18, 18);
@@ -41,7 +41,7 @@
   display: none;
 }
 
-.shop-essentials {
+.shop-essentials-icon {
   display: flex;
   align-items: center;
 }
@@ -79,7 +79,7 @@
     flex-direction: column;
   }
 
-  .show-menu > .navbar ul li {
+  .show-menu > .navbar ul a {
     padding: 0.5rem;
     margin-top: 1rem;
   }
