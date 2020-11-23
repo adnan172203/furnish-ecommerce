@@ -1,0 +1,41 @@
+.shop-banner {
+  position: relative;
+}
+
+.shop-banner-image {
+  background: url(../img/shop/shop_banner.png) no-repeat center;
+  background-size: contain;
+  height: 58vh;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+}
+
+section.shop-banner {
+  position: relative;
+}
+
+.shop-banner-text {
+  position: absolute;
+  top: 21%;
+  left: 50%;
+  right: 0;
+}
+
+.shop-banner-text {
+  color: #a8a8a8;
+}
+.shop-banner-text h2 {
+  font-weight: 500;
+}
+
+.shop-banner-text span {
+  color: #42b883;
+  font-weight: 900;
+}
+
+.shop-breadcrumb {
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  color: #a8a8a8;
+}
+
