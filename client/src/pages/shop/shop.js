@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Banner from '../../components/banner/banner';
 
 const Shop = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return (
+    <>
+      <Banner />
+    </>
+  );
+};
 
 export default Shop;
