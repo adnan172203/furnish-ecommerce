@@ -1,18 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Banner = () => {
+//css
+import './banner.css';
+
+const Banner = ({ title, breadCrumb }) => {
   return (
     <>
-      <section class='shop-banner'>
-        <div class='container'>
-          <div class='shop-banner-image'></div>
-          <div class='shop-banner-text'>
+      <section className='shop-banner'>
+        <div className='container'>
+          <div className='shop-banner-image'></div>
+          <div className='shop-banner-text'>
             <h2>
-              Welcome To The <span>Shop</span>
+              Welcome To The <span>{title}</span>
             </h2>
           </div>
-          <div class='shop-breadcrumb'>
-            <span>Home - Shop</span>
+          <div className='shop-breadcrumb'>
+            <span><Link to="/">Home</Link> - {breadCrumb}</span>
           </div>
         </div>
       </section>

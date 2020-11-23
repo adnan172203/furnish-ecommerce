@@ -4,7 +4,7 @@ import Banner from '../../components/banner/banner';
 const Shop = () => {
   return (
     <>
-      <Banner />
+      <Banner title='Shop' breadCrumb='Shop' />
     </>
   );
 };
