@@ -20,13 +20,13 @@ app.use(cookieParser(process.env.JWT_SECRET));
 const usersRoute = require('./Routes/users');
 const productsRoute = require('./Routes/products');
 const ordersRoute = require('./Routes/orders');
-
+const uploadsRoute = require('./Routes/upload');
 
 // Mount routers
 app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/products', productsRoute);
 app.use('/api/v1/orders', ordersRoute);
-
+app.use('/api/v1/uploads', uploadsRoute);
 
 
 app.use(errorHandler);
