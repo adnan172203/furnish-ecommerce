@@ -17,14 +17,16 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 // Route files
-const usersRoute = require('./routes/users');
-const productsRoute = require('./routes/products');
-const ordersRoute = require('./routes/orders');
+const usersRoute = require('./Routes/users');
+const productsRoute = require('./Routes/products');
+const ordersRoute = require('./Routes/orders');
+
 
 // Mount routers
 app.use('/api/v1/users', usersRoute);
 app.use('/api/v1/products', productsRoute);
 app.use('/api/v1/orders', ordersRoute);
+
 
 
 app.use(errorHandler);

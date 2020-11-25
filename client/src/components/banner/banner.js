@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//icon
+import { AiOutlineRight } from "react-icons/ai";
+
 //css
 import './banner.css';
 
@@ -16,7 +19,9 @@ const Banner = ({ title, breadCrumb }) => {
             </h2>
           </div>
           <div className='shop-breadcrumb'>
-            <span><Link to="/">Home</Link> - {breadCrumb}</span>
+            <span>
+              <Link to='/'>Home</Link> <AiOutlineRight className="middle" /> {breadCrumb}
+            </span>
           </div>
         </div>
       </section>
@@ -25,3 +30,5 @@ const Banner = ({ title, breadCrumb }) => {
 };
 
 export default Banner;
+
+
