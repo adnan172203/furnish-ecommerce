@@ -6,7 +6,7 @@ const productSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique:true
+    unique: true,
   },
   description: {
     type: String,
@@ -26,11 +26,7 @@ const productSchema = new Schema({
     type: Number,
   },
   image: {
-   type:Object
-  },
-  shipping: {
-    required: false,
-    type: Boolean,
+    type: Object,
   },
   stock: {
     required: true,
@@ -57,7 +53,7 @@ const productSchema = new Schema({
         default: Date.now,
       },
     },
-  ]
+  ],
 });
 
 const Product = mongoose.model('Product', productSchema);
