@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+//css
+import './admin-nav.css';
+
 const AdminNav = () => {
   return (
     <div class='admin-nav'>
