@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+//icon
+import { FaShoppingBag, FaTruck, FaUsers } from 'react-icons/fa';
 
 //css
 import './admin-nav.css';
@@ -10,13 +12,16 @@ const AdminNav = () => {
     <div class='admin-nav'>
       <ul>
         <Link to='/products'>
-          <i class='fas fa-shopping-bag'></i>products
+          <FaShoppingBag />
+          products
         </Link>
         <Link to='/order'>
-          <i class='fas fa-truck'></i>order
+          <FaTruck />
+          order
         </Link>
         <Link to='/user'>
-          <i class='fas fa-users'></i>user
+          <FaUsers />
+          user
         </Link>
       </ul>
     </div>

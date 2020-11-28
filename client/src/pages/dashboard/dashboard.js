@@ -7,7 +7,9 @@ import './dashboard.css';
 const Dashboard = () => {
   return (
     <div className='admin-body'>
-      <AdminNav />
+      <AdminNav>
+          hello
+      </AdminNav>
     </div>
   );
 };
