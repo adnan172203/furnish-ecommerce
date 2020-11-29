@@ -4,7 +4,7 @@ import React from 'react';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 
 //css
-import './userList.css';
+import './user-list.css';
 
 const UserList = () => {
   return (
@@ -24,10 +24,10 @@ const UserList = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td className='column1'>2017-09-29 01:22</td>
-                  <td className='column2'>200398</td>
-                  <td className='column3'>iPhone X 64Gb Grey</td>
-                  <td className='column4'>
+                  <td className='user-column1'>2017-09-29 01:22</td>
+                  <td className='user-column2'>200398</td>
+                  <td className='user-column3'>iPhone X 64Gb Grey</td>
+                  <td className='user-column4'>
                     <FaRegEdit />
                     <FaRegTrashAlt />
                   </td>

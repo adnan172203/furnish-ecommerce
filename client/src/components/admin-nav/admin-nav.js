@@ -12,15 +12,15 @@ const AdminNav = ({ url }) => {
     <div className='admin-nav'>
       <ul>
         <Link to={`${url}/adminproduct`}>
-          <FaShoppingBag />
+          <FaShoppingBag className='rm' />
           products
         </Link>
         <Link to={`${url}/order`}>
-          <FaTruck />
+          <FaTruck className='rm' />
           order
         </Link>
         <Link to={`${url}/user`}>
-          <FaUsers />
+          <FaUsers className='rm' />
           user
         </Link>
       </ul>

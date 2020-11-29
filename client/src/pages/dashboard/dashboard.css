@@ -1,4 +1,5 @@
 .admin-body {
     background: #f9f9f9;
     display: flex;
+    position:relative;
   }
