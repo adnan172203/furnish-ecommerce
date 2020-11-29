@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/header/header';
 import Shop from './pages/shop/shop';
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path='/shop' component={Shop} />
-        <Route exact path='/dashboard' component={Dashboard} />
+        <Route path='/dashboard' component={Dashboard} />
       </Switch>
     </div>
   );

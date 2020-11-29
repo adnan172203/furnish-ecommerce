@@ -1,0 +1,31 @@
+.admin-main-shop {
+    width: 76%;
+    margin: 100px auto 0px auto;
+    /* display: none; */
+  }
+  
+  .admin-main-shop .admin-product {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .admin-main-shop .admin-product-item {
+    flex-basis: 20%;
+    margin-right: 1.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .admin-main-shop .admin-product-desc {
+    margin-top: 1rem;
+  }
+  .admin-main-shop .admin-product-name {
+    color: #8a8989;
+    margin-bottom: 10px;
+    font-weight: 100;
+  }
+  
+  .admin-main-shop .admin-product-item .admin-product-img img {
+    max-width: 100%;
+    border-radius: 5px;
+  }

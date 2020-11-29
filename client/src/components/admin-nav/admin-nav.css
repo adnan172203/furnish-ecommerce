@@ -5,6 +5,8 @@
   
   .admin-nav ul {
     padding: 2rem;
+    display:flex;
+    flex-direction:column;
   }
   
   .admin-nav a {

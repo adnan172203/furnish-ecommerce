@@ -23,6 +23,7 @@ const Header = () => {
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
             <Link to='/contact'>Contact</Link>
+            <Link to='/dashboard'>dashboard</Link>
           </ul>
         </nav>
         <button className='navbar-toggler'>

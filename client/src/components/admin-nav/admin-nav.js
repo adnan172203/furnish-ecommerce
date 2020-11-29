@@ -7,19 +7,19 @@ import { FaShoppingBag, FaTruck, FaUsers } from 'react-icons/fa';
 //css
 import './admin-nav.css';
 
-const AdminNav = () => {
+const AdminNav = ({ url }) => {
   return (
-    <div class='admin-nav'>
+    <div className='admin-nav'>
       <ul>
-        <Link to='/products'>
+        <Link to={`${url}/adminproduct`}>
           <FaShoppingBag />
           products
         </Link>
-        <Link to='/order'>
+        <Link to={`${url}/order`}>
           <FaTruck />
           order
         </Link>
-        <Link to='/user'>
+        <Link to={`${url}/user`}>
           <FaUsers />
           user
         </Link>
