@@ -1,5 +1,8 @@
 import React from 'react';
 
+//css
+import './orderList.css';
+
 const OrderList = () => {
   return (
     <div className='order-list'>
