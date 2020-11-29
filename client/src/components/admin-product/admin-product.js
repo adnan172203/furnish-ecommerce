@@ -5,117 +5,117 @@ import './admin-product.css';
 
 const AdminProduct = () => {
   return (
-    <div class='admin-main-shop'>
-      <div class='admin-product'>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+    <div className='admin-main-shop'>
+      <div className='admin-product'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
 
-        <div class='admin-product-item'>
-          <div class='admin-product-img'>
+        <div className='admin-product-item'>
+          <div className='admin-product-img'>
             <a href='#'>
               <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
             </a>
           </div>
-          <div class='admin-product-desc'>
-            <h3 class='admin-product-name'>white comfy</h3>
-            <p class='admin-product-price'>$570</p>
+          <div className='admin-product-desc'>
+            <h3 className='admin-product-name'>white comfy</h3>
+            <p className='admin-product-price'>$570</p>
           </div>
         </div>
       </div>
