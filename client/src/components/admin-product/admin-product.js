@@ -6,6 +6,7 @@ import './admin-product.css';
 const AdminProduct = () => {
   return (
     <>
+    <div className="dark-back">
       <div className='create-product-btn'>
         <button>Add Products</button>
       </div>
@@ -40,7 +41,7 @@ const AdminProduct = () => {
         </div>
       <input type="submit" value="Create Product" className="create-product-submit"/>
       </div>
-
+      </div>
       <div className='admin-main-shop'>
         <div className='admin-product'>
           <div className='admin-product-item'>

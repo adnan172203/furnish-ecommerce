@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   PRODUCT_LIST_SUCCESS,
-  PRODUCT_LIST_FAIL,
+  PRODUCT_LIST_FAIL
 } from './product-types';
 
 export const listProducts = () => async (
@@ -10,7 +10,7 @@ export const listProducts = () => async (
   try {
 
     const { data } = await axios.get('/api/v1/products');
-console.log(data);
+
     dispatch({
       type: PRODUCT_LIST_SUCCESS,
       payload: data,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 //css
-import './order-list.css';
+import Styles from './order-list.module.css';
 
 const OrderList = () => {
   return (
@@ -29,7 +29,6 @@ const OrderList = () => {
                   <td className='order-column5'>1</td>
                   <td className='order-column6'>$999.00</td>
                 </tr>
-                
               </tbody>
             </table>
           </div>
