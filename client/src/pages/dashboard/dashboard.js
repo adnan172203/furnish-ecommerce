@@ -6,13 +6,14 @@ import OrderList from '../../components/order-list/order-list';
 import UserList from '../../components/user-list/user-list';
 
 //css
-import './dashboard.css';
+import Styles from './dashboard.module.css';
+const { admin_body } = Styles;
 
 const Dashboard = () => {
   let { path,url } = useRouteMatch();
 
   return (
-    <div className='admin-body'>
+    <div className={admin_body}>
       <AdminNav url={url} />
       <Switch>
         <Route exact path={`${path}/adminproduct`} component={AdminProduct} />

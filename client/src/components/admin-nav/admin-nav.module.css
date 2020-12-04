@@ -1,0 +1,28 @@
+.admin_nav {
+  background: #fff;
+}
+
+.admin_nav ul {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin_nav a {
+  list-style: none;
+  padding: 1rem 3rem 1rem 3rem;
+  font-weight: 600;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  margin-top: 1rem;
+  border-radius: 10px;
+  color: rgb(19, 18, 18);
+}
+
+.admin_nav a:hover {
+  background: #42b883;
+  color: #fff;
+}
+
+.admin_nav .rm {
+  margin-right: 10px;
+}

@@ -1,11 +1,11 @@
 /* button */
-.create-product-btn {
+.create_product_btn {
   position: absolute;
   right: 14%;
   top: 2%;
 }
 
-.create-product-btn button {
+.create_product_btn button {
   border: 0;
   outline: 0;
   background-color: rgb(0, 197, 141);
@@ -17,7 +17,7 @@
 }
 
 /* create product form */
-.create-product-form {
+.create_product_form {
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -28,13 +28,13 @@
   top: 0;
 }
 
-.create-product-form input,
-.create-product-form textarea {
+.create_product_form input,
+.create_product_form textarea {
   margin-bottom: 2rem;
   margin-top: -6px;
 }
 
-.create-product-form input {
+.create_product_form input {
   background: #eeeded;
   padding: 1rem;
   border-radius: 5px;
@@ -42,7 +42,7 @@
   outline-color: #42b883;
 }
 
-#create-product-description {
+#create_product_description {
   height: 17vh;
   border: none;
   background: #eeeded;
@@ -52,24 +52,24 @@
   outline-color: #42b883;
 }
 
-.create-product-stock {
+.create_product_stock {
   display: flex;
   align-items: center;
 }
 
-.create-product-stock input {
+.create_product_stock input {
   margin: 0px 5px 0px 0px;
 }
 
-label.stock-margin {
+label.stock_margin {
   margin-right: 12px;
 }
 
-.label-edit {
+.label_edit {
   font-weight: 600;
 }
 
-input.create-product-submit {
+input.create_product_submit {
   width: 35%;
   margin: 0 auto;
   background: rgb(0, 197, 141);
@@ -83,33 +83,33 @@ input.create-product-submit {
 
 /* admin product list */
 
-.admin-main-shop {
+.admin_main_shop {
   width: 76%;
   margin: 100px auto 0px auto;
 }
 
-.admin-main-shop .admin-product {
+.admin_main_shop .admin_product {
   display: flex;
   flex-wrap: wrap;
 }
 
-.admin-main-shop .admin-product-item {
+.admin_main_shop .admin_product_item {
   flex-basis: 20%;
   margin-right: 1.5rem;
   margin-bottom: 3rem;
   text-align: center;
 }
 
-.admin-main-shop .admin-product-desc {
+.admin_main_shop .admin_product_desc {
   margin-top: 1rem;
 }
-.admin-main-shop .admin-product-name {
+.admin_main_shop .admin_product_name {
   color: #8a8989;
   margin-bottom: 10px;
   font-weight: 100;
 }
 
-.admin-main-shop .admin-product-item .admin-product-img img {
+.admin_main_shop .admin_product_item .admin_product_img img {
   max-width: 100%;
   border-radius: 5px;
 }

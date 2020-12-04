@@ -5,22 +5,23 @@ import { Link } from 'react-router-dom';
 import { FaShoppingBag, FaTruck, FaUsers } from 'react-icons/fa';
 
 //css
-import './admin-nav.css';
+import Styles from './admin-nav.module.css';
+const { admin_nav, rm } = Styles;
 
 const AdminNav = ({ url }) => {
   return (
-    <div className='admin-nav'>
+    <div className={admin_nav}>
       <ul>
         <Link to={`${url}/adminproduct`}>
-          <FaShoppingBag className='rm' />
+          <FaShoppingBag className={rm} />
           products
         </Link>
         <Link to={`${url}/order`}>
-          <FaTruck className='rm' />
+          <FaTruck className={rm} />
           order
         </Link>
         <Link to={`${url}/user`}>
-          <FaUsers className='rm' />
+          <FaUsers className={rm} />
           user
         </Link>
       </ul>

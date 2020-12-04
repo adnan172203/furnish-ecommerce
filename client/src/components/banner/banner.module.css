@@ -1,8 +1,8 @@
-.shop-banner {
+.shop_banner {
   position: relative;
 }
 
-.shop-banner-image {
+.shop_banner_image {
   background: url(https://res.cloudinary.com/dfmn9nhqt/image/upload/v1606119377/shop_banner_ry5ubd.png)
     no-repeat center;
   background-size: contain;
@@ -10,44 +10,44 @@
   box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
 }
 
-section.shop-banner {
+section.shop_banner {
   position: relative;
 }
 
-.shop-banner-text {
+.shop_banner_text {
   position: absolute;
   top: 21%;
   left: 50%;
   right: 0;
 }
 
-.shop-banner-text {
+.shop_banner_text {
   color: #a8a8a8;
 }
-.shop-banner-text h2 {
+.shop_banner_text h2 {
   font-weight: 500;
 }
 
-.shop-banner-text span {
+.shop_banner_text span {
   color: #42b883;
   font-weight: 900;
 }
 
-.shop-breadcrumb {
+.shop_breadcrumb {
   position: absolute;
   top: 37%;
   left: 50%;
   color: #a8a8a8;
 }
 
-.shop-breadcrumb span a {
+.shop_breadcrumb span a {
   color: #a8a8a8;
 }
 
 /* responsive code */
 
 @media screen and (max-width: 768px) {
-  .shop-banner-image {
+  .shop_banner_image {
     max-width: 90%;
     margin: 0 auto;
   }

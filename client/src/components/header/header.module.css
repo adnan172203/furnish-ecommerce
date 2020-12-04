@@ -1,11 +1,11 @@
-.main-header {
+.main_header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   padding: 1rem;
 }
 
-.main-header nav ul {
+.main_header nav ul {
   display: flex;
   list-style: none;
 }
@@ -16,7 +16,7 @@
   color: rgb(19, 18, 18);
 }
 
-.navbar-toggler {
+.navbar_toggler {
   display: none;
   background: #fff;
   border: none;
@@ -25,7 +25,7 @@
   color: #707070;
 }
 
-.navbar-toggler .bars {
+.navbar_toggler .bars {
   padding: 0rem;
   font-size: 1.5rem;
   background: #fff;
@@ -33,15 +33,15 @@
   outline: none;
 }
 
-.main-header .shop-essentials .header_icon {
+.main_header .shop_essentials .header_icon {
   padding: 0.75rem;
 }
 
-.dot-icon {
+.dot_icon {
   display: none;
 }
 
-.shop-essentials-icon {
+.shop_essentials_icon {
   display: flex;
   align-items: center;
 }
@@ -53,7 +53,7 @@
     padding: 0 20%;
   }
 
-  .navbar-toggler {
+  .navbar_toggler {
     float: right;
     display: block;
   }
@@ -62,7 +62,7 @@
     display: none;
   }
 
-  .show-menu > .navbar {
+  .show_menu > .navbar {
     display: block;
     position: absolute;
     width: 34%;
@@ -74,21 +74,21 @@
     left: 9%;
   }
 
-  .show-menu > .navbar ul {
+  .show_menu > .navbar ul {
     display: flex;
     flex-direction: column;
   }
 
-  .show-menu > .navbar ul a {
+  .show_menu > .navbar ul a {
     padding: 0.5rem;
     margin-top: 1rem;
   }
 
-  .show-menu > .navbar ul li a {
+  .show_menu > .navbar ul li a {
     border-bottom: 1px solid #ececec;
   }
 
-  .show-menu > .navbar ul {
+  .show_menu > .navbar ul {
     animation-name: slidenavAnimation;
     animation-duration: 200ms;
     animation-iteration-count: 1;
@@ -117,37 +117,37 @@
     }
   }
 
-  .featured-products .featured-items,
-  .items-on-sale .on-sale-items {
+  .featured_products .featured_items,
+  .items_on_sale .on_sale_items {
     margin-left: 5rem;
   }
 
   /* shop essentials text */
 
-  .shop-essentials-text,
-  .shop-essentials-icon {
+  .shop_essentials_text,
+  .shop_essentials_icon {
     display: none;
   }
 
-  .show-essential > .shop-essentials-text {
+  .show_essential > .shop_essentials_text {
     display: block !important;
   }
 
-  .dot-icon {
+  .dot_icon {
     display: block;
   }
 
-  .show-essential > .shop-essentials-text ul {
+  .show_essential > .shop_essentials_text ul {
     list-style: none;
   }
 
-  .show-essential > .shop-essentials-icon {
+  .show_essential > .shop_essentials_icon {
     display: none;
     margin: 0;
     padding: 0;
   }
 
-  .show-essential > .shop-essentials-text {
+  .show_essential > .shop_essentials_text {
     display: block;
     position: absolute;
     top: 13%;
@@ -159,7 +159,7 @@
     text-align: center;
   }
 
-  .show-essential > .shop-essentials-text ul li {
+  .show_essential > .shop_essentials_text ul li {
     padding: 1rem;
   }
 }
