@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createProduct } from '../../redux/product/product-action';
+import { useDispatch } from 'react-redux';
 
 //css
 import Styles from './admin-product.module.css';
@@ -27,6 +29,26 @@ const {
 } = Styles;
 
 const AdminProduct = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: 0,
+    sku: '',
+    sold: '',
+    stock: true,
+  });
+  const { name, description, price, sku, sold, stock } = formData;
+
+  const dispatch = useDispatch();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createProduct(formData));
+  };
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
   return (
     <>
       <div className={dark_back}>
@@ -34,58 +56,87 @@ const AdminProduct = () => {
           <button>Add Products</button>
         </div>
 
-        <div className={create_product_form} id='create-product-display'>
-          <label className={label_edit} htmlFor='create_product_name'>
-            Name
-          </label>{' '}
-          <br />
-          <input type='text' className={create_product_name} />
-          <label className={label_edit} htmlFor='create_product_description'>
-            Description
-          </label>{' '}
-          <br />
-          <textarea
-            name='Description'
-            id={create_product_description}
-          ></textarea>
-          <label className={label_edit} htmlFor='create_product_price'>
-            Price
-          </label>{' '}
-          <br />
-          <input type='number' className={create_product_price} />
-          <label className={label_edit} htmlFor='create_product_sku'>
-            Sku
-          </label>{' '}
-          <br />
-          <input type='number' className={create_product_sku} />
-          <label className={label_edit} htmlFor='create_product_sold'>
-            Sold
-          </label>{' '}
-          <br />
-          <input type='number' className={create_product_sold} />
-          <label className={label_edit} htmlFor='create_product_image'>
-            Image
-          </label>{' '}
-          <br />
-          <input type='file' className={create_product_image} />
-          <div className={create_product_stock}>
-            <label className={(stock_margin, label_edit)}>Stock</label>
-            <br />
-            <input type='radio' id='true' name='gender' value='true' />
-            <label className={stock_margin} htmlFor='true'>
-              true
+        <form action='' onSubmit={(e) => onSubmit(e)}>
+          <div className={create_product_form} id='create-product-display'>
+            <label className={label_edit} htmlFor='create_product_name'>
+              Name
             </label>
             <br />
-            <input type='radio' id='false' name='gender' value='false' />
-            <label htmlFor='false'>false</label>
+            <input
+              type='text'
+              name='name'
+              className={create_product_name}
+              value={name}
+              onChange={(e) => onChange(e)}
+            />
+            <label className={label_edit} htmlFor='create_product_description'>
+              Description
+            </label>
+            <br />
+            <textarea
+              name='description'
+              id={create_product_description}
+              value={description}
+              onChange={(e) => onChange(e)}
+            ></textarea>
+            <label className={label_edit} htmlFor='create_product_price'>
+              Price
+            </label>
+            <br />
+            <input
+              type='number'
+              name='price'
+              className={create_product_price}
+              value={price}
+              onChange={(e) => onChange(e)}
+            />
+            <label className={label_edit} htmlFor='create_product_sku'>
+              Sku
+            </label>
+            <br />
+            <input
+              type='number'
+              name='sku'
+              className={create_product_sku}
+              value={sku}
+              onChange={(e) => onChange(e)}
+            />
+            <label className={label_edit} htmlFor='create_product_sold'>
+              Sold
+            </label>
+            <br />
+            <input
+              type='number'
+              name='sold'
+              className={create_product_sold}
+              value={sold}
+              onChange={(e) => onChange(e)}
+            />
+            <label className={label_edit} htmlFor='create_product_image'>
+              Image
+            </label>
+            <br />
+            <input type='file' name='image' className={create_product_image} />
+            <div className={create_product_stock}>
+              <label className={(stock_margin, label_edit)}>Stock</label>
+              <br />
+              <input type='radio' id='true' name='stock' value='true' />
+              <label className={stock_margin} htmlFor='true'>
+                true
+              </label>
+              <br />
+              <input type='radio' id='false' name='stock' value='false' />
+              <label htmlFor='false'>false</label>
+            </div>
+            <input
+              type='submit'
+              value='Create Product'
+              className={create_product_submit}
+            />
           </div>
-          <input
-            type='submit'
-            value='Create Product'
-            className={create_product_submit}
-          />
-        </div>
+        </form>
       </div>
+
       <div className={admin_main_shop}>
         <div className={admin_product}>
           <div className={admin_product_item}>

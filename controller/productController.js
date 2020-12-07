@@ -80,7 +80,6 @@ module.exports.getProduct = asyncHandler(async (req, res, next) => {
 //add product
 
 module.exports.addProduct = asyncHandler(async (req, res) => {
-
   const {
     name,
     description,
@@ -94,8 +93,6 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
     reviews,
   } = req.body;
 
-
-
   const product = new Product({
     name,
     description,
@@ -106,7 +103,7 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
     image,
     shipping,
     stock,
-    reviews
+    reviews,
   });
   const newProduct = await product.save();
   if (newProduct) {
@@ -117,33 +114,31 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
 });
 
 //update product
-module.exports.updateProduct = asyncHandler(
-  async (req, res, next) => {
-    let product = await Product.findById(req.params.id);
+module.exports.updateProduct = asyncHandler(async (req, res, next) => {
+  let product = await Product.findById(req.params.id);
 
-    if (!product) {
-      return next(
-        new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
-      );
-    }
-
-    // Make sure user is product owner
-    if ( req.user.role !== 'admin') {
-      return next(
-        new ErrorResponse(
-          `User ${req.params.id} is not authorized to update this product`,
-          401
-        )
-      );
-    }
-    product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-
-    res.status(200).json(product);
+  if (!product) {
+    return next(
+      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+    );
   }
-);
+
+  // Make sure user is product owner
+  if (req.user.role !== 'admin') {
+    return next(
+      new ErrorResponse(
+        `User ${req.params.id} is not authorized to update this product`,
+        401
+      )
+    );
+  }
+  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json(product);
+});
 
 //delete product
 module.exports.deleteProduct = asyncHandler(async (req, res) => {
