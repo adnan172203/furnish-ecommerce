@@ -36,7 +36,7 @@ export const createProduct = ( product ) => async (dispatch) => {
     };
 
     const { data } = await axios.post(`/api/v1/products`, product, config);
-console.log(data);
+
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data,

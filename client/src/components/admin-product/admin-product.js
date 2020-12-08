@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createProduct } from '../../redux/product/product-action';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 //css
 import Styles from './admin-product.module.css';
@@ -36,14 +37,37 @@ const AdminProduct = () => {
     sku: '',
     sold: '',
     stock: true,
+    image: '',
   });
+  const [image, setImage] = useState('');
+
   const { name, description, price, sku, sold, stock } = formData;
 
   const dispatch = useDispatch();
 
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      };
+
+      const { data } = await axios.post('/api/v1/uploads', formData, config);
+
+      setImage(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct(formData));
+    dispatch(createProduct({ ...formData, image }));
   };
 
   const onChange = (e) =>
@@ -116,7 +140,11 @@ const AdminProduct = () => {
               Image
             </label>
             <br />
-            <input type='file' name='image' className={create_product_image} />
+            <input
+              type='file'
+              className={create_product_image}
+              onChange={uploadFileHandler}
+            />
             <div className={create_product_stock}>
               <label className={(stock_margin, label_edit)}>Stock</label>
               <br />
