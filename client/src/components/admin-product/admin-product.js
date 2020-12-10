@@ -160,7 +160,6 @@ const AdminProduct = () => {
             </div>
             <input
               type='submit'
-              ref = {userSubmit}
               value='Create Product'
               className={create_product_submit}
             />
