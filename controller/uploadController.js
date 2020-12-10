@@ -8,7 +8,7 @@ cloudinary.config({
 });
 
 module.exports.uploads = async (req, res) => {
-  const result = await cloudinary.v2.uploader.upload(req.file.path);
+  const result = await cloudinary.v2.uploader.upload(req.file.path,{ folder: 'ecommerce' });
 
   res.json({
     public_id: result.public_id,

@@ -36,7 +36,7 @@ const AdminProduct = () => {
     price: 0,
     sku: '',
     sold: '',
-    stock: true,
+    stock: null,
     image: '',
   });
   const [image, setImage] = useState('');
@@ -49,7 +49,7 @@ const AdminProduct = () => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
-
+    
     try {
       const config = {
         headers: {
@@ -67,6 +67,7 @@ const AdminProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     dispatch(createProduct({ ...formData, image }));
   };
 
@@ -145,7 +146,8 @@ const AdminProduct = () => {
               className={create_product_image}
               onChange={uploadFileHandler}
             />
-            <div className={create_product_stock}>
+
+            <div className={create_product_stock} onChange={(e) => onChange(e)}>
               <label className={(stock_margin, label_edit)}>Stock</label>
               <br />
               <input type='radio' id='true' name='stock' value='true' />
@@ -158,6 +160,7 @@ const AdminProduct = () => {
             </div>
             <input
               type='submit'
+              ref = {userSubmit}
               value='Create Product'
               className={create_product_submit}
             />
@@ -167,50 +170,6 @@ const AdminProduct = () => {
 
       <div className={admin_main_shop}>
         <div className={admin_product}>
-          <div className={admin_product_item}>
-            <div className={admin_product_img}>
-              <a href='#'>
-                <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
-              </a>
-            </div>
-            <div className={admin_product_desc}>
-              <h3 className={admin_product_name}>white comfy</h3>
-              <p className={admin_product_price}>$570</p>
-            </div>
-          </div>
-          <div className={admin_product_item}>
-            <div className={admin_product_img}>
-              <a href='#'>
-                <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
-              </a>
-            </div>
-            <div className={admin_product_desc}>
-              <h3 className={admin_product_name}>white comfy</h3>
-              <p className={admin_product_price}>$570</p>
-            </div>
-          </div>
-          <div className={admin_product_item}>
-            <div className={admin_product_img}>
-              <a href='#'>
-                <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
-              </a>
-            </div>
-            <div className={admin_product_desc}>
-              <h3 className={admin_product_name}>white comfy</h3>
-              <p className={admin_product_price}>$570</p>
-            </div>
-          </div>
-          <div className={admin_product_item}>
-            <div className={admin_product_img}>
-              <a href='#'>
-                <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
-              </a>
-            </div>
-            <div className={admin_product_desc}>
-              <h3 className={admin_product_name}>white comfy</h3>
-              <p className={admin_product_price}>$570</p>
-            </div>
-          </div>
           <div className={admin_product_item}>
             <div className={admin_product_img}>
               <a href='#'>

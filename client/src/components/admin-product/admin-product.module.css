@@ -19,6 +19,7 @@
 /* create product form */
 .create_product_form {
   display: flex;
+  /* display: none; */
   flex-direction: column;
   width: 40%;
   padding: 1.5rem;
@@ -76,9 +77,6 @@ input.create_product_submit {
   color: #fff;
   font-size: 16px;
   font-weight: 600;
-}
-#create-product-display {
-  /* display: none; */
 }
 
 /* admin product list */

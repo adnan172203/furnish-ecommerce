@@ -18,7 +18,7 @@ router.get('/', getProducts);
 router.get('/:id', getProduct);
 
 //add product
-router.post('/', auth, authorize('admin'), addProduct);
+router.post('/', addProduct);
 
 //update product
 router.put('/:id', auth, authorize('admin'), updateProduct);
