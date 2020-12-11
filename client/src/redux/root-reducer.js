@@ -5,6 +5,6 @@ import {
 } from './product/product-reducer';
 
 export default combineReducers({
-  products: productListReducer,
+  productList: productListReducer,
   productCreate: productCreateReducer,
 });

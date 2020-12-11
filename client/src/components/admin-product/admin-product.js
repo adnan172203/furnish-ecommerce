@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { createProduct } from '../../redux/product/product-action';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import {
+  listProducts,
+  createProduct,
+} from '../../redux/product/product-action';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 //css
@@ -41,15 +44,22 @@ const AdminProduct = () => {
   });
   const [image, setImage] = useState('');
 
-  const { name, description, price, sku, sold, stock } = formData;
+  const { name, description, price, sku, sold } = formData;
 
   const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { products } = productList;
 
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
+  console.log(products);
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('image', file);
-    
+
     try {
       const config = {
         headers: {
@@ -169,17 +179,18 @@ const AdminProduct = () => {
 
       <div className={admin_main_shop}>
         <div className={admin_product}>
-          <div className={admin_product_item}>
-            <div className={admin_product_img}>
-              <a href='#'>
-                <img src='https://picsum.photos/seed/picsum/370/460' alt='' />
-              </a>
-            </div>
-            <div className={admin_product_desc}>
-              <h3 className={admin_product_name}>white comfy</h3>
-              <p className={admin_product_price}>$570</p>
-            </div>
-          </div>
+          {products &&
+            products.map((product) => (
+              <div className={admin_product_item} key={product._id}>
+                <div className={admin_product_img}>
+                  <img src={product.image.url} alt='' />
+                </div>
+                <div className={admin_product_desc}>
+                  <h3 className={admin_product_name}>{product.name}</h3>
+                  <p className={admin_product_price}>${product.price}</p>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </>

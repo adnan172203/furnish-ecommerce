@@ -18,8 +18,8 @@
 
 /* create product form */
 .create_product_form {
-  display: flex;
-  /* display: none; */
+  /* display: flex; */
+  display: none;
   flex-direction: column;
   width: 40%;
   padding: 1.5rem;

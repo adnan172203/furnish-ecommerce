@@ -27,7 +27,7 @@ export const listProducts = () => async (dispatch) => {
 };
 
 //create product
-export const createProduct = ( product ) => async (dispatch) => {
+export const createProduct = (product) => async (dispatch) => {
   try {
     const config = {
       headers: {
