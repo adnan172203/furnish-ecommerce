@@ -1,0 +1,14 @@
+.container {
+  max-width: 1170px;
+  display: block;
+  margin: auto;
+}
+
+.main_shop {
+  margin-top: 100px;
+}
+
+.main_shop .main_product {
+  display: flex;
+  padding: 0 2rem;
+}
