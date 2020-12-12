@@ -18,9 +18,7 @@ const ShopProduct = () => {
       <div className={product}>
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -30,9 +28,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -42,9 +38,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -54,9 +48,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -66,9 +58,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -78,9 +68,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -90,9 +78,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -102,9 +88,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -114,9 +98,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -126,9 +108,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -138,9 +118,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>
@@ -150,9 +128,7 @@ const ShopProduct = () => {
 
         <div className={product_item}>
           <div className={product_img}>
-            <a href='#'>
-              <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
-            </a>
+            <img src='https://picsum.photos/seed/picsum/200/300' alt='' />
           </div>
           <div className={product_desc}>
             <h3 className={product_name}>white comfy</h3>

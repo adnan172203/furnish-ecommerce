@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../../components/banner/banner';
 import ShopProduct from './components/shopProducts/ShopProduct';
+import ProductCategories from './components/ProductCategories/ProductCategories';
 
 //css
 import Styles from './shop.module.css';
@@ -14,6 +15,7 @@ const Shop = () => {
       <section className={main_shop}>
         <div className={container}>
           <div className={main_product}>
+            <ProductCategories />
             <ShopProduct />
           </div>
         </div>
