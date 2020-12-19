@@ -54,19 +54,24 @@ const AdminProduct = () => {
     dispatch(listProducts());
   }, [dispatch]);
 
-  console.log(products);
   const uploadFileHandler = async (e) => {
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('image', file);
+    const file = e.target.files;
 
+    const test = Object.values(file);
+
+    const formData = new FormData();
+    for (const file of test) {
+      formData.append('image', file);
+    }
+
+    
     try {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       };
-
+      
       const { data } = await axios.post('/api/v1/uploads', formData, config);
 
       setImage(data);
@@ -153,6 +158,7 @@ const AdminProduct = () => {
             <br />
             <input
               type='file'
+              multiple
               className={create_product_image}
               onChange={uploadFileHandler}
             />

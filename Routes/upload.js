@@ -8,6 +8,6 @@ const { auth, authorize } = require('../middleware/auth');
 //controller
 const { uploads } = require('../controller/uploadController');
 
-router.post('/', upload.single('image'), uploads);
+router.post('/', upload.array('image',10), uploads);
 
 module.exports = router;

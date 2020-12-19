@@ -8,11 +8,23 @@ cloudinary.config({
 });
 
 module.exports.uploads = async (req, res) => {
-  const result = await cloudinary.v2.uploader.upload(req.file.path,{ folder: 'ecommerce' });
+
+  const urls = [];
+
+  const files = req.files;
+
+  for (const file of files) {
+    const { path } = file;
+
+    let result = await cloudinary.v2.uploader.upload(path, {
+      folder: 'ecommerce',
+    });
+
+    urls.push(result);
+  }
 
   res.json({
-    public_id: result.public_id,
-    url: result.secure_url,
+    public_id: urls.map((url) => url.public_id),
+    url: urls.map((url) => url.secure_url),
   });
 };
-
