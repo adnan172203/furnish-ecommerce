@@ -111,3 +111,14 @@ input.create_product_submit {
   max-width: 100%;
   border-radius: 5px;
 }
+
+
+.loaded_image {
+  width: 15%;
+  display: flex;
+}
+
+.loaded_image img {
+  max-width: 100%;
+  margin-right: 10px;
+}

@@ -1,7 +1,17 @@
 import React from 'react';
 
-import Styles from './singleProduct.module.css';
+//icon
+import {
+  FaStar,
+  FaStarHalfAlt,
+  FaRegStar,
+  FaChevronRight,
+  FaChevronLeft,
+  FaRegHeart
+} from 'react-icons/fa';
 
+//css
+import Styles from './singleProduct.module.css';
 
 const {
   product_details,
@@ -25,42 +35,43 @@ const {
 const SingleProduct = () => {
   return (
     <>
-      <section class={product_details}>
-        <div class='container'>
-          <div class={product_container}>
-            <div class={product_image}>
-              <div class={column_one}>
-                <div class={one}>
+      <section className={product_details}>
+        <div className='container'>
+          <div className={product_container}>
+            <div className={product_image}>
+              <div className={column_one}>
+                <div className={one}>
                   <img src='https://picsum.photos/seed/picsum/125/125' alt='' />
                 </div>
-                <div class={two}>
+                <div className={two}>
                   <img src='https://picsum.photos/seed/picsum/125/125' alt='' />
                 </div>
-                <div class={three}>
+                <div className={three}>
                   <img src='https://picsum.photos/seed/picsum/125/125' alt='' />
                 </div>
               </div>
 
-              <div class={column_two}>
+              <div className={column_two}>
                 <img src='https://picsum.photos/seed/picsum/391/391' alt='' />
               </div>
             </div>
 
-            <div class={single_product_desc}>
-              <div class={single_product_name}>
+            <div className={single_product_desc}>
+              <div className={single_product_name}>
                 <h2>Royal White Comfy</h2>
               </div>
-              <div class={product_rating}>
-                <i class='fas fa-star'></i>
-                <i class='fas fa-star'></i>
-                <i class='fas fa-star'></i>
-                <i class='fas fa-star-half-alt'></i>
-                <i class='far fa-star'></i>
+              <div className={product_rating}>
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStarHalfAlt />
+                <FaRegStar />
+                <i className='far fa-star'></i>
               </div>
-              <div class={single_product_price}>
+              <div className={single_product_price}>
                 <h3>$400</h3>
               </div>
-              <div class={product_info}>
+              <div className={product_info}>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit Eos
                   iste
@@ -70,17 +81,17 @@ const SingleProduct = () => {
                 <p>tag : furniture</p>
                 <p>status : in stock</p>
               </div>
-              <div class={product_add_to_cart}>
+              <div className={product_add_to_cart}>
                 <button>Add To Cart</button>
-                <div class={single_product_count}>
+                <div className={single_product_count}>
                   <span>
-                    <i class='fas fa-chevron-left'></i>1
-                    <i class='fas fa-chevron-right'></i>
+                    <i><FaChevronLeft /></i>1
+                    <i><FaChevronRight /></i>
                   </span>
                 </div>
               </div>
-              <div class={wishlist}>
-                <i class='far fa-heart'></i>
+              <div className={wishlist}>
+                <FaRegHeart className="heart_icon"/>
                 <span>Add to wish list</span>
               </div>
             </div>

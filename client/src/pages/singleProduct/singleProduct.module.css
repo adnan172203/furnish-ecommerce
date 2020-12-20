@@ -81,8 +81,12 @@
   color: #919191;
 }
 
+.single_product_count span i svg {
+  margin-top: 12px;
+}
+
 .product_add_to_cart button {
-  padding: 12px 43px;
+  padding: 14px 43px;
   border: none;
   border-radius: 7px;
   background: #42b883;
@@ -95,7 +99,7 @@
   color: #919191;
 }
 
-.single_product_desc .wishlist i {
+svg.heart_icon {
   color: #ff8585;
 }
 

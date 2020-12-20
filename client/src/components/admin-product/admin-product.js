@@ -4,6 +4,9 @@ import {
   createProduct,
 } from '../../redux/product/product-action';
 import { useDispatch, useSelector } from 'react-redux';
+
+import loadgif from '../../assets/loading.gif';
+
 import axios from 'axios';
 
 //css
@@ -30,6 +33,7 @@ const {
   admin_product_desc,
   admin_product_name,
   admin_product_price,
+  loaded_image,
 } = Styles;
 
 const AdminProduct = () => {
@@ -43,7 +47,7 @@ const AdminProduct = () => {
     image: '',
   });
   const [image, setImage] = useState('');
-
+  const [loading, setLoading] = useState(false);
   const { name, description, price, sku, sold } = formData;
 
   const dispatch = useDispatch();
@@ -55,6 +59,7 @@ const AdminProduct = () => {
   }, [dispatch]);
 
   const uploadFileHandler = async (e) => {
+    setLoading(true);
     const file = e.target.files;
 
     const test = Object.values(file);
@@ -64,16 +69,15 @@ const AdminProduct = () => {
       formData.append('image', file);
     }
 
-    
     try {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       };
-      
-      const { data } = await axios.post('/api/v1/uploads', formData, config);
 
+      const { data } = await axios.post('/api/v1/uploads', formData, config);
+      setLoading(false);
       setImage(data);
     } catch (error) {
       console.error(error);
@@ -162,6 +166,14 @@ const AdminProduct = () => {
               className={create_product_image}
               onChange={uploadFileHandler}
             />
+
+            <div className={loaded_image}>
+              {loading ? (
+                <img src={loadgif} />
+              ) : (
+                image && image.url.map((url) => <img src={url} />)
+              )}
+            </div>
 
             <div className={create_product_stock} onChange={(e) => onChange(e)}>
               <label className={(stock_margin, label_edit)}>Stock</label>
