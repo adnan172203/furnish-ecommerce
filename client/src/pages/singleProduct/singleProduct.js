@@ -7,7 +7,7 @@ import {
   FaRegStar,
   FaChevronRight,
   FaChevronLeft,
-  FaRegHeart
+  FaRegHeart,
 } from 'react-icons/fa';
 
 //css
@@ -32,7 +32,8 @@ const {
   wishlist,
 } = Styles;
 
-const SingleProduct = () => {
+const SingleProduct = ({ match }) => {
+
   return (
     <>
       <section className={product_details}>
@@ -85,13 +86,18 @@ const SingleProduct = () => {
                 <button>Add To Cart</button>
                 <div className={single_product_count}>
                   <span>
-                    <i><FaChevronLeft /></i>1
-                    <i><FaChevronRight /></i>
+                    <i>
+                      <FaChevronLeft />
+                    </i>
+                    1
+                    <i>
+                      <FaChevronRight />
+                    </i>
                   </span>
                 </div>
               </div>
               <div className={wishlist}>
-                <FaRegHeart className="heart_icon"/>
+                <FaRegHeart className='heart_icon' />
                 <span>Add to wish list</span>
               </div>
             </div>

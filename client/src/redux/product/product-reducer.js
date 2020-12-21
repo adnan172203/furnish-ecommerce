@@ -3,6 +3,8 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAIL,
+  SINGLE_PRODUCT_SUCCESS,
+  SINGLE_PRODUCT_FAIL
 } from './product-types';
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -34,6 +36,21 @@ export const productCreateReducer = (state = {}, action) => {
       return {
         error: payload,
       };
+    default:
+      return state;
+  }
+};
+
+//single product
+export const singleProductReducer = (
+  state = { product: { reviews: [] } },
+  action
+) => {
+  switch (action.type) {
+    case SINGLE_PRODUCT_SUCCESS:
+      return { product: action.payload };
+    case SINGLE_PRODUCT_FAIL:
+      return { error: action.payload };
     default:
       return state;
   }

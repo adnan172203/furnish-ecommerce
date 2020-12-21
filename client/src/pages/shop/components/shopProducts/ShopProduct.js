@@ -20,7 +20,8 @@ const ShopProduct = () => {
   return (
     <>
       <div className={product}>
-        {products && products.map((product) => <Product product={product} />)}
+        {products &&
+          products.map((product, i) => <Product product={product} key={i} />)}
       </div>
     </>
   );

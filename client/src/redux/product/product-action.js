@@ -4,6 +4,8 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_FAIL,
+  SINGLE_PRODUCT_SUCCESS,
+  SINGLE_PRODUCT_FAIL,
 } from './product-types';
 
 //get all products
@@ -50,6 +52,25 @@ export const createProduct = (product) => async (dispatch) => {
     dispatch({
       type: PRODUCT_CREATE_FAIL,
       payload: message,
+    });
+  }
+};
+
+export const singleProductDetails = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/api/v1/products/${id}`);
+
+    dispatch({
+      type: SINGLE_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SINGLE_PRODUCT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };
