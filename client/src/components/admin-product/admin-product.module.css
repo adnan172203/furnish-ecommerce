@@ -19,14 +19,13 @@
 /* create product form */
 .create_product_form {
   display: flex;
-  /* display: none; */
   flex-direction: column;
   width: 40%;
   padding: 1.5rem;
   background: #fff;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 8%;
 }
 
 .create_product_form input,
@@ -111,7 +110,6 @@ input.create_product_submit {
   max-width: 100%;
   border-radius: 5px;
 }
-
 
 .loaded_image {
   width: 15%;

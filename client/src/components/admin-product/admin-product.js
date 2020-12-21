@@ -49,6 +49,7 @@ const AdminProduct = () => {
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
   const { name, description, price, sku, sold } = formData;
+  const [display, setDisplay] = useState(false);
 
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
@@ -93,14 +94,22 @@ const AdminProduct = () => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const onFormChange = () => {
+    setDisplay(!display);
+  };
+
   return (
     <>
       <div className={dark_back}>
         <div className={create_product_btn}>
-          <button>Add Products</button>
+          <button onClick={onFormChange}>Add Products</button>
         </div>
 
-        <form action='' onSubmit={(e) => onSubmit(e)}>
+        <form
+          action=''
+          style={{ display: display ? 'flex' : 'none' }}
+          onSubmit={(e) => onSubmit(e)}
+        >
           <div className={create_product_form} id='create-product-display'>
             <label className={label_edit} htmlFor='create_product_name'>
               Name
@@ -169,9 +178,12 @@ const AdminProduct = () => {
 
             <div className={loaded_image}>
               {loading ? (
-                <img src={loadgif} />
+                <img src={loadgif} alt='loading' />
               ) : (
-                image && image.url.map((url) => <img src={url} />)
+                image &&
+                image.url.map((url, i) => (
+                  <img src={url} alt='loadimage' key={i} />
+                ))
               )}
             </div>
 
@@ -201,7 +213,7 @@ const AdminProduct = () => {
             products.map((product) => (
               <div className={admin_product_item} key={product._id}>
                 <div className={admin_product_img}>
-                  <img src={product.image.url} alt='' />
+                  <img src={product.image.url[0]} alt='shopimage' />
                 </div>
                 <div className={admin_product_desc}>
                   <h3 className={admin_product_name}>{product.name}</h3>
