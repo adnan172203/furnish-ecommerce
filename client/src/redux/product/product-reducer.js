@@ -43,7 +43,7 @@ export const productCreateReducer = (state = {}, action) => {
 
 //single product
 export const singleProductReducer = (
-  state = { product: { reviews: [] } },
+  state = { product: {} },
   action
 ) => {
   switch (action.type) {

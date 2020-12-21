@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+//action
+import { singleProductDetails } from '../../redux/product/product-action';
 
 //icon
 import {
@@ -19,8 +23,6 @@ const {
   product_image,
   column_one,
   one,
-  two,
-  three,
   column_two,
   single_product_desc,
   single_product_name,
@@ -33,6 +35,14 @@ const {
 } = Styles;
 
 const SingleProduct = ({ match }) => {
+  const dispatch = useDispatch();
+  const singleProduct = useSelector((state) => state.singleProduct);
+  const { product } = singleProduct;
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    dispatch(singleProductDetails(match.params.id));
+  }, [dispatch]);
 
   return (
     <>
@@ -42,24 +52,28 @@ const SingleProduct = ({ match }) => {
             <div className={product_image}>
               <div className={column_one}>
                 <div className={one}>
-                  <img src='https://picsum.photos/seed/picsum/125/125' alt='' />
-                </div>
-                <div className={two}>
-                  <img src='https://picsum.photos/seed/picsum/125/125' alt='' />
-                </div>
-                <div className={three}>
-                  <img src='https://picsum.photos/seed/picsum/125/125' alt='' />
+                  {product.image &&
+                    product.image.url.map((image, i) => (
+                      <img
+                        src={image}
+                        alt='imagegallery'
+                        key={i}
+                        onClick={() => setIndex(i)}
+                      />
+                    ))}
                 </div>
               </div>
 
               <div className={column_two}>
-                <img src='https://picsum.photos/seed/picsum/391/391' alt='' />
+                {product.image && (
+                  <img src={product.image.url[index]} alt='shopimage' />
+                )}
               </div>
             </div>
 
             <div className={single_product_desc}>
               <div className={single_product_name}>
-                <h2>Royal White Comfy</h2>
+                <h2>{product && product.name}</h2>
               </div>
               <div className={product_rating}>
                 <FaStar />
@@ -70,17 +84,11 @@ const SingleProduct = ({ match }) => {
                 <i className='far fa-star'></i>
               </div>
               <div className={single_product_price}>
-                <h3>$400</h3>
+                <h3>${product && product.price}</h3>
               </div>
-              <div className={product_info}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit Eos
-                  iste
-                </p>
-                <p>SKU : 041</p>
-                <p>category : sofa</p>
-                <p>tag : furniture</p>
-                <p>status : in stock</p>
+              <div className={product && product_info}>
+                <p>{product && product.description}</p>
+                <p>SKU : {product && product.sku}</p>
               </div>
               <div className={product_add_to_cart}>
                 <button>Add To Cart</button>

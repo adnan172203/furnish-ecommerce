@@ -26,14 +26,14 @@
 }
 
 .product_image .column_two {
-  flex-basis: 119%;
+  flex-basis: 98%;
 }
 .product_image .column_one,
 .one,
 .two,
 .three {
   margin-bottom: 5px;
-  flex-basis: 38%;
+  flex-basis: 30%;
 }
 
 .product_details .product_container .single_product_desc {
