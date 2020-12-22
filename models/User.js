@@ -4,14 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const userSchema = new Schema({
-  firstName: {
+  name: {
     type: String,
     required: [true, 'Please add your firstName'],
-  },
-
-  lastName: {
-    type: String,
-    required: [true, 'Please add your lastName'],
   },
 
   email: {

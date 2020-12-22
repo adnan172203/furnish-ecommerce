@@ -38,15 +38,18 @@ const productSchema = new Schema({
         type: ObjectId,
         ref: 'User',
       },
-      text: {
-        type: String,
-        required: true,
-      },
       name: {
-        type: String,
+        type: String
+      },
+
+      rating: {
+        type: Number
+      },
+      comment: {
+        type: String
       },
       avatar: {
-        type: String,
+        type: String
       },
       date: {
         type: Date,

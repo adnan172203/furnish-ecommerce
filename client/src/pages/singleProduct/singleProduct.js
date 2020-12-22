@@ -114,7 +114,7 @@ const SingleProduct = ({ match }) => {
         </div>
       </section>
 
-      <TabItem />
+      <TabItem description={product.description} />
     </>
   );
 };

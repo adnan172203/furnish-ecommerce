@@ -7,6 +7,7 @@ const {
   getProduct,
   deleteProduct,
   updateProduct,
+  createProductReview
 } = require('../controller/productController');
 
 const { auth, authorize } = require('../middleware/auth');
@@ -22,6 +23,9 @@ router.post('/', addProduct);
 
 //update product
 router.put('/:id', auth, authorize('admin'), updateProduct);
+
+//add review
+router.post('/:id/reviews',auth,createProductReview);
 
 //delete product
 router.delete('/:id', auth, authorize('admin'), deleteProduct);

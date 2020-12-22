@@ -1,9 +1,11 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
+
 import './Tab.css';
 
-const TabItem = () => {
+const TabItem = ({ description }) => {
+
   return (
     <>
       <Tabs>
@@ -13,7 +15,7 @@ const TabItem = () => {
         </TabList>
 
         <TabPanel className='react-tabs__tab-panel'>
-          <h2>Any content 1</h2>
+          <p>{description}</p>
         </TabPanel>
         <TabPanel className='react-tabs__tab-panel'>
           <h2>Any content 2</h2>
