@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TabItem from './components/tab/Tab';
 
 //action
 import { singleProductDetails } from '../../redux/product/product-action';
@@ -112,6 +113,8 @@ const SingleProduct = ({ match }) => {
           </div>
         </div>
       </section>
+
+      <TabItem />
     </>
   );
 };
