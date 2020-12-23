@@ -19,7 +19,7 @@ const TabItem = ({ description, reviews }) => {
         <TabPanel className='react-tabs__tab-panel'>
           {reviews &&
             reviews.map((review) => (
-              <div key={review._id}>
+              <div className='reveiw_tab' key={review._id}>
                 <h4>{review.name}</h4>
                 <p>{review.comment}</p>
               </div>

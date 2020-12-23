@@ -13,9 +13,21 @@ ul.react-tabs__tab-list li {
   box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
   border-radius: 10px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .react-tabs__tab-panel {
-  width: 73%;
+  width: 62%;
   margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reveiw_tab {
+  padding: 1rem;
+}
+
+.reveiw_tab h4 {
+  margin-bottom: 1rem;
 }
