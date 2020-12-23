@@ -28,7 +28,7 @@ module.exports.addUser = asyncHandler(async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const { firstName, lastName, email, password, isAdmin } = req.body;
+  const { name, email, password, isAdmin } = req.body;
 
   let user = await User.findOne({ email });
   if (user) {
@@ -36,8 +36,7 @@ module.exports.addUser = asyncHandler(async (req, res) => {
   }
 
   user = new User({
-    firstName,
-    lastName,
+    name,
     email,
     password,
     isAdmin,

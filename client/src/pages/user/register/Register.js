@@ -31,14 +31,6 @@ const Register = () => {
 
               <div className={form_group}>
                 <input
-                  type='text'
-                  className={form_control}
-                  placeholder='User Name:'
-                />
-              </div>
-
-              <div className={form_group}>
-                <input
                   type='email'
                   className={form_control}
                   placeholder='Your Email:'
