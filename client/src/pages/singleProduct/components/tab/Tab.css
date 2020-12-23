@@ -9,6 +9,7 @@ ul.react-tabs__tab-list {
 }
 
 ul.react-tabs__tab-list li {
+  background: #fff;
   padding: 1rem 3rem;
   box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
   border-radius: 10px;
@@ -30,4 +31,99 @@ ul.react-tabs__tab-list li {
 
 .reveiw_tab h4 {
   margin-bottom: 1rem;
+}
+
+/* ****** Add review ****** */
+.add-review .review-heading {
+  margin-top: -27px;
+  position: absolute;
+  background: #fff;
+  padding: 1rem;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  border-radius: 5px;
+}
+
+.add-review {
+  background: #f9f9f9;
+  margin-top: 3rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 160%;
+}
+.review-heading {
+  margin-top: -1rem;
+  position: absolute;
+}
+
+.review-form {
+  position: relative;
+}
+
+.review-form .review-rating {
+  display: flex;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.review-form .client-rating {
+  margin-left: auto;
+}
+
+.review-message {
+  width: 100%;
+}
+
+.review-message textarea {
+  width: 100%;
+  outline: none;
+  resize: none;
+  border: none;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+}
+
+.review-form .review-message {
+  margin-bottom: 1rem;
+}
+
+.review-info {
+  position: absolute;
+  margin-top: -13px;
+  width: 103%;
+  display: flex;
+}
+
+.review-info input {
+  border: none;
+  width: 100%;
+  padding: 1rem;
+  outline: none;
+  background: #fff;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  margin-right: 1rem;
+}
+
+.review-form .review-rating {
+  color: #919191;
+}
+
+.review-form .client-rating {
+  color: #ffc107;
+}
+
+.review-form .submit-button {
+  margin-top: 3rem;
+  position: absolute;
+  margin-left: 10rem;
+}
+.review-form .submit-button button {
+  background: #42b883;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 67px;
+  font-weight: 600;
 }

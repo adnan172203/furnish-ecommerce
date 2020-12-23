@@ -24,6 +24,36 @@ const TabItem = ({ description, reviews }) => {
                 <p>{review.comment}</p>
               </div>
             ))}
+
+          <div class='add-review'>
+            <div class='review-heading'>
+              <h3>Add a review</h3>
+            </div>
+            <div class='review-form'>
+              <div class='review-rating'>
+                <p>rate the review *</p>
+                <div class='review-client-rating'>
+                  <i class='fas fa-star'></i>
+                  <i class='fas fa-star'></i>
+                  <i class='fas fa-star'></i>
+                  <i class='fas fa-star-half-alt'></i>
+                  <i class='far fa-star'></i>
+                </div>
+              </div>
+              <form>
+                <div class='review-message'>
+                  <textarea name='' id='' cols='70' rows='7'></textarea>
+                </div>
+                <div class='review-info'>
+                  <input type='text' placeholder='name' />
+                  <input type='text' placeholder='email' />
+                </div>
+                <div class='submit-button'>
+                  <button>Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </TabPanel>
       </Tabs>
     </>
