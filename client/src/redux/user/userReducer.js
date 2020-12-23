@@ -8,8 +8,6 @@ export const userRegister = (state = {}, action) => {
       return { userInfo: payload };
     case USER_REGISTER_FAIL:
       return { error: payload };
-    case USER_LOGOUT:
-      return {};
     default:
       return state;
   }

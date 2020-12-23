@@ -5,8 +5,12 @@ import {
   singleProductReducer,
 } from './product/product-reducer';
 
+import { userRegister } from './user/userReducer';
+
 export default combineReducers({
   productList: productListReducer,
   productCreate: productCreateReducer,
-  singleProduct: singleProductReducer
+  singleProduct: singleProductReducer,
+
+  userRegister: userRegister,
 });

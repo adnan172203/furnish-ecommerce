@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { USER_REGISTER_SUCCESS, USER_REGISTER_FAIL } from './userTypes';
 
-export const register = (name, email, password) => async (dispatch) => {
+export const register = (user) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -9,11 +9,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(
-      '/api/users',
-      { name, email, password },
-      config
-    );
+    const { data } = await axios.post('/api/v1/users', user, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,

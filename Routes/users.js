@@ -24,7 +24,7 @@ router.get('/me', auth, getUser);
 router.post(
   '/',
   [
-    check('firstName', 'name is required').notEmpty(),
+    check('name', 'name is required').notEmpty(),
     check('email', 'email is required').notEmpty(),
     check('email', 'email must be valid').isEmail(),
     check('password', 'password is required').notEmpty(),
