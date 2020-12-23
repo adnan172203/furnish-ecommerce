@@ -1,11 +1,9 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
-
 import './Tab.css';
 
-const TabItem = ({ description }) => {
-
+const TabItem = ({ description, reviews }) => {
   return (
     <>
       <Tabs>
@@ -17,8 +15,15 @@ const TabItem = ({ description }) => {
         <TabPanel className='react-tabs__tab-panel'>
           <p>{description}</p>
         </TabPanel>
+
         <TabPanel className='react-tabs__tab-panel'>
-          <h2>Any content 2</h2>
+          {reviews &&
+            reviews.map((review) => (
+              <div key={review._id}>
+                <h4>{review.name}</h4>
+                <p>{review.comment}</p>
+              </div>
+            ))}
         </TabPanel>
       </Tabs>
     </>

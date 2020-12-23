@@ -40,7 +40,7 @@ const SingleProduct = ({ match }) => {
   const singleProduct = useSelector((state) => state.singleProduct);
   const { product } = singleProduct;
   const [index, setIndex] = useState(0);
-
+  console.log(product);
   useEffect(() => {
     dispatch(singleProductDetails(match.params.id));
   }, [dispatch]);
@@ -114,7 +114,7 @@ const SingleProduct = ({ match }) => {
         </div>
       </section>
 
-      <TabItem description={product.description} />
+      <TabItem description={product.description} reviews={product.reviews} />
     </>
   );
 };
