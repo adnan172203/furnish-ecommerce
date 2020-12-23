@@ -5,6 +5,7 @@ import Shop from './pages/shop/shop';
 import Dashboard from './pages/dashboard/dashboard';
 import SingleProduct from './pages/singleProduct/singleProduct';
 import Register from './pages/user/register/Register';
+import Login from './pages/user/login/Login';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/product/:id' component={SingleProduct} />
         <Route path='/register' component={Register} />
+        <Route path='/login' component={Login} />
       </Switch>
     </div>
   );
