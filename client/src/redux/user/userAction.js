@@ -4,6 +4,8 @@ import {
   USER_REGISTER_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  USER_LIST_SUCCESS,
+  USER_LIST_FAIL,
 } from './userTypes';
 
 export const register = (user) => async (dispatch) => {
@@ -56,6 +58,26 @@ export const login = (user) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+export const listUsers = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get('/api/v1/users');
+
+    dispatch({
+      type: USER_LIST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: USER_LIST_FAIL,
+      payload: message,
     });
   }
 };

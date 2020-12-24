@@ -110,7 +110,7 @@ table th.r {
 
 tbody tr {
   font-family: OpenSans-Regular;
-  font-size: 16px;
+  font-size: 18px;
   color: #808080;
   line-height: 1.2;
   font-weight: unset;
@@ -133,6 +133,11 @@ tbody tr:hover {
 
 .user_column3 {
   width: 245px;
+  width: 245px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
 }
 
 .user_column4 {

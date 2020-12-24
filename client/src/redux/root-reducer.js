@@ -5,7 +5,7 @@ import {
   singleProductReducer,
 } from './product/product-reducer';
 
-import { userRegister, userLogin } from './user/userReducer';
+import { userRegister, userLogin, userList } from './user/userReducer';
 
 export default combineReducers({
   productList: productListReducer,
@@ -14,4 +14,5 @@ export default combineReducers({
 
   userRegister: userRegister,
   userLogin: userLogin,
+  userList: userList,
 });

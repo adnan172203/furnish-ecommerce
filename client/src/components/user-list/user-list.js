@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+//action
+import { listUsers } from '../../redux/user/userAction';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 //icon
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
@@ -16,10 +21,18 @@ const {
   user_column2,
   user_column3,
   user_column4,
-  user_column5
+  user_column5,
 } = Styles;
 
 const UserList = () => {
+  const dispatch = useDispatch();
+  const allUser = useSelector((state) => state.userList);
+  const { users } = allUser;
+  console.log(users);
+  useEffect(() => {
+    dispatch(listUsers());
+  }, [dispatch]);
+
   return (
     <div className={user_list}>
       <div className={user_container_table100}>
@@ -36,16 +49,18 @@ const UserList = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className={user_column1}>2017-09-29 01:22</td>
-                  <td className={user_column2}>200398</td>
-                  <td className={user_column3}>iPhone X 64Gb Grey</td>
-                  <td className={user_column4}>
-                    <FaRegEdit />
-                    <FaRegTrashAlt />
-                  </td>
-                  <td className={user_column5}></td>
-                </tr>
+                {users && users.map((user) => (
+                  <tr key={user._id}>
+                    <td className={user_column1}>{user.name}</td>
+                    <td className={user_column2}>{user.email}</td>
+                    <td className={user_column3}>{user.role}</td>
+                    <td className={user_column4}>
+                      <FaRegEdit />
+                      <FaRegTrashAlt />
+                    </td>
+                    <td className={user_column5}></td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

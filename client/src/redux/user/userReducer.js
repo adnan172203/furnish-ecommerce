@@ -3,6 +3,8 @@ import {
   USER_REGISTER_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  USER_LIST_SUCCESS,
+  USER_LIST_FAIL,
 } from './userTypes';
 
 export const userRegister = (state = {}, action) => {
@@ -24,6 +26,19 @@ export const userLogin = (state = {}, action) => {
     case USER_LOGIN_SUCCESS:
       return { userInfo: payload };
     case USER_LOGIN_FAIL:
+      return { error: payload };
+    default:
+      return state;
+  }
+};
+
+export const userList = (state = { users: [] }, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case USER_LIST_SUCCESS:
+      return { users: payload };
+    case USER_LIST_FAIL:
       return { error: payload };
     default:
       return state;
