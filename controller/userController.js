@@ -46,6 +46,26 @@ module.exports.addUser = asyncHandler(async (req, res) => {
   res.status(200).json(newUser);
 });
 
+//update user
+module.exports.updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.email = req.body.email || user.email;
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    sendTokenResponse(updatedUser, 200, res);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
 //login user
 module.exports.login = asyncHandler(async (req, res, next) => {
   const { email, password } = req.body;
@@ -97,6 +117,7 @@ const sendTokenResponse = (user, statusCode, res) => {
   }
 
   res.status(statusCode).cookie('token', token, options).json({
+    user,
     success: true,
     token,
   });

@@ -6,7 +6,7 @@ import { listUsers } from '../../redux/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 //icon
-import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { FaRegEdit } from 'react-icons/fa';
 
 //css
 import Styles from './user-list.module.css';
@@ -56,7 +56,6 @@ const UserList = () => {
                     <td className={user_column3}>{user.role}</td>
                     <td className={user_column4}>
                       <FaRegEdit />
-                      <FaRegTrashAlt />
                     </td>
                     <td className={user_column5}></td>
                   </tr>
