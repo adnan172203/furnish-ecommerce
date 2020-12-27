@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import UserUpdate from '../../pages/userUpdate/UserUpdate';
 import { Link } from 'react-router-dom';
+
 //action
 import { listUsers } from '../../redux/user/userAction';
 

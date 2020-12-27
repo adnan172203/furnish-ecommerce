@@ -30,7 +30,7 @@ const Login = ({history,location}) => {
     if(userInfo){
       history.push('/');
     }
-  },[userInfo]);
+  },[history,userInfo]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

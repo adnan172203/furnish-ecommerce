@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 
 //action
 import { register } from '../../redux/user/userAction';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Styles from './Register.module.css';
 
@@ -25,7 +25,6 @@ const Register = () => {
   });
 
   const dispatch = useDispatch();
-  const userRegister = useSelector((state) => state.userRegister);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

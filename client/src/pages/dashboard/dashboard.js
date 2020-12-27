@@ -20,11 +20,8 @@ const Dashboard = () => {
         <Route exact path={`${path}/order`} component={OrderList} />
         <Route exact path={`${path}/user`} component={UserList} />
       </Switch>
-
     </div>
   );
 };
-
-
 
 export default Dashboard;
