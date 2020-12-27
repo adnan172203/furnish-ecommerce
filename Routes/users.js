@@ -35,7 +35,7 @@ router.post(
 );
 
 //update user
-router.put('/:id', auth, updateUser);
+router.put('/profile', auth, updateUser);
 
 //login
 router.post('/login', login);

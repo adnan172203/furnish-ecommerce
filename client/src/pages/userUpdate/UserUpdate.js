@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 //action
-import { getUserDetails } from '../../redux/user/userAction';
+import { getUserDetails,updateUserProfile } from '../../redux/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 //css
@@ -17,7 +18,7 @@ const {
   common_btn,
 } = Styles;
 
-const UserUpdate = ({ match }) => {
+const UserUpdate = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,22 +26,26 @@ const UserUpdate = ({ match }) => {
     confirmPassword: '',
   });
 
-  
-  useEffect(() => {
-    dispatch(getUserDetails());
-  }, []);
+  const { name,email } = formData;
 
   const dispatch = useDispatch();
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
-
+  useEffect(() => {
+    dispatch(getUserDetails());
+    setFormData({
+      name: user && user.name,
+      email: user && user.email
+    });
+  }, [dispatch]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(updateUserProfile({name,email}));
   };
 
   return (
@@ -55,6 +60,7 @@ const UserUpdate = ({ match }) => {
                 <input
                   type='text'
                   name='name'
+                  value ={name}
                   className={form_control}
                   placeholder='Your Name:'
                   onChange={(e) => onChange(e)}
@@ -65,6 +71,7 @@ const UserUpdate = ({ match }) => {
                 <input
                   type='email'
                   name='email'
+                  value={email}
                   className={form_control}
                   placeholder='Your Email:'
                   onChange={(e) => onChange(e)}
@@ -92,13 +99,11 @@ const UserUpdate = ({ match }) => {
               </div>
 
               <button type='submit' className={`${btn} ${common_btn}`}>
-                Register
+                Update
               </button>
 
-              <h4>or</h4>
-
               <h5>
-                Already Have An Account? <a href='login.html'>Login</a>
+                 <Link to="/dashboard/user">back</Link>
               </h5>
             </form>
           </div>

@@ -7,7 +7,9 @@ import {
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
   USER_DETAILS_SUCCESS,
-  USER_DETAILS_FAIL
+  USER_DETAILS_FAIL,
+  USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
 } from './userTypes';
 
 export const register = (user) => async (dispatch) => {
@@ -84,10 +86,10 @@ export const listUsers = () => async (dispatch) => {
   }
 };
 
-export const getUserDetails = () => async (dispatch, getState) => {
+export const getUserDetails = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`/api/v1/users/me`);
-console.log(data);
+    console.log(data);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
@@ -99,6 +101,37 @@ console.log(data);
         : error.message;
     dispatch({
       type: USER_DETAILS_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const updateUserProfile = (user) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.put(`/api/v1/users/profile`, user, config);
+
+    dispatch({
+      type: USER_UPDATE_PROFILE_SUCCESS,
+      payload: data,
+    });
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem('userInfo', JSON.stringify(data));
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: USER_UPDATE_PROFILE_FAIL,
       payload: message,
     });
   }
