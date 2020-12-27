@@ -29,12 +29,10 @@ const UserList = () => {
   const dispatch = useDispatch();
   const allUser = useSelector((state) => state.userList);
   const { users } = allUser;
-  console.log(users);
 
   const userLogin = useSelector((state) => state.userLogin);
-  const {
-    userInfo: { user },
-  } = userLogin;
+  const { userInfo: { user } } = userLogin;
+  
   const loginfo = user;
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import {
   USER_REGISTER_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
+  USER_LOGOUT,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
   USER_DETAILS_SUCCESS,
@@ -31,6 +32,8 @@ export const userLogin = (state = {}, action) => {
       return { userInfo: payload };
     case USER_LOGIN_FAIL:
       return { error: payload };
+    case USER_LOGOUT:
+      return {};
     default:
       return state;
   }

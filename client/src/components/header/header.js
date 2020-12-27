@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+
+import { logout } from '../../redux/user/userAction';
+
+import { useDispatch, useSelector } from 'react-redux';
 
 //icon
 import {
@@ -27,6 +31,14 @@ const {
 } = Styles;
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <header className={main_header}>
@@ -35,7 +47,9 @@ const Header = () => {
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
             <Link to='/contact'>Contact</Link>
-            <Link to='/dashboard'>dashboard</Link>
+            {userInfo && userInfo.user.role === 'admin' && (
+              <Link to='/dashboard'>dashboard</Link>
+            )}
           </ul>
         </nav>
         <button className={navbar_toggler}>
@@ -58,7 +72,13 @@ const Header = () => {
             <FaShoppingCart className={header_icon} />
 
             <FaRegHeart className={header_icon} />
-            <span>log in</span>
+            {userInfo ? (
+              <Link to='' onClick={logoutHandler}>
+                Log out
+              </Link>
+            ) : (
+              <Link to='/login'>log in</Link>
+            )}
           </div>
         </div>
       </header>

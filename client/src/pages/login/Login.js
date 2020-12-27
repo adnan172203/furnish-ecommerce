@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 
 import Styles from './Login.module.css';
 
@@ -16,14 +16,21 @@ const {
   common_btn,
 } = Styles;
 
-const Login = () => {
+const Login = ({history,location}) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
   const dispatch = useDispatch();
-  const userRegister = useSelector((state) => state.userRegister);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  useEffect(()=>{
+    if(userInfo){
+      history.push('/');
+    }
+  },[userInfo]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
