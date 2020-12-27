@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-
+import UserUpdate from '../../pages/userUpdate/UserUpdate';
+import { Link } from 'react-router-dom';
 //action
 import { listUsers } from '../../redux/user/userAction';
 
@@ -29,6 +30,13 @@ const UserList = () => {
   const allUser = useSelector((state) => state.userList);
   const { users } = allUser;
   console.log(users);
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const {
+    userInfo: { user },
+  } = userLogin;
+  const loginfo = user;
+
   useEffect(() => {
     dispatch(listUsers());
   }, [dispatch]);
@@ -49,17 +57,22 @@ const UserList = () => {
                 </tr>
               </thead>
               <tbody>
-                {users && users.map((user) => (
-                  <tr key={user._id}>
-                    <td className={user_column1}>{user.name}</td>
-                    <td className={user_column2}>{user.email}</td>
-                    <td className={user_column3}>{user.role}</td>
-                    <td className={user_column4}>
-                      <FaRegEdit />
-                    </td>
-                    <td className={user_column5}></td>
-                  </tr>
-                ))}
+                {users &&
+                  users.map((user) => (
+                    <tr key={user._id}>
+                      <td className={user_column1}>{user.name}</td>
+                      <td className={user_column2}>{user.email}</td>
+                      <td className={user_column3}>{user.role}</td>
+                      <td className={user_column4}>
+                        {user._id === loginfo._id && (
+                          <Link to={`/user/edit/${user._id}`}>
+                            <FaRegEdit />
+                          </Link>
+                        )}
+                      </td>
+                      <td className={user_column5}></td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

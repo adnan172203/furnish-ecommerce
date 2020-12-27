@@ -1,10 +1,10 @@
 import React,{useState} from 'react';
 
-//action
-import { register } from '../../../redux/user/userAction';
-import { useDispatch, useSelector } from 'react-redux';
+import Styles from './Login.module.css';
 
-import Styles from './Register.module.css';
+//action
+import { login } from '../../redux/user/userAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const {
   user_area,
@@ -16,12 +16,10 @@ const {
   common_btn,
 } = Styles;
 
-const Register = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
   const dispatch = useDispatch();
@@ -33,26 +31,15 @@ const Register = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(register({ ...formData }));
+    dispatch(login({ ...formData }));
   };
-
   return (
     <>
       <div className={`${user_area} ${ptb_100}`}>
         <div className='container'>
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
-              <h2>Register</h2>
-
-              <div className={form_group}>
-                <input
-                  type='text'
-                  name='name'
-                  className={form_control}
-                  placeholder='Your Name:'
-                  onChange={(e) => onChange(e)}
-                />
-              </div>
+              <h2>Login</h2>
 
               <div className={form_group}>
                 <input
@@ -74,24 +61,14 @@ const Register = () => {
                 />
               </div>
 
-              <div className={form_group}>
-                <input
-                  type='password'
-                  name='confirmpassword'
-                  className={form_control}
-                  placeholder='Confirm Password:'
-                  onChange={(e) => onChange(e)}
-                />
-              </div>
-
               <button type='submit' className={`${btn} ${common_btn}`}>
-                Register
+                Login
               </button>
 
               <h4>or</h4>
 
               <h5>
-                Already Have An Account? <a href='login.html'>Login</a>
+                Didn't Have An Account? ? <a href='login.html'>Register</a>
               </h5>
             </form>
           </div>
@@ -101,4 +78,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

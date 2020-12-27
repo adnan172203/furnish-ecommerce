@@ -18,7 +18,7 @@ const {
 //get all users
 router.get('/', auth, getUsers);
 
-//get single user
+//get single user profile
 router.get('/me', auth, getUser);
 
 //add new user

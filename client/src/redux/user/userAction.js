@@ -6,6 +6,8 @@ import {
   USER_LOGIN_FAIL,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL
 } from './userTypes';
 
 export const register = (user) => async (dispatch) => {
@@ -77,6 +79,26 @@ export const listUsers = () => async (dispatch) => {
         : error.message;
     dispatch({
       type: USER_LIST_FAIL,
+      payload: message,
+    });
+  }
+};
+
+export const getUserDetails = () => async (dispatch, getState) => {
+  try {
+    const { data } = await axios.get(`/api/v1/users/me`);
+console.log(data);
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({
+      type: USER_DETAILS_FAIL,
       payload: message,
     });
   }

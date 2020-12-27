@@ -1,10 +1,11 @@
-import React,{useState} from 'react';
-
-import Styles from './Login.module.css';
+import React, { useState, useEffect } from 'react';
 
 //action
-import { login } from '../../../redux/user/userAction';
+import { getUserDetails } from '../../redux/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
+
+//css
+import Styles from './userUpdate.module.css';
 
 const {
   user_area,
@@ -16,30 +17,49 @@ const {
   common_btn,
 } = Styles;
 
-const Login = () => {
+const UserUpdate = ({ match }) => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
     password: '',
+    confirmPassword: '',
   });
 
+  
+  useEffect(() => {
+    dispatch(getUserDetails());
+  }, []);
+
   const dispatch = useDispatch();
-  const userRegister = useSelector((state) => state.userRegister);
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
+
+
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(login({ ...formData }));
   };
+
   return (
     <>
       <div className={`${user_area} ${ptb_100}`}>
         <div className='container'>
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
-              <h2>Login</h2>
+              <h2>User Update</h2>
+
+              <div className={form_group}>
+                <input
+                  type='text'
+                  name='name'
+                  className={form_control}
+                  placeholder='Your Name:'
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
 
               <div className={form_group}>
                 <input
@@ -61,14 +81,24 @@ const Login = () => {
                 />
               </div>
 
+              <div className={form_group}>
+                <input
+                  type='password'
+                  name='confirmpassword'
+                  className={form_control}
+                  placeholder='Confirm Password:'
+                  onChange={(e) => onChange(e)}
+                />
+              </div>
+
               <button type='submit' className={`${btn} ${common_btn}`}>
-                Login
+                Register
               </button>
 
               <h4>or</h4>
 
               <h5>
-                Didn't Have An Account? ? <a href='login.html'>Register</a>
+                Already Have An Account? <a href='login.html'>Login</a>
               </h5>
             </form>
           </div>
@@ -78,4 +108,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default UserUpdate;

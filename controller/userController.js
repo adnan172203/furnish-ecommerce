@@ -11,7 +11,7 @@ module.exports.getUsers = asyncHandler(async (req, res) => {
   res.status(200).json(users);
 });
 
-//get single  user
+//get single  user profile
 
 module.exports.getUser = asyncHandler(async (req, res) => {
   const id = req.user._id;

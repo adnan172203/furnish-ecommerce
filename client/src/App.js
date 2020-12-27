@@ -4,8 +4,9 @@ import Header from './components/header/header';
 import Shop from './pages/shop/shop';
 import Dashboard from './pages/dashboard/dashboard';
 import SingleProduct from './pages/singleProduct/singleProduct';
-import Register from './pages/user/register/Register';
-import Login from './pages/user/login/Login';
+import Register from './pages/register/Register';
+import Login from './pages/login/Login';
+import UserUpdate from'./pages/userUpdate/UserUpdate';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path='/product/:id' component={SingleProduct} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
+        <Route path='/user/edit/:id' component={UserUpdate} />
       </Switch>
     </div>
   );
