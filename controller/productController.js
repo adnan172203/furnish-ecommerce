@@ -155,7 +155,7 @@ module.exports.deleteProduct = asyncHandler(async (req, res) => {
 //add review
 exports.createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body
-console.log(req.user.name);
+
   const product = await Product.findById(req.params.id)
 
   if (product) {

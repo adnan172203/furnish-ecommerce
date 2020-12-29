@@ -10,9 +10,9 @@ const { product } = Styles;
 
 const ShopProduct = () => {
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { products } = productList;
-  console.log(products);
+
+  const { products } = useSelector((state) => state.product);
+
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);

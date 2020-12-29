@@ -37,10 +37,11 @@ const {
 
 const SingleProduct = ({ match }) => {
   const dispatch = useDispatch();
-  const singleProduct = useSelector((state) => state.singleProduct);
-  const { product } = singleProduct;
+  const products = useSelector((state) => state.product);
+
+  const { product } = products;
   const [index, setIndex] = useState(0);
-  console.log(product);
+
   useEffect(() => {
     dispatch(singleProductDetails(match.params.id));
   }, [dispatch]);
@@ -53,7 +54,7 @@ const SingleProduct = ({ match }) => {
             <div className={product_image}>
               <div className={column_one}>
                 <div className={one}>
-                  {product.image &&
+                  {product && product.image &&
                     product.image.url.map((image, i) => (
                       <img
                         src={image}
@@ -66,7 +67,7 @@ const SingleProduct = ({ match }) => {
               </div>
 
               <div className={column_two}>
-                {product.image && (
+                {product && product.image && (
                   <img src={product.image.url[index]} alt='shopimage' />
                 )}
               </div>
@@ -87,7 +88,7 @@ const SingleProduct = ({ match }) => {
               <div className={single_product_price}>
                 <h3>${product && product.price}</h3>
               </div>
-              <div className={product && product_info}>
+              <div className={product_info}>
                 <p>{product && product.description}</p>
                 <p>SKU : {product && product.sku}</p>
               </div>
@@ -114,7 +115,7 @@ const SingleProduct = ({ match }) => {
         </div>
       </section>
 
-      <TabItem description={product.description} reviews={product.reviews} />
+      <TabItem description={product && product.description} reviews={product && product.reviews} />
     </>
   );
 };

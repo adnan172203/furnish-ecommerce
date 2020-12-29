@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
+
 import {
   listProducts,
   createProduct,
+  deleteProduct,
+  singleProductDetails,
 } from '../../redux/product/product-action';
 import { useDispatch, useSelector } from 'react-redux';
 
 import loadgif from '../../assets/loading.gif';
 
 import axios from 'axios';
+
+//icon
+import { TiDeleteOutline } from 'react-icons/ti';
 
 //css
 import Styles from './admin-product.module.css';
@@ -34,6 +40,7 @@ const {
   admin_product_name,
   admin_product_price,
   loaded_image,
+  delete_icon,
 } = Styles;
 
 const AdminProduct = () => {
@@ -52,12 +59,20 @@ const AdminProduct = () => {
   const [display, setDisplay] = useState(false);
 
   const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList);
-  const { products } = productList;
+  const { products, product } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(listProducts());
-  }, [dispatch]);
+    setFormData({
+      name: product && product.name,
+      price: product && product.price,
+      description: product && product.description,
+      sku: product && product.sku,
+      sold: product && product.sold,
+      stock: product && product.stock,
+      image: product && product.image,
+    });
+  }, [dispatch, product]);
 
   const uploadFileHandler = async (e) => {
     setLoading(true);
@@ -96,6 +111,24 @@ const AdminProduct = () => {
 
   const onFormChange = () => {
     setDisplay(!display);
+    setFormData({
+      name: '',
+      price: '',
+      description: '',
+      sku: '',
+      sold: '',
+      stock: '',
+    });
+    product.image=''
+  };
+
+  const onFormUpdate = (id) => {
+    setDisplay(!display);
+    dispatch(singleProductDetails(id));
+  };
+
+  const deleteHandler = (id) => {
+    dispatch(deleteProduct(id));
   };
 
   return (
@@ -117,9 +150,9 @@ const AdminProduct = () => {
             <br />
             <input
               type='text'
-              name='name'
               className={create_product_name}
-              value={name}
+              value={name || ''}
+              name='name'
               onChange={(e) => onChange(e)}
             />
             <label className={label_edit} htmlFor='create_product_description'>
@@ -129,7 +162,7 @@ const AdminProduct = () => {
             <textarea
               name='description'
               id={create_product_description}
-              value={description}
+              value={description || ''}
               onChange={(e) => onChange(e)}
             ></textarea>
             <label className={label_edit} htmlFor='create_product_price'>
@@ -140,7 +173,7 @@ const AdminProduct = () => {
               type='number'
               name='price'
               className={create_product_price}
-              value={price}
+              value={price || ''}
               onChange={(e) => onChange(e)}
             />
             <label className={label_edit} htmlFor='create_product_sku'>
@@ -151,7 +184,7 @@ const AdminProduct = () => {
               type='number'
               name='sku'
               className={create_product_sku}
-              value={sku}
+              value={sku || ''}
               onChange={(e) => onChange(e)}
             />
             <label className={label_edit} htmlFor='create_product_sold'>
@@ -162,7 +195,7 @@ const AdminProduct = () => {
               type='number'
               name='sold'
               className={create_product_sold}
-              value={sold}
+              value={sold || ''}
               onChange={(e) => onChange(e)}
             />
             <label className={label_edit} htmlFor='create_product_image'>
@@ -186,7 +219,12 @@ const AdminProduct = () => {
                 ))
               )}
             </div>
-
+            <div className={loaded_image}>
+              {product && product.image &&
+                product.image.url.map((url, i) => (
+                  <img src={url} alt='updateimg' key={i} />
+                ))}
+            </div>
             <div className={create_product_stock} onChange={(e) => onChange(e)}>
               <label className={(stock_margin, label_edit)}>Stock</label>
               <br />
@@ -212,12 +250,22 @@ const AdminProduct = () => {
           {products &&
             products.map((product) => (
               <div className={admin_product_item} key={product._id}>
-                <div className={admin_product_img}>
-                  <img src={product.image.url[0]} alt='shopimage' />
-                </div>
-                <div className={admin_product_desc}>
-                  <h3 className={admin_product_name}>{product.name}</h3>
-                  <p className={admin_product_price}>${product.price}</p>
+                <TiDeleteOutline
+                  onClick={() => deleteHandler(product._id)}
+                  className={delete_icon}
+                  style={{ color: 'red' }}
+                />
+                <div onClick={() => onFormUpdate(product._id)}>
+                  <div className={admin_product_img}>
+                    <img
+                      src={product.image && product.image.url[0]}
+                      alt='shopimage'
+                    />
+                  </div>
+                  <div className={admin_product_desc}>
+                    <h3 className={admin_product_name}>{product.name}</h3>
+                    <p className={admin_product_price}>${product.price}</p>
+                  </div>
                 </div>
               </div>
             ))}

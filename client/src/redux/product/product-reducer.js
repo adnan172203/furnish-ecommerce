@@ -1,57 +1,49 @@
 import {
-  PRODUCT_LIST_SUCCESS,
-  PRODUCT_LIST_FAIL,
-  PRODUCT_CREATE_SUCCESS,
-  PRODUCT_CREATE_FAIL,
-  SINGLE_PRODUCT_SUCCESS,
-  SINGLE_PRODUCT_FAIL
+  PRODUCT_LIST,
+  PRODUCT_CREATE,
+  SINGLE_PRODUCT,
+  PRODUCT_DELETE,
+  PRODUCT_ERROR,
 } from './product-types';
 
-export const productListReducer = (state = { products: [] }, action) => {
+const initialState = {
+  products: [],
+  product: null,
+  error: {},
+};
+
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
-    case PRODUCT_LIST_SUCCESS:
+    case PRODUCT_LIST:
       return {
+        ...state,
         products: payload.products,
       };
-    case PRODUCT_LIST_FAIL:
+
+    case PRODUCT_CREATE:
       return {
+        ...state,
+        products: [payload, ...state.products],
+      };
+
+    case SINGLE_PRODUCT:
+      return { ...state, product: payload };
+
+    case PRODUCT_DELETE:
+      return {
+        ...state,
+        products: state.products.filter((product) => product._id !== payload),
+      };
+
+    case PRODUCT_ERROR:
+      return {
+        ...state,
         error: payload,
       };
+
     default:
       return state;
   }
-};
-
-export const productCreateReducer = (state = {}, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
-    case PRODUCT_CREATE_SUCCESS:
-      return {
-        product: payload,
-      };
-    case PRODUCT_CREATE_FAIL:
-      return {
-        error: payload,
-      };
-    default:
-      return state;
-  }
-};
-
-//single product
-export const singleProductReducer = (
-  state = { product: {} },
-  action
-) => {
-  switch (action.type) {
-    case SINGLE_PRODUCT_SUCCESS:
-      return { product: action.payload };
-    case SINGLE_PRODUCT_FAIL:
-      return { error: action.payload };
-    default:
-      return state;
-  }
-};
+}

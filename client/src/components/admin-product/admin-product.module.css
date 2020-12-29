@@ -26,6 +26,7 @@
   position: absolute;
   right: 0;
   top: 8%;
+  z-index: 2;
 }
 
 .create_product_form input,
@@ -92,6 +93,7 @@ input.create_product_submit {
 
 .admin_main_shop .admin_product_item {
   flex-basis: 20%;
+  position: relative;
   margin-right: 1.5rem;
   margin-bottom: 3rem;
   text-align: center;
@@ -119,4 +121,13 @@ input.create_product_submit {
 .loaded_image img {
   max-width: 100%;
   margin-right: 10px;
+}
+
+
+.delete_icon{
+  position: absolute;
+  right: -8px;
+  font-size: 1.5rem;
+  top: -8px;
+  cursor:pointer;
 }

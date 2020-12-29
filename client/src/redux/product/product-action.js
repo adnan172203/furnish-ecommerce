@@ -1,25 +1,23 @@
 import axios from 'axios';
 import {
-  PRODUCT_LIST_SUCCESS,
-  PRODUCT_LIST_FAIL,
-  PRODUCT_CREATE_SUCCESS,
-  PRODUCT_CREATE_FAIL,
-  SINGLE_PRODUCT_SUCCESS,
-  SINGLE_PRODUCT_FAIL,
+  PRODUCT_LIST,
+  PRODUCT_CREATE,
+  SINGLE_PRODUCT,
+  PRODUCT_DELETE,
+  PRODUCT_ERROR
 } from './product-types';
 
-//get all products
 export const listProducts = () => async (dispatch) => {
   try {
     const { data } = await axios.get('/api/v1/products');
 
     dispatch({
-      type: PRODUCT_LIST_SUCCESS,
+      type: PRODUCT_LIST,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: PRODUCT_LIST_FAIL,
+      type: PRODUCT_ERROR,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -28,7 +26,6 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
-//create product
 export const createProduct = (product) => async (dispatch) => {
   try {
     const config = {
@@ -38,19 +35,18 @@ export const createProduct = (product) => async (dispatch) => {
     };
 
     const { data } = await axios.post(`/api/v1/products`, product, config);
-
+    console.log(data);
     dispatch({
-      type: PRODUCT_CREATE_SUCCESS,
-      payload: data,
+      type: PRODUCT_CREATE,
+      payload: data.data,
     });
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
         : error.message;
-    console.log(message);
     dispatch({
-      type: PRODUCT_CREATE_FAIL,
+      type: PRODUCT_ERROR,
       payload: message,
     });
   }
@@ -61,16 +57,38 @@ export const singleProductDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(`/api/v1/products/${id}`);
 
     dispatch({
-      type: SINGLE_PRODUCT_SUCCESS,
+      type: SINGLE_PRODUCT,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: SINGLE_PRODUCT_FAIL,
+      type: PRODUCT_ERROR,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    
+    await axios.delete(`/api/v1/products/${id}`);
+
+    dispatch({
+      type: PRODUCT_DELETE,
+      payload:id
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: message,
     });
   }
 };
