@@ -59,20 +59,11 @@ const AdminProduct = () => {
   const [display, setDisplay] = useState(false);
 
   const dispatch = useDispatch();
-  const { products, product } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(listProducts());
-    setFormData({
-      name: product && product.name,
-      price: product && product.price,
-      description: product && product.description,
-      sku: product && product.sku,
-      sold: product && product.sold,
-      stock: product && product.stock,
-      image: product && product.image,
-    });
-  }, [dispatch, product]);
+  }, [dispatch]);
 
   const uploadFileHandler = async (e) => {
     setLoading(true);
@@ -113,10 +104,6 @@ const AdminProduct = () => {
     setDisplay(!display);
   };
 
-  const onFormUpdate = (id) => {
-    setDisplay(!display);
-    dispatch(singleProductDetails(id));
-  };
 
   const deleteHandler = (id) => {
     dispatch(deleteProduct(id));
@@ -210,13 +197,7 @@ const AdminProduct = () => {
                 ))
               )}
             </div>
-            <div className={loaded_image}>
-              {product &&
-                product.image &&
-                product.image.url.map((url, i) => (
-                  <img src={url} alt='updateimg' key={i} />
-                ))}
-            </div>
+
             <div className={create_product_stock} onChange={(e) => onChange(e)}>
               <label className={(stock_margin, label_edit)}>Stock</label>
               <br />

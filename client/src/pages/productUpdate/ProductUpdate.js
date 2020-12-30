@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { singleProductDetails } from '../../redux/product/product-action';
 
@@ -21,6 +22,7 @@ const {
   create_product_description,
   loaded_image,
   create_product_image,
+  label_edit,
 } = Styles;
 
 const ProductUpdate = ({ match }) => {
@@ -39,10 +41,19 @@ const ProductUpdate = ({ match }) => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
 
-  console.log();
+  console.log(product);
   useEffect(() => {
-    singleProductDetails(match.params.id);
-  });
+    dispatch(singleProductDetails(match.params.id));
+    setFormData({
+      name: product && product.name,
+      price: product && product.price,
+      description: product && product.description,
+      sku: product && product.sku,
+      sold: product && product.sold,
+      stock: product && product.stock,
+      image: product && product.image,
+    });
+  }, [dispatch,product]);
 
   const uploadFileHandler = async (e) => {
     setLoading(true);
@@ -83,59 +94,76 @@ const ProductUpdate = ({ match }) => {
         <div className='container'>
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
-              <h2>Register</h2>
+              <h2>Update Product</h2>
 
+              <label className={label_edit} htmlFor='create_product_name'>
+                Name
+              </label>
               <div className={form_group}>
                 <input
                   type='text'
                   name='name'
+                  value={name || ''}
                   className={form_control}
-                  placeholder='Your Name:'
                   onChange={(e) => onChange(e)}
                 />
               </div>
 
+              <label className={label_edit} htmlFor='create_product_name'>
+                Description
+              </label>
               <div className={form_group}>
                 <textarea
                   name='description'
+                  value={description || ''}
                   id={create_product_description}
-                  placeholder='Description'
-                  //   value={description || ''}
                   onChange={(e) => onChange(e)}
                 ></textarea>
               </div>
 
+              <label className={label_edit} htmlFor='create_product_name'>
+                Price
+              </label>
               <div className={form_group}>
                 <input
                   type='number'
                   name='price'
+                  value={price || ''}
                   className={form_control}
-                  placeholder='Price'
                   onChange={(e) => onChange(e)}
                 />
               </div>
 
+              <label className={label_edit} htmlFor='create_product_name'>
+                Sku
+              </label>
               <div className={form_group}>
                 <input
                   type='number'
                   name='sku'
+                  value={sku || ''}
                   className={form_control}
-                  placeholder='Sku'
                   onChange={(e) => onChange(e)}
                 />
               </div>
 
+              <label className={label_edit} htmlFor='create_product_name'>
+                Sold
+              </label>
               <div className={form_group}>
                 <input
                   type='number'
                   name='sold'
+                  value={sold || ''}
                   className={form_control}
-                  placeholder='sold'
                   onChange={(e) => onChange(e)}
                 />
               </div>
 
               <br />
+              <label className={label_edit} htmlFor='create_product_name'>
+                Image
+              </label>
               <input
                 type='file'
                 multiple
@@ -154,9 +182,21 @@ const ProductUpdate = ({ match }) => {
                 )}
               </div>
 
+              <div className={loaded_image}>
+                {product &&
+                  product.image &&
+                  product.image.url.map((url, i) => (
+                    <img src={url} alt='updateimg' key={i} />
+                  ))}
+              </div>
+
               <button type='submit' className={`${btn} ${common_btn}`}>
                 Update Product
               </button>
+              
+              <h5>
+                 <Link to="/dashboard/adminproduct">back</Link>
+              </h5>
             </form>
           </div>
         </div>
