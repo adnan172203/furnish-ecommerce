@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { singleProductDetails } from '../../redux/product/product-action';
+import {
+  singleProductDetails,
+  updateProduct,
+} from '../../redux/product/product-action';
 
 //asset
 import loadgif from '../../assets/loading.gif';
@@ -35,25 +38,29 @@ const ProductUpdate = ({ match }) => {
     stock: null,
     image: '',
   });
-  const { name, description, price, sku, sold } = formData;
+  const productId = match.params.id;
+  const { name, description, price, sku, sold, stock } = formData;
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState('');
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
-
   console.log(product);
+
   useEffect(() => {
-    dispatch(singleProductDetails(match.params.id));
+    dispatch(singleProductDetails(productId));
+  }, [dispatch, productId]);
+
+  useEffect(() => {
     setFormData({
       name: product && product.name,
-      price: product && product.price,
       description: product && product.description,
+      price: product && product.price,
       sku: product && product.sku,
       sold: product && product.sold,
       stock: product && product.stock,
       image: product && product.image,
     });
-  }, [dispatch,product]);
+  }, [product]);
 
   const uploadFileHandler = async (e) => {
     setLoading(true);
@@ -86,6 +93,18 @@ const ProductUpdate = ({ match }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        description,
+        price,
+        sku,
+        sold,
+        stock,
+        image,
+      })
+    );
   };
 
   return (
@@ -193,9 +212,9 @@ const ProductUpdate = ({ match }) => {
               <button type='submit' className={`${btn} ${common_btn}`}>
                 Update Product
               </button>
-              
+
               <h5>
-                 <Link to="/dashboard/adminproduct">back</Link>
+                <Link to='/dashboard/adminproduct'>back</Link>
               </h5>
             </form>
           </div>

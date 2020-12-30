@@ -44,7 +44,7 @@ const SingleProduct = ({ match }) => {
 
   useEffect(() => {
     dispatch(singleProductDetails(match.params.id));
-  }, [dispatch]);
+  }, [dispatch,match.params.id]);
 
   return (
     <>

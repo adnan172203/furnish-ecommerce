@@ -4,7 +4,6 @@ import {
   listProducts,
   createProduct,
   deleteProduct,
-  singleProductDetails,
 } from '../../redux/product/product-action';
 import { useDispatch, useSelector } from 'react-redux';
 

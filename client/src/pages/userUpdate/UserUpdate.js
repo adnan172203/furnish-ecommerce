@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 //action
-import { getUserDetails,updateUserProfile } from '../../redux/user/userAction';
+import { getUserDetails, updateUserProfile } from '../../redux/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 //css
@@ -26,26 +26,29 @@ const UserUpdate = () => {
     confirmPassword: '',
   });
 
-  const { name,email } = formData;
+  const { name, email } = formData;
 
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
-
+  const { user } = useSelector((state) => state.userDetails);
+console.log(user);
   useEffect(() => {
     dispatch(getUserDetails());
+
+  }, [dispatch]);
+
+  useEffect(() => {
     setFormData({
       name: user && user.name,
-      email: user && user.email
+      email: user && user.email,
     });
-  }, [dispatch]);
+  }, [user]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateUserProfile({name,email}));
+    dispatch(updateUserProfile({ name, email }));
   };
 
   return (
@@ -60,7 +63,7 @@ const UserUpdate = () => {
                 <input
                   type='text'
                   name='name'
-                  value ={name}
+                  value={name || ''}
                   className={form_control}
                   placeholder='Your Name:'
                   onChange={(e) => onChange(e)}
@@ -71,7 +74,7 @@ const UserUpdate = () => {
                 <input
                   type='email'
                   name='email'
-                  value={email}
+                  value={email || ''}
                   className={form_control}
                   placeholder='Your Email:'
                   onChange={(e) => onChange(e)}
@@ -103,7 +106,7 @@ const UserUpdate = () => {
               </button>
 
               <h5>
-                 <Link to="/dashboard/user">back</Link>
+                <Link to='/dashboard/user'>back</Link>
               </h5>
             </form>
           </div>

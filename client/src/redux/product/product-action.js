@@ -96,7 +96,7 @@ export const deleteProduct = (id) => async (dispatch) => {
 export const updateProduct = (product) => async (dispatch) => {
   try {
     const { data } = await axios.put(`/api/v1/products/${product._id}`,product);
-
+console.log('action',data);
     dispatch({
       type: PRODUCT_UPDATE,
       payload: data,
