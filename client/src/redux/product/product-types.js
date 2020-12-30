@@ -2,8 +2,10 @@ export const PRODUCT_LIST = 'PRODUCT_LIST';
 
 export const PRODUCT_CREATE = 'PRODUCT_CREATE';
 
-export const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
+export const PRODUCT_UPDATE = 'PRODUCT_UPDATE';
 
 export const PRODUCT_DELETE = 'PRODUCT_DELETE';
+
+export const SINGLE_PRODUCT = 'SINGLE_PRODUCT';
 
 export const PRODUCT_ERROR = 'PRODUCT_ERROR';

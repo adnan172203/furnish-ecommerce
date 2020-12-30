@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom';
 import {
   listProducts,
   createProduct,
@@ -111,15 +111,6 @@ const AdminProduct = () => {
 
   const onFormChange = () => {
     setDisplay(!display);
-    setFormData({
-      name: '',
-      price: '',
-      description: '',
-      sku: '',
-      sold: '',
-      stock: '',
-    });
-    product.image=''
   };
 
   const onFormUpdate = (id) => {
@@ -220,7 +211,8 @@ const AdminProduct = () => {
               )}
             </div>
             <div className={loaded_image}>
-              {product && product.image &&
+              {product &&
+                product.image &&
                 product.image.url.map((url, i) => (
                   <img src={url} alt='updateimg' key={i} />
                 ))}
@@ -255,7 +247,7 @@ const AdminProduct = () => {
                   className={delete_icon}
                   style={{ color: 'red' }}
                 />
-                <div onClick={() => onFormUpdate(product._id)}>
+                <Link to={`/product/edit/${product._id}`}>
                   <div className={admin_product_img}>
                     <img
                       src={product.image && product.image.url[0]}
@@ -266,7 +258,7 @@ const AdminProduct = () => {
                     <h3 className={admin_product_name}>{product.name}</h3>
                     <p className={admin_product_price}>${product.price}</p>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
         </div>

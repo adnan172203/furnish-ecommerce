@@ -4,7 +4,8 @@ import {
   PRODUCT_CREATE,
   SINGLE_PRODUCT,
   PRODUCT_DELETE,
-  PRODUCT_ERROR
+  PRODUCT_UPDATE,
+  PRODUCT_ERROR,
 } from './product-types';
 
 export const listProducts = () => async (dispatch) => {
@@ -73,12 +74,32 @@ export const singleProductDetails = (id) => async (dispatch) => {
 
 export const deleteProduct = (id) => async (dispatch) => {
   try {
-    
     await axios.delete(`/api/v1/products/${id}`);
 
     dispatch({
       type: PRODUCT_DELETE,
-      payload:id
+      payload: id,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: message,
+    });
+  }
+};
+
+export const updateProduct = (product) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`/api/v1/products/${product._id}`,product);
+
+    dispatch({
+      type: PRODUCT_UPDATE,
+      payload: data,
     });
   } catch (error) {
     const message =

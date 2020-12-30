@@ -1,6 +1,7 @@
 import {
   PRODUCT_LIST,
   PRODUCT_CREATE,
+  PRODUCT_UPDATE,
   SINGLE_PRODUCT,
   PRODUCT_DELETE,
   PRODUCT_ERROR,
@@ -28,8 +29,17 @@ export default function (state = initialState, action) {
         products: [payload, ...state.products],
       };
 
+    case PRODUCT_UPDATE:
+      return {
+        ...state,
+        product: payload,
+      };
+
     case SINGLE_PRODUCT:
-      return { ...state, product: payload };
+      return {
+        ...state,
+        product: payload,
+      };
 
     case PRODUCT_DELETE:
       return {
