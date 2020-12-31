@@ -8,9 +8,12 @@ import {
   userDetails,
 } from './user/userReducer';
 
+import cartReducer from './cart/cartReducer';
+
 export default combineReducers({
   product,
-
+  cartReducer,
+  
   userRegister: userRegister,
   userLogin: userLogin,
   userList: userList,

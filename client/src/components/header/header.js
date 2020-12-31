@@ -2,7 +2,10 @@ import React from 'react';
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 
+import CartDropdown from '../cartDropdown/cartDropdown';
+
 import { logout } from '../../redux/user/userAction';
+import { toggleCartHidden } from '../../redux/cart/cartAction';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -35,6 +38,8 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const { hidden } = useSelector((state) => state.cartReducer);
+console.log(hidden);
   const logoutHandler = () => {
     dispatch(logout());
   };
@@ -69,7 +74,7 @@ const Header = () => {
           <div className={shop_essentials_icon}>
             <FaSearch className={header_icon} />
 
-            <FaShoppingCart className={header_icon} />
+            <FaShoppingCart onClick={()=>dispatch(toggleCartHidden())} className={header_icon} />
 
             <FaRegHeart className={header_icon} />
             {userInfo ? (
@@ -80,6 +85,8 @@ const Header = () => {
               <Link to='/login'>log in</Link>
             )}
           </div>
+          {hidden ? null : <CartDropdown />}
+          
         </div>
       </header>
     </>
