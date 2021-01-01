@@ -1,4 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { removeCartItem } from '../../../redux/cart/cartAction';
+
+//icon
+import { BsXCircle } from "react-icons/bs";
 
 //css
 import Styles from './cartItem.module.css';
@@ -11,8 +16,10 @@ const {
 } = Styles;
 
 const CartItem = ({ cartItem }) => {
-  console.log('item:', cartItem);
-  const { name, image, price } = cartItem;
+  
+  const dispatch = useDispatch();
+  const { name, image, price,productId } = cartItem;
+
   return (
     <>
       <div className={header_cart_item}>
@@ -25,7 +32,7 @@ const CartItem = ({ cartItem }) => {
           <p>2 x {price}</p>
         </div>
         <div className={header_cart_item_delete}>
-          <i className='far fa_times_circle'></i>
+          <BsXCircle onClick={()=>dispatch(removeCartItem(productId))}/>
         </div>
       </div>
     </>

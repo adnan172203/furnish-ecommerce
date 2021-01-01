@@ -31,4 +31,6 @@
 
 .header_cart_item_delete {
   color: #919191;
+  margin-top: 17px;
+  cursor: pointer;
 }

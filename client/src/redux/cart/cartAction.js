@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TOGGLE_CART_HIDDEN, ADD_CART_ITEM } from './cartTypes';
+import { TOGGLE_CART_HIDDEN, ADD_CART_ITEM,REMOVE_CART_ITEM } from './cartTypes';
 
 export const toggleCartHidden = () => {
   return {
@@ -8,8 +8,8 @@ export const toggleCartHidden = () => {
 };
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  
   const { data } = await axios.get(`/api/v1/products/${id}`);
+
   dispatch({
     type: ADD_CART_ITEM,
     payload: {
@@ -23,4 +23,12 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   });
 
   //   localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+};
+
+
+export const removeCartItem = id => {
+  return {
+    type: REMOVE_CART_ITEM,
+    payload: id
+  };
 };

@@ -39,7 +39,7 @@ const Header = () => {
   const { userInfo } = userLogin;
 
   const { hidden } = useSelector((state) => state.cartReducer);
-console.log(hidden);
+
   const logoutHandler = () => {
     dispatch(logout());
   };

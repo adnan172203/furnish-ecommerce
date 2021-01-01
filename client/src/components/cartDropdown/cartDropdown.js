@@ -18,7 +18,7 @@ const {
 
 const CartDropdown = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
-  console.log(cartItems);
+
   return (
     <>
       <div className={header_cart_dropdown}>
