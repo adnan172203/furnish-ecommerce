@@ -3,8 +3,8 @@
 }
 
 .header_cart_dropdown .header_dropdown_item {
-  /* overflow-y: scroll;
-  height: 266px; */
+  overflow-y: auto;
+  max-height: 266px;
 }
 
 .header_minicart > .header_dropdown_item {

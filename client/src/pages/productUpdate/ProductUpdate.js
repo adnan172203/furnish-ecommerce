@@ -44,7 +44,7 @@ const ProductUpdate = ({ match }) => {
   const [image, setImage] = useState('');
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
-  console.log(product);
+
 
   useEffect(() => {
     dispatch(singleProductDetails(productId));

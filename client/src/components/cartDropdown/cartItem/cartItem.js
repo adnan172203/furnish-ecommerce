@@ -18,9 +18,8 @@ const CartItem = () => {
           <img src='https://picsum.photos/seed/picsum/200/200' alt='' />
         </div>
         <div className={header_cart_item_name}>
-          <a href=''>
-            <p>Slim Wooden Stool</p>
-          </a>
+          <p>Slim Wooden Stool</p>
+
           <p>2 x 125</p>
         </div>
         <div className={header_cart_item_delete}>

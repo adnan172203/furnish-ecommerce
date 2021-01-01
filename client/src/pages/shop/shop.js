@@ -13,7 +13,7 @@ const Shop = () => {
     <>
       <Banner title='Shop' breadCrumb='Shop' />
       <section className={main_shop}>
-        <div className={container}>
+        <div >
           <div className={main_product}>
             <ProductCategories />
             <ShopProduct />
