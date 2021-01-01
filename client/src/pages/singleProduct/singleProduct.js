@@ -4,6 +4,7 @@ import TabItem from './components/tab/Tab';
 
 //action
 import { singleProductDetails } from '../../redux/product/product-action';
+import { addToCart } from '../../redux/cart/cartAction';
 
 //icon
 import {
@@ -44,7 +45,7 @@ const SingleProduct = ({ match }) => {
 
   useEffect(() => {
     dispatch(singleProductDetails(match.params.id));
-  }, [dispatch,match.params.id]);
+  }, [dispatch, match.params.id]);
 
   return (
     <>
@@ -54,7 +55,8 @@ const SingleProduct = ({ match }) => {
             <div className={product_image}>
               <div className={column_one}>
                 <div className={one}>
-                  {product && product.image &&
+                  {product &&
+                    product.image &&
                     product.image.url.map((image, i) => (
                       <img
                         src={image}
@@ -93,7 +95,9 @@ const SingleProduct = ({ match }) => {
                 <p>SKU : {product && product.sku}</p>
               </div>
               <div className={product_add_to_cart}>
-                <button>Add To Cart</button>
+                <button onClick={() => dispatch(addToCart(match.params.id))}>
+                  Add To Cart
+                </button>
                 <div className={single_product_count}>
                   <span>
                     <i>
@@ -115,7 +119,10 @@ const SingleProduct = ({ match }) => {
         </div>
       </section>
 
-      <TabItem description={product && product.description} reviews={product && product.reviews} />
+      <TabItem
+        description={product && product.description}
+        reviews={product && product.reviews}
+      />
     </>
   );
 };
