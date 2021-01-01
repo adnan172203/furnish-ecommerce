@@ -1,0 +1,19 @@
+.shoping_cart {
+    margin-top: 5rem;
+  }
+  .cart_area {
+    overflow: hidden;
+  }
+  
+  .cart_area .cart_specification_name {
+    display: flex;
+    justify-content: center;
+    margin-left: 8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .cart_area .cart_specification_name h5 {
+    color: #6d6d6d;
+    flex-basis: 14%;
+    font-weight: 500;
+  }

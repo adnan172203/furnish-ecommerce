@@ -8,6 +8,7 @@ import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import UserUpdate from'./pages/userUpdate/UserUpdate';
 import ProductUpdate from'./pages/productUpdate/ProductUpdate';
+import Cart from'./pages/cart/Cart';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/login' component={Login} />
         <Route path='/user/edit/:id' component={UserUpdate} />
         <Route path='/product/edit/:id' component={ProductUpdate} />
+        <Route path='/cart' component={Cart} />
       </Switch>
     </div>
   );
