@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CartItem from './cartItem/cartItem';
-
+import { useSelector } from 'react-redux';
 
 //css
 import Styles from './cartDropdown.module.css';
@@ -17,13 +17,16 @@ const {
 } = Styles;
 
 const CartDropdown = () => {
-
+  const { cartItems } = useSelector((state) => state.cartReducer);
+  console.log(cartItems);
   return (
     <>
       <div className={header_cart_dropdown}>
         <div className={header_minicart}>
           <div className={`${header_dropdown_item} ${scroll_style}`}>
-            <CartItem />
+            {cartItems && cartItems.map((cartItem) => (
+              <CartItem cartItem={cartItem} key={cartItem.productId} />
+            ))}
           </div>
           <div className={header_cart_total}>
             <p>Total</p>

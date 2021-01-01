@@ -10,17 +10,19 @@ const {
   header_cart_item_delete,
 } = Styles;
 
-const CartItem = () => {
+const CartItem = ({ cartItem }) => {
+  console.log('item:', cartItem);
+  const { name, image, price } = cartItem;
   return (
     <>
       <div className={header_cart_item}>
         <div className={header_cart_item_img}>
-          <img src='https://picsum.photos/seed/picsum/200/200' alt='' />
+          <img src={image && image.url[0]} alt='' />
         </div>
         <div className={header_cart_item_name}>
-          <p>Slim Wooden Stool</p>
+          <p>{name}</p>
 
-          <p>2 x 125</p>
+          <p>2 x {price}</p>
         </div>
         <div className={header_cart_item_delete}>
           <i className='far fa_times_circle'></i>

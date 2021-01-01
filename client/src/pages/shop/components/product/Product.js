@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../../redux/cart/cartAction';
-import { useDispatch,useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //icon
 import { BsPlus } from "react-icons/bs";
@@ -21,8 +21,7 @@ const {
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cartReducer); 
-  console.log(cart);
+
   return (
     <>
       <div className={product_item} key={product._id}>
