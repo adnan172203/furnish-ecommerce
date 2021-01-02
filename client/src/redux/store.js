@@ -6,12 +6,24 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
 
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
+  cartReducer: {
+    cartItems: cartItemsFromStorage
+  },
 };
 
 const middlewares = [thunk];
 
-const store = createStore(rootReducer,initialState, applyMiddleware(...middlewares));
+const store = createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(...middlewares)
+);
 
 export default store;
