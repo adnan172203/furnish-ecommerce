@@ -3,6 +3,8 @@ import {
   TOGGLE_CART_HIDDEN,
   ADD_CART_ITEM,
   REMOVE_CART_ITEM,
+  INCREMENT_PRODUCT_CART_COUNT,
+  DECREMENT_PRODUCT_CART_COUNT,
 } from './cartTypes';
 
 export const toggleCartHidden = () => {
@@ -11,7 +13,7 @@ export const toggleCartHidden = () => {
   };
 };
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
+export const addToCart = (id) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/v1/products/${id}`);
 
   dispatch({
@@ -22,15 +24,28 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       image: data.image,
       price: data.price,
       countInStock: data.countInStock,
-      qty,
+      qty: 1
     },
   });
+
+  //save productItem to loccalStorage
 
   localStorage.setItem(
     'cartItems',
     JSON.stringify(getState().cartReducer.cartItems)
   );
 };
+
+export const cartProductInrement = (productId) =>({
+      type: INCREMENT_PRODUCT_CART_COUNT,
+      payload: productId
+    })
+ 
+
+export const cartProductDecrement = (productId)=> ({
+    type: DECREMENT_PRODUCT_CART_COUNT,
+    payload: productId,
+  });
 
 export const removeCartItem = (id) => (dispatch, getState) => {
   dispatch({

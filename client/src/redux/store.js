@@ -26,4 +26,21 @@ const store = createStore(
   applyMiddleware(...middlewares)
 );
 
+let currentValue;
+const handleStorage =  () =>{
+  let previousValue = currentValue;
+  currentValue = store.getState();
+  console.log('currentValue', currentValue)
+  if (previousValue !== currentValue) {
+      localStorage.setItem('cartItems', JSON.stringify(currentValue.cartReducer.cartItems))
+  }
+
+}
+
+store.subscribe(handleStorage)
+
+
+
+
+
 export default store;

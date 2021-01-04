@@ -6,7 +6,7 @@ import ProductCategories from './components/ProductCategories/ProductCategories'
 //css
 import Styles from './shop.module.css';
 
-const { container, main_shop, main_product } = Styles;
+const {  main_shop, main_product } = Styles;
 
 const Shop = () => {
   return (

@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+  addToCart,
+  cartProductInrement,
+  cartProductDecrement
+} from '../../../redux/cart/cartAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 //css
 import Styles from './CartItem.module.css';
+
+//icon
+import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 const {
   cart_product_details,
@@ -15,8 +24,15 @@ const {
 } = Styles;
 
 const CartItem = ({ cartItem }) => {
-  console.log('cartitem:',cartItem);
-  const { name, price, qty, image } = cartItem;
+  const dispatch = useDispatch();
+
+  const { name, price, qty, image, productId } = cartItem;
+
+
+  const incrementProductCartCount = (productId) => {
+    dispatch(cartProductInrement(productId));
+  } 
+
   return (
     <>
       <div className={cart_product_details}>
@@ -33,9 +49,21 @@ const CartItem = ({ cartItem }) => {
           <p>${price}</p>
         </div>
         <div className={cart_product_qty}>
-          <i className='fas fa-chevron-left'></i>
-          <span>2</span>
-          <i className='fas fa-chevron-right'></i>
+          <span>
+            {' '}
+            <FaChevronLeft
+              onClick={() => cartProductDecrement(productId)}
+            />{' '}
+          </span>
+
+          <span>{qty}</span>
+
+          <span>
+            {' '}
+            <FaChevronRight
+              onClick={() => incrementProductCartCount(productId)}
+            />{' '}
+          </span>
         </div>
         <div className={cart_product_total}>
           <p>$250</p>

@@ -85,7 +85,7 @@ const Header = () => {
               <Link to='/login'>log in</Link>
             )}
           </div>
-          {hidden ? null : <CartDropdown />}
+          {!hidden ? null : <CartDropdown />}
           
         </div>
       </header>

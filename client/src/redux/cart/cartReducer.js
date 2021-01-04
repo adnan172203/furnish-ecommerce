@@ -1,4 +1,10 @@
-import { TOGGLE_CART_HIDDEN, ADD_CART_ITEM,REMOVE_CART_ITEM } from './cartTypes';
+import {
+  TOGGLE_CART_HIDDEN,
+  ADD_CART_ITEM,
+  REMOVE_CART_ITEM,
+  INCREMENT_PRODUCT_CART_COUNT,
+  DECREMENT_PRODUCT_CART_COUNT,
+} from './cartTypes';
 
 const INITIAL_STATE = {
   hidden: true,
@@ -16,16 +22,41 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
 
     case ADD_CART_ITEM:
+      const item = payload;
+
+      const existItem = state.cartItems.find((x) => x.productId === item.productId);
+
+      if (existItem) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((x) =>
+            x.productId === existItem.productId ? item : x
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
+      }
+
+    case REMOVE_CART_ITEM:
       return {
         ...state,
-        cartItems: [payload, ...state.cartItems],
+        cartItems: state.cartItems.filter(
+          (item) => item.productId !== action.payload
+        ),
       };
-    case REMOVE_CART_ITEM:
-      return{
-        ...state,
-        cartItems: state.cartItems.filter((item) => item.productId !== action.payload)
-      }  
 
+    case INCREMENT_PRODUCT_CART_COUNT:
+      console.log('payload', payload);
+      console.log(state.cartItems);
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) =>
+          item.productId === payload ? { ...item, qty: (item.qty += 1) } : item
+        ),
+      };
     default:
       return state;
   }

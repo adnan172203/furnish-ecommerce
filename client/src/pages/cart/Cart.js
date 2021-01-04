@@ -1,14 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartItem from './cartItem/CartItem';
 import { useSelector } from 'react-redux';
 
 //css
 import Styles from './Cart.module.css';
 
-const { shoping_cart, cart_area, cart_specification_name } = Styles;
+//icon
+import { FaLongArrowAltLeft } from "react-icons/fa";
+
+const {
+  shoping_cart,
+  cart_area,
+  cart_specification_name,
+  cart_calculation,
+  cart_total_calculation,
+  sub_total,
+  sub_total_price,
+  checkout_button,
+  cart_update,
+  shopping_arrow
+} = Styles;
 
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
+
+  console.log(cartItems)
 
   return (
     <>
@@ -25,6 +42,25 @@ const Cart = () => {
               cartItems.map((cartItem) => (
                 <CartItem cartItem={cartItem} key={cartItem.productId} />
               ))}
+          </div>
+
+          <div className={cart_calculation}>
+            <div className={cart_update}>
+              <p>
+                <FaLongArrowAltLeft className={shopping_arrow}/> <Link to="/shop">continue shipping</Link>
+              </p>
+              
+            </div>
+            <div className={cart_total_calculation}>
+              <div className={sub_total}>
+                <h4>Sub Total</h4>
+                <span className={sub_total_price}>$900</span>
+              </div>
+
+              <div className={checkout_button}>
+                <button>Proceed To Checkout</button>
+              </div>
+            </div>
           </div>
         </div>
       </section>

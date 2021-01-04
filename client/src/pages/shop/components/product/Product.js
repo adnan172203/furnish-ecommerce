@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../../redux/cart/cartAction';
 import { useDispatch } from 'react-redux';
@@ -37,7 +37,7 @@ const Product = ({ product }) => {
             </Link>
             <p className={product_price}>${product.price}</p>
           </div>
-          <BsPlus className={plus_icon} onClick={()=>dispatch(addToCart(product._id,2))} />
+          <BsPlus className={plus_icon} onClick={()=>dispatch(addToCart(product._id,1))} />
         </div>
       </div>
     </>
