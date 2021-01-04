@@ -49,14 +49,22 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
 
     case INCREMENT_PRODUCT_CART_COUNT:
-      console.log('payload', payload);
-      console.log(state.cartItems);
+
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
           item.productId === payload ? { ...item, qty: (item.qty += 1) } : item
         ),
       };
+
+      case DECREMENT_PRODUCT_CART_COUNT:
+
+        return {
+          ...state,
+          cartItems: state.cartItems.map((item) =>
+            item.productId === payload ? { ...item, qty: (item.qty -= 1) } : item
+          ),
+        };
     default:
       return state;
   }

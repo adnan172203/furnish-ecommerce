@@ -29,8 +29,9 @@ const store = createStore(
 let currentValue;
 const handleStorage =  () =>{
   let previousValue = currentValue;
+  
   currentValue = store.getState();
-  console.log('currentValue', currentValue)
+
   if (previousValue !== currentValue) {
       localStorage.setItem('cartItems', JSON.stringify(currentValue.cartReducer.cartItems))
   }

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
-  addToCart,
   cartProductInrement,
   cartProductDecrement
 } from '../../../redux/cart/cartAction';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 //css
 import Styles from './CartItem.module.css';
@@ -31,7 +30,11 @@ const CartItem = ({ cartItem }) => {
 
   const incrementProductCartCount = (productId) => {
     dispatch(cartProductInrement(productId));
-  } 
+  }
+  
+  const decrementProductCartCount = (productId) =>{
+    dispatch(cartProductDecrement(productId));
+  }
 
   return (
     <>
@@ -50,23 +53,21 @@ const CartItem = ({ cartItem }) => {
         </div>
         <div className={cart_product_qty}>
           <span>
-            {' '}
             <FaChevronLeft
-              onClick={() => cartProductDecrement(productId)}
-            />{' '}
+              onClick={() => decrementProductCartCount(productId)}
+            />
           </span>
 
           <span>{qty}</span>
 
           <span>
-            {' '}
             <FaChevronRight
               onClick={() => incrementProductCartCount(productId)}
-            />{' '}
+            />
           </span>
         </div>
         <div className={cart_product_total}>
-          <p>$250</p>
+          <p>${price * qty}</p>
         </div>
         <div className={cart_product_delete}>
           <i className='far fa-times-circle'></i>

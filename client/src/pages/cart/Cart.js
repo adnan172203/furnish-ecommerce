@@ -54,7 +54,9 @@ const Cart = () => {
             <div className={cart_total_calculation}>
               <div className={sub_total}>
                 <h4>Sub Total</h4>
-                <span className={sub_total_price}>$900</span>
+                <span className={sub_total_price}>${cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                }</span>
               </div>
 
               <div className={checkout_button}>
