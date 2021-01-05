@@ -38,7 +38,6 @@
   margin-right: 5px;
   margin-bottom: 20px;
   border-radius: 6px;
-  color: #a7a7a7;
 }
 
 .frm_grp_two {
@@ -51,7 +50,6 @@
   border-radius: 6px;
   border: 1px solid #dedede !important;
   margin-bottom: 20px;
-  color: #a7a7a7;
 }
 
 .frm_grp_one input::placeholder,

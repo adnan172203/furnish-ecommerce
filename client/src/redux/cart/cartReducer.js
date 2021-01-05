@@ -4,11 +4,13 @@ import {
   REMOVE_CART_ITEM,
   INCREMENT_PRODUCT_CART_COUNT,
   DECREMENT_PRODUCT_CART_COUNT,
+  CART_SAVE_SHIPPING_ADDRESS
 } from './cartTypes';
 
 const INITIAL_STATE = {
   hidden: true,
   cartItems: [],
+  shippingAddress: {}
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -49,7 +51,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
 
     case INCREMENT_PRODUCT_CART_COUNT:
-
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
@@ -58,13 +59,19 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       };
 
       case DECREMENT_PRODUCT_CART_COUNT:
-
         return {
           ...state,
           cartItems: state.cartItems.map((item) =>
             item.productId === payload ? { ...item, qty: (item.qty -= 1) } : item
           ),
         };
+
+     case CART_SAVE_SHIPPING_ADDRESS:
+       console.log('payload',payload);
+       return {
+         ...state,
+         shippingAddress: payload
+       }   
     default:
       return state;
   }

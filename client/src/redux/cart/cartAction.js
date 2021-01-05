@@ -5,6 +5,7 @@ import {
   REMOVE_CART_ITEM,
   INCREMENT_PRODUCT_CART_COUNT,
   DECREMENT_PRODUCT_CART_COUNT,
+  CART_SAVE_SHIPPING_ADDRESS,
 } from './cartTypes';
 
 export const toggleCartHidden = () => {
@@ -13,7 +14,7 @@ export const toggleCartHidden = () => {
   };
 };
 
-export const addToCart = (id,qty) => async (dispatch, getState) => {
+export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/v1/products/${id}`);
 
   dispatch({
@@ -24,7 +25,7 @@ export const addToCart = (id,qty) => async (dispatch, getState) => {
       image: data.image,
       price: data.price,
       countInStock: data.countInStock,
-      qty:1
+      qty: 1,
     },
   });
 
@@ -36,16 +37,25 @@ export const addToCart = (id,qty) => async (dispatch, getState) => {
   );
 };
 
-export const cartProductInrement = (productId) =>({
-      type: INCREMENT_PRODUCT_CART_COUNT,
-      payload: productId
-    })
- 
+export const cartProductInrement = (productId) => ({
+  type: INCREMENT_PRODUCT_CART_COUNT,
+  payload: productId,
+});
 
-export const cartProductDecrement = (productId)=> ({
-    type: DECREMENT_PRODUCT_CART_COUNT,
-    payload: productId,
+export const cartProductDecrement = (productId) => ({
+  type: DECREMENT_PRODUCT_CART_COUNT,
+  payload: productId,
+});
+
+export const saveShippingAddress = (data) =>(dispatch) => {
+  console.log(data);
+  dispatch({
+    type: CART_SAVE_SHIPPING_ADDRESS,
+    payload: data,
   });
+
+  localStorage.setItem('shippingAddress', JSON.stringify(data));
+};
 
 export const removeCartItem = (id) => (dispatch, getState) => {
   dispatch({
