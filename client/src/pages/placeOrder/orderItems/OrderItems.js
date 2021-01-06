@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Styles from './OrderProduct.module.css';
+import Styles from './OrderItems.module.css';
 
 const {
   checkout_all,
@@ -20,7 +20,7 @@ const {
   checkout_payment_shipping,
 } = Styles;
 
-const OrderProduct = () => {
+const OrderItems = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
   return (
     <>
@@ -48,48 +48,16 @@ const OrderProduct = () => {
             ))}
 
           <div className={checkout_sub_total}>
-            <h4>Sub Total</h4>
+            <h4>Total</h4>
             <span className={checkout_sub_total_price}>${cartItems
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 }</span>
           </div>
         </div>
 
-        <div className={checkout_payment_method}>
-          <div className={checkout_payment_shipping}>
-            <h4>Payment Method</h4>
-            <form action=''>
-              <label className={shipping_container}>
-                Direct Bank Transfer
-                <input
-                  type='radio'
-                 
-                  name='gender'
-                  value='flat-rate'
-                />
-                <span className={shipping_checkmark}></span>{' '}
-              </label>
-              <br />
-
-              <label className={shipping_container}>
-                Cash On Delivery
-                <input type='radio' name='gender' value='delivery' />
-                <span className={shipping_checkmark}></span>{' '}
-              </label>
-              <br />
-
-              <label className={shipping_container}>
-                Paypal
-                <input type='radio' name='gender' value='pickup' />
-                <span className={shipping_checkmark}></span>{' '}
-              </label>
-              <br />
-            </form>
-          </div>
-        </div>
       </div>
     </>
   );
 };
 
-export default OrderProduct;
+export default OrderItems;

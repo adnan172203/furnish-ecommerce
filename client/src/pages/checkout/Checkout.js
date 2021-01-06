@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import OrderProduct from './orderProduct/OrderProduct';
+import React, { useState,useEffect } from 'react';
 
 import { saveShippingAddress } from '../../redux/cart/cartAction';
 import { useDispatch } from 'react-redux';
@@ -23,7 +22,7 @@ const {
   town,
 } = Styles;
 
-const Checkout = () => {
+const Checkout = ({history}) => {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -32,6 +31,8 @@ const Checkout = () => {
     phone: '',
   });
 
+
+
   const dispatch = useDispatch();
 
   const onChange = (e) =>
@@ -39,8 +40,8 @@ const Checkout = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
     dispatch(saveShippingAddress({...formData}));
+    history.push('/placeorder')
   };
 
   return (
@@ -103,7 +104,6 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-            <OrderProduct />
           </div>
         </div>
       </div>

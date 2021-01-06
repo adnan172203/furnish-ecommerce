@@ -10,6 +10,7 @@ import UserUpdate from './pages/userUpdate/UserUpdate';
 import ProductUpdate from './pages/productUpdate/ProductUpdate';
 import Cart from './pages/cart/Cart';
 import Checkout from './pages/checkout/Checkout';
+import PlaceOrder from './pages/placeOrder/PlaceOrder';
 import './App.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/product/edit/:id' component={ProductUpdate} />
         <Route path='/cart' component={Cart} />
         <Route path='/checkout' component={Checkout} />
+        <Route path='/placeorder' component={PlaceOrder} />
       </Switch>
     </div>
   );

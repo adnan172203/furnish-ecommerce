@@ -30,7 +30,7 @@ module.exports.addOrder = asyncHandler(async (req, res, next) => {
   const {
     orderItems,
     shippingAddress,
-    paymentMethod,
+  
     itemsPrice,
     taxPrice,
     shippingPrice,
@@ -44,7 +44,7 @@ module.exports.addOrder = asyncHandler(async (req, res, next) => {
       user: req.user._id,
       orderItems,
       shippingAddress,
-      paymentMethod,
+    
       itemsPrice,
       taxPrice,
       shippingPrice,

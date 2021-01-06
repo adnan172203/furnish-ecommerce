@@ -48,7 +48,6 @@ export const cartProductDecrement = (productId) => ({
 });
 
 export const saveShippingAddress = (data) =>(dispatch) => {
-  console.log(data);
   dispatch({
     type: CART_SAVE_SHIPPING_ADDRESS,
     payload: data,

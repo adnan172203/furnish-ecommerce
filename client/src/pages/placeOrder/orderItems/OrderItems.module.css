@@ -1,5 +1,6 @@
 .checkout_all {
-  flex-basis: 30%;
+  width: 35%;
+  margin: 0 auto;
 }
 
 .checkout_order_details_info {

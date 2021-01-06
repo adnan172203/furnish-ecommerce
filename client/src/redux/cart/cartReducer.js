@@ -67,7 +67,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         };
 
      case CART_SAVE_SHIPPING_ADDRESS:
-       console.log('payload',payload);
        return {
          ...state,
          shippingAddress: payload

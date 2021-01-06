@@ -6,15 +6,19 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null;
 
-
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : [];
 
+const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
+  ? JSON.parse(localStorage.getItem('shippingAddress'))
+  : {};
+
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
   cartReducer: {
-    cartItems: cartItemsFromStorage
+    cartItems: cartItemsFromStorage,
+    shippingAddress: shippingAddressFromStorage,
   },
 };
 
@@ -27,21 +31,19 @@ const store = createStore(
 );
 
 let currentValue;
-const handleStorage =  () =>{
+const handleStorage = () => {
   let previousValue = currentValue;
-  
+
   currentValue = store.getState();
 
   if (previousValue !== currentValue) {
-      localStorage.setItem('cartItems', JSON.stringify(currentValue.cartReducer.cartItems))
+    localStorage.setItem(
+      'cartItems',
+      JSON.stringify(currentValue.cartReducer.cartItems)
+    );
   }
+};
 
-}
-
-store.subscribe(handleStorage)
-
-
-
-
+store.subscribe(handleStorage);
 
 export default store;
