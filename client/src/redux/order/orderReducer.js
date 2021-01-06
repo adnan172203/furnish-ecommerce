@@ -1,4 +1,4 @@
-import { ORDER_CREATE, ORDER_ERROR } from './cartTypes';
+import { ORDER_CREATE, ORDER_ERROR,ORDER_LIST } from './orderTypes';
 
 const INITIAL_STATE = {
     orders: [],
@@ -6,13 +6,20 @@ const INITIAL_STATE = {
     error: {},
   };
 
-const cartReducer = (state = INITIAL_STATE, action) => {
+const orderReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-
+console.log('reducer:',payload);
   switch (type) {
+    case ORDER_LIST:
+      return {
+        ...state,
+        orders: payload,
+      };
+
     case ORDER_CREATE:
       return {
-        order: payload,
+        ...state,
+        orders: [...state.orders,payload]
       };
     case ORDER_ERROR:
       return {
@@ -24,4 +31,4 @@ const cartReducer = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default cartReducer;
+export default orderReducer;

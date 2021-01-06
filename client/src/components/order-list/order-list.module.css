@@ -125,10 +125,12 @@ tbody tr:hover {
 .order_column1 {
   width: 260px;
   padding-left: 40px;
+  text-align: center;
 }
 
 .order_column2 {
   width: 160px;
+  text-align: center;
 }
 
 .order_column3 {
@@ -136,18 +138,18 @@ tbody tr:hover {
 }
 
 .order_column4 {
-  width: 110px;
-  text-align: right;
+  width: 180px;
+  text-align: center;
 }
 
 .order_column5 {
   width: 170px;
-  text-align: right;
+  text-align: center;
 }
 
 .order_column6 {
   width: 222px;
-  text-align: right;
+  text-align: center;
   padding-right: 62px;
 }
 

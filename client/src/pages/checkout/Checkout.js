@@ -31,8 +31,6 @@ const Checkout = ({history}) => {
     phone: '',
   });
 
-
-
   const dispatch = useDispatch();
 
   const onChange = (e) =>

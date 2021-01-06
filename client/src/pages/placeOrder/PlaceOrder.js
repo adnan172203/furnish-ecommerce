@@ -8,17 +8,25 @@ import { useDispatch, useSelector } from 'react-redux';
 //css
 import Styles from './PlaceOrder.module.css';
 
-const { place_order_button,button_position } = Styles;
+const { place_order_button, button_position } = Styles;
 
 const PlaceOrder = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer);
+  const order = useSelector((state) => state.orderReducer);
+console.log(order);
+
+  cart.itemsPrice = cart.cartItems.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
 
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
+        totalPrice: cart.itemsPrice
       })
     );
   };

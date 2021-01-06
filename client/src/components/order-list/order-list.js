@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { listOrders } from '../../redux/order/orderAction';
 
 //css
 import Styles from './order-list.module.css';
@@ -18,6 +20,15 @@ const {
 } = Styles;
 
 const OrderList = () => {
+  const dispatch = useDispatch();
+  const order = useSelector((state) => state.orderReducer);
+  const { orders } = order;
+
+  console.log(orders);
+  useEffect(() => {
+    dispatch(listOrders());
+  }, [dispatch]);
+
   return (
     <div className={order_list}>
       <div className={order_container_table100}>
@@ -28,21 +39,24 @@ const OrderList = () => {
                 <tr className={order_table100_head}>
                   <th className={order_column1}>Date</th>
                   <th className={order_column2}>Order ID</th>
-                  <th className={order_column3}>Product</th>
                   <th className={order_column4}>Paid</th>
                   <th className={order_column5}>Quantity</th>
                   <th className={order_column6}>Total</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td className={order_column1}>2017_09_29 01:22</td>
-                  <td className={order_column2}>200398</td>
-                  <td className={order_column3}>iPhone X 64Gb Grey</td>
-                  <td className={order_column4}>$999.00</td>
-                  <td className={order_column5}>1</td>
-                  <td className={order_column6}>$999.00</td>
-                </tr>
+                {orders &&
+                  orders.map((order) => (
+                    <tr key={order._id}>
+                      <td className={order_column1}>
+                        {order.createdAt.substring(0, 10)}
+                      </td>
+                      <td className={order_column2}>{order._id}</td>
+                      <td className={order_column4}>{order.isPaid ? "PAID":"Not Paid"}</td>
+                      <td className={order_column5}>1</td>
+                      <td className={order_column6}>${order.totalPrice}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

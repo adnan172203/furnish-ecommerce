@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ORDER_CREATE, ORDER_ERROR } from './orderTypes';
+import { ORDER_CREATE, ORDER_ERROR,ORDER_LIST } from './orderTypes';
 
 export const createOrder = (order) => async (dispatch) => {
 console.log('action',order);
@@ -30,3 +30,26 @@ console.log('action',order);
     });
   }
 };
+
+
+export const listOrders = () => async (dispatch) => {
+  try {
+
+    const { data } = await axios.get(`/api/v1/orders`);
+console.log('action:',data);
+    dispatch({
+      type: ORDER_LIST,
+      payload: data,
+    })
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+
+    dispatch({
+      type: ORDER_ERROR,
+      payload: message,
+    })
+  }
+}

@@ -9,11 +9,12 @@ import {
 } from './user/userReducer';
 
 import cartReducer from './cart/cartReducer';
+import orderReducer from './order/orderReducer';
 
 export default combineReducers({
   product,
   cartReducer,
-  
+  orderReducer,
   userRegister: userRegister,
   userLogin: userLogin,
   userList: userList,
