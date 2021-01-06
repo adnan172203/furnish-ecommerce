@@ -13,8 +13,6 @@ const { place_order_button, button_position } = Styles;
 const PlaceOrder = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer);
-  const order = useSelector((state) => state.orderReducer);
-console.log(order);
 
   cart.itemsPrice = cart.cartItems.reduce(
     (acc, item) => acc + item.price * item.qty,

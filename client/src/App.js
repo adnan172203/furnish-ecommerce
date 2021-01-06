@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/header/header';
+import Home from './pages/home/Home';
 import Shop from './pages/shop/shop';
 import Dashboard from './pages/dashboard/dashboard';
 import SingleProduct from './pages/singleProduct/singleProduct';
@@ -18,6 +19,8 @@ function App() {
     <div className='App'>
       <Header />
       <Switch>
+
+        <Route exact path='/' component={Home} />
         <Route exact path='/shop' component={Shop} />
         <Route path='/dashboard' component={Dashboard} />
         <Route exact path='/product/:id' component={SingleProduct} />

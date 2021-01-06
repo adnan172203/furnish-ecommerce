@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ORDER_CREATE, ORDER_ERROR,ORDER_LIST } from './orderTypes';
 
 export const createOrder = (order) => async (dispatch) => {
-console.log('action',order);
+
   try {
     const config = {
       headers: {
@@ -36,7 +36,7 @@ export const listOrders = () => async (dispatch) => {
   try {
 
     const { data } = await axios.get(`/api/v1/orders`);
-console.log('action:',data);
+
     dispatch({
       type: ORDER_LIST,
       payload: data,

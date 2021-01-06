@@ -25,8 +25,6 @@ const {
 const Cart = () => {
   const { cartItems } = useSelector((state) => state.cartReducer);
 
-  console.log(cartItems)
-
   return (
     <>
       <section className={shoping_cart}>

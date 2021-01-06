@@ -24,7 +24,6 @@ const OrderList = () => {
   const order = useSelector((state) => state.orderReducer);
   const { orders } = order;
 
-  console.log(orders);
   useEffect(() => {
     dispatch(listOrders());
   }, [dispatch]);

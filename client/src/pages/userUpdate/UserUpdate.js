@@ -30,7 +30,7 @@ const UserUpdate = () => {
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userDetails);
-console.log(user);
+
   useEffect(() => {
     dispatch(getUserDetails());
 

@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 const orderReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-console.log('reducer:',payload);
+
   switch (type) {
     case ORDER_LIST:
       return {
