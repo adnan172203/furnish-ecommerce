@@ -54,6 +54,11 @@
   margin-bottom: 1rem;
 }
 
+.product_rating label {
+  margin-right: 3px;
+  font-size: 17px;
+}
+
 .single_product_desc .single_product_price {
   color: #8b8b8b;
   margin-bottom: 1rem;

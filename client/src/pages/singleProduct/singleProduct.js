@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TabItem from './components/tab/Tab';
+import Rating from './components/rating/Rating';
 
 //action
 import { singleProductDetails } from '../../redux/product/product-action';
@@ -8,9 +9,6 @@ import { addToCart } from '../../redux/cart/cartAction';
 
 //icon
 import {
-  FaStar,
-  FaStarHalfAlt,
-  FaRegStar,
   FaChevronRight,
   FaChevronLeft,
   FaRegHeart,
@@ -42,10 +40,16 @@ const SingleProduct = ({ match }) => {
 
   const { product } = products;
   const [index, setIndex] = useState(0);
+  const [rating, setRating] = useState(null);
 
   useEffect(() => {
     dispatch(singleProductDetails(match.params.id));
   }, [dispatch, match.params.id]);
+
+
+  const getValue = (e) => {
+    console.log(e);
+  }
 
   return (
     <>
@@ -80,12 +84,7 @@ const SingleProduct = ({ match }) => {
                 <h2>{product && product.name}</h2>
               </div>
               <div className={product_rating}>
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStarHalfAlt />
-                <FaRegStar />
-                <i className='far fa-star'></i>
+                <Rating rating={rating} setRating={setRating}/>
               </div>
               <div className={single_product_price}>
                 <h3>${product && product.price}</h3>
