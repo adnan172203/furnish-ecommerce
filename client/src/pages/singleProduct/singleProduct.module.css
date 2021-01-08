@@ -16,7 +16,6 @@
 .product_image .column_two img {
   max-width: 100%;
   border-radius: 8px;
-  height: 96%;
   box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
 }
 .product_image .column_one img {
@@ -36,7 +35,7 @@
 .two,
 .three {
   margin-bottom: 5px;
-  flex-basis: 30%;
+  flex-basis: 32%;
 }
 
 .product_details .product_container .single_product_desc {

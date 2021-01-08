@@ -47,6 +47,7 @@ const AdminProduct = () => {
     name: '',
     description: '',
     price: 0,
+    category: '',
     sku: '',
     sold: '',
     stock: null,
@@ -54,7 +55,7 @@ const AdminProduct = () => {
   });
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
-  const { name, description, price, sku, sold } = formData;
+  const { name, description, price,category, sku, sold } = formData;
   const [display, setDisplay] = useState(false);
 
   const dispatch = useDispatch();
@@ -103,7 +104,6 @@ const AdminProduct = () => {
     setDisplay(!display);
   };
 
-
   const deleteHandler = (id) => {
     dispatch(deleteProduct(id));
   };
@@ -141,16 +141,28 @@ const AdminProduct = () => {
               id={create_product_description}
               value={description || ''}
               onChange={(e) => onChange(e)}
-            ></textarea>
+            >
+            </textarea>
             <label className={label_edit} htmlFor='create_product_price'>
-              Price
+                Price
+              </label>
+              <br />
+              <input
+                type='number'
+                name='price'
+                className={create_product_price}
+                value={price || ''}
+                onChange={(e) => onChange(e)}
+              />
+            <label className={label_edit} htmlFor='create_product_price'>
+              Category
             </label>
-            <br />
+            <br/>
             <input
-              type='number'
-              name='price'
-              className={create_product_price}
-              value={price || ''}
+              type='text'
+              className={create_product_name}
+              value={category || ''}
+              name='category'
               onChange={(e) => onChange(e)}
             />
             <label className={label_edit} htmlFor='create_product_sku'>

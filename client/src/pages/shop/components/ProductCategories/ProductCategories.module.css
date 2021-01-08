@@ -1,55 +1,65 @@
-.categories_filter h3 {
-  color: #2b2b2b;
-  margin-bottom: 2rem;
+
+.categories_filter{
+  width: 45%;
 }
 
-.product_filter input {
+.categories_filter h3{
+  margin-bottom: 15px;
+}
+.categorie_container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 17px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.categorie_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* When the radio button is checked, add a blue background */
+.categorie_container input:checked ~ .checkmark {
+  background-color: #42b883;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
   display: none;
 }
 
-.product_filter label {
-  position: relative;
-  color: #8a8a8b;
-  margin-bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-left: 40px;
-  cursor: pointer;
-  font-size: 17px;
-  font-weight: 400;
+/* Show the indicator (dot/circle) when checked */
+.categorie_container input:checked ~ .checkmark:after {
+  display: block;
 }
 
-.product_filter label:before {
-  content: '';
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: #d1d1d1;
-  position: absolute;
-  left: 0;
-}
-
-.product_filter label:after {
-  content: '';
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #fff;
-  position: absolute;
-  left: 5px;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.product_filter input:checked ~ label:before {
-  background-color: #52de97;
-}
-
-.product_filter input:checked ~ label:after {
-  opacity: 1;
-  visibility: visible;
+/* Style the indicator (dot/circle) */
+.categorie_container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
 }

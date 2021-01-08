@@ -1,9 +1,11 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Rating from '../rating/Rating';
 
 import './Tab.css';
 
-const TabItem = ({ description, reviews }) => {
+const TabItem = ({ description, reviews, handleChange, handleSubmit,rating,setRating }) => {
+
   return (
     <>
       <Tabs>
@@ -13,7 +15,7 @@ const TabItem = ({ description, reviews }) => {
         </TabList>
 
         <TabPanel className='react-tabs__tab-panel'>
-          <p>{description}</p>
+          <p>{description && description}</p>
         </TabPanel>
 
         <TabPanel className='react-tabs__tab-panel'>
@@ -33,20 +35,18 @@ const TabItem = ({ description, reviews }) => {
               <div className='review-rating'>
                 <p>rate the review *</p>
                 <div className='review-client-rating'>
-                  <i className='fas fa-star'></i>
-                  <i className='fas fa-star'></i>
-                  <i className='fas fa-star'></i>
-                  <i className='fas fa-star-half-alt'></i>
-                  <i className='far fa-star'></i>
+                  <Rating rating={rating} setRating={setRating} />
                 </div>
               </div>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className='review-message'>
-                  <textarea name='' id='' cols='70' rows='7'></textarea>
-                </div>
-                <div className='review-info'>
-                  <input type='text' placeholder='name' />
-                  <input type='text' placeholder='email' />
+                  <textarea
+                    name='comment'
+                    id=''
+                    cols='70'
+                    rows='7'
+                    onChange={handleChange}
+                  ></textarea>
                 </div>
                 <div className='submit-button'>
                   <button>Submit</button>

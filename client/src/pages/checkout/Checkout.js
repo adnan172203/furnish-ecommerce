@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { saveShippingAddress } from '../../redux/cart/cartAction';
 import { useDispatch } from 'react-redux';

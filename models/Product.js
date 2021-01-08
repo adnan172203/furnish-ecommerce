@@ -16,6 +16,10 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
   quantity: {
     type: Number,
   },
@@ -39,17 +43,17 @@ const productSchema = new Schema({
         ref: 'User',
       },
       name: {
-        type: String
+        type: String,
       },
 
       rating: {
-        type: Number
+        type: Number,
       },
       comment: {
-        type: String
+        type: String,
       },
       avatar: {
-        type: String
+        type: String,
       },
       date: {
         type: Date,

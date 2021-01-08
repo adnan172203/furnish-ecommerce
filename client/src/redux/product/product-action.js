@@ -5,6 +5,7 @@ import {
   SINGLE_PRODUCT,
   PRODUCT_DELETE,
   PRODUCT_UPDATE,
+  PRODUCT_CREATE_REVIEW,
   PRODUCT_ERROR,
 } from './product-types';
 
@@ -74,7 +75,7 @@ export const singleProductDetails = (id) => async (dispatch) => {
 
 export const deleteProduct = (id) => async (dispatch) => {
   try {
-     await axios.delete(`/api/v1/products/${id}`);
+    await axios.delete(`/api/v1/products/${id}`);
 
     dispatch({
       type: PRODUCT_DELETE,
@@ -95,10 +96,44 @@ export const deleteProduct = (id) => async (dispatch) => {
 
 export const updateProduct = (product) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`/api/v1/products/${product._id}`,product);
+    const { data } = await axios.put(
+      `/api/v1/products/${product._id}`,
+      product
+    );
 
     dispatch({
       type: PRODUCT_UPDATE,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: message,
+    });
+  }
+};
+
+export const createProductReview = (productId, review) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const { data } = await axios.post(
+      `/api/v1/products/${productId}/reviews`,
+      review,
+      config
+    );
+
+    dispatch({
+      type: PRODUCT_CREATE_REVIEW,
       payload: data,
     });
   } catch (error) {

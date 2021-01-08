@@ -1,62 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 //css
 import Styles from './ProductCategories.module.css';
 
-const { categories_filter, categorie_container, product_filter } = Styles;
+const { categories_filter, categorie_container, checkmark } = Styles;
 
 const ProductCategories = () => {
+  const { products } = useSelector((state) => state.product);
+
+  const [category, setCategory] = useState('');
+
+  const handleCategory = (e) => {
+console.log(e.target.value);
+    setCategory(e.target.value);
+
+  };
+
   return (
     <>
       <div className={categories_filter}>
         <h3>Product Categories</h3>
         <form action=''>
-          <div className={product_filter}>
-            <input type='radio' id='all' name='product' />
-            <label className={categorie_container} htmlFor='all'>
-              All
+          {products.map((product) => (
+            <label className={categorie_container} key={product._id}>
+              {product.category}
+              <input
+                type='radio'
+                name={product.category}
+                // onClick={() => setCategory(product.category)}
+                onChange={handleCategory}
+              />
+              <span className={checkmark}></span>
             </label>
-            <br />
-          </div>
-
-          <div className={product_filter}>
-            <input type='radio' id='chairs' name='product' />
-            <label className={categorie_container} htmlFor='chairs'>
-              Chairs
-            </label>
-            <br />
-          </div>
-
-          <div className={product_filter}>
-            <input type='radio' id='decors' name='product' />
-            <label className={categorie_container} htmlFor='decors'>
-              Decors
-            </label>
-            <br />
-          </div>
-
-          <div className={product_filter}>
-            <input type='radio' id='sofa' name='product' />
-            <label className={categorie_container} htmlFor='sofa'>
-              Sofas
-            </label>
-            <br />
-          </div>
-
-          <div className={product_filter}>
-            <input type='radio' id='tool' name='product' />
-            <label className={categorie_container} htmlFor='tool'>
-              Tools
-            </label>
-            <br />
-          </div>
-
-          <div className={product_filter}>
-            <input type='radio' id='uncategorize' name='product' />
-            <label className={categorie_container} htmlFor='uncategorize'>
-              Uncategorized
-            </label>
-          </div>
+          ))}
         </form>
       </div>
     </>

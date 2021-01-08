@@ -4,6 +4,7 @@ import {
   PRODUCT_UPDATE,
   SINGLE_PRODUCT,
   PRODUCT_DELETE,
+  PRODUCT_CREATE_REVIEW,
   PRODUCT_ERROR,
 } from './product-types';
 
@@ -46,6 +47,9 @@ export default function (state = initialState, action) {
         ...state,
         products: state.products.filter((product) => product._id !== payload),
       };
+
+    case PRODUCT_CREATE_REVIEW:
+      return { ...state, product: payload };
 
     case PRODUCT_ERROR:
       return {

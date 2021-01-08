@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TabItem from './components/tab/Tab';
 import Rating from './components/rating/Rating';
+import { FaStar } from 'react-icons/fa';
 
 //action
-import { singleProductDetails } from '../../redux/product/product-action';
+import {
+  singleProductDetails,
+  createProductReview,
+} from '../../redux/product/product-action';
 import { addToCart } from '../../redux/cart/cartAction';
 
 //icon
-import {
-  FaChevronRight,
-  FaChevronLeft,
-  FaRegHeart,
-} from 'react-icons/fa';
+import { FaChevronRight, FaChevronLeft, FaRegHeart } from 'react-icons/fa';
 
 //css
 import Styles from './singleProduct.module.css';
@@ -35,10 +35,18 @@ const {
 } = Styles;
 
 const SingleProduct = ({ match }) => {
+  const [formData, setFormData] = useState({
+    comment: '',
+  });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
 
   const { product } = products;
+
+  // let avgRating = product && product.reviews >= 0 && product.reviews
+  //   .map((review) => review.rating)
+  //   .reduce((r, i) => r + i / product.reviews.length);
+
   const [index, setIndex] = useState(0);
   const [rating, setRating] = useState(null);
 
@@ -46,10 +54,14 @@ const SingleProduct = ({ match }) => {
     dispatch(singleProductDetails(match.params.id));
   }, [dispatch, match.params.id]);
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-  const getValue = (e) => {
-    console.log(e);
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(createProductReview(match.params.id, { rating, ...formData }));
+  };
 
   return (
     <>
@@ -84,7 +96,7 @@ const SingleProduct = ({ match }) => {
                 <h2>{product && product.name}</h2>
               </div>
               <div className={product_rating}>
-                <Rating rating={rating} setRating={setRating}/>
+                {/* {[...Array(Math.round(avgRating))].map(() => <FaStar />)} */}
               </div>
               <div className={single_product_price}>
                 <h3>${product && product.price}</h3>
@@ -121,6 +133,10 @@ const SingleProduct = ({ match }) => {
       <TabItem
         description={product && product.description}
         reviews={product && product.reviews}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        rating={rating}
+        setRating={setRating}
       />
     </>
   );
