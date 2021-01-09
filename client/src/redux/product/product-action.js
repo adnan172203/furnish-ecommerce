@@ -7,6 +7,7 @@ import {
   PRODUCT_UPDATE,
   PRODUCT_CREATE_REVIEW,
   PRODUCT_ERROR,
+  PRODUCT_CATEGORY_FILTER
 } from './product-types';
 
 export const listProducts = () => async (dispatch) => {
@@ -148,3 +149,38 @@ export const createProductReview = (productId, review) => async (dispatch) => {
     });
   }
 };
+
+export const productFilter = (arg) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    console.log('action',arg);
+    
+    const { data } = await axios.post(
+      `/api/v1/products/search/filters`,
+      arg,
+      config
+      );
+      console.log('action data:',data);
+
+    dispatch({
+      type: PRODUCT_CATEGORY_FILTER,
+      payload: data,
+    });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload: message,
+    });
+  }
+};
+
+

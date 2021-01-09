@@ -7,7 +7,8 @@ const {
   getProduct,
   deleteProduct,
   updateProduct,
-  createProductReview
+  createProductReview,
+  searchFilters
 } = require('../controller/productController');
 
 const { auth, authorize } = require('../middleware/auth');
@@ -29,5 +30,8 @@ router.post('/:id/reviews',auth,createProductReview);
 
 //delete product
 router.delete('/:id', auth, authorize('admin'), deleteProduct);
+
+// search
+router.post("/search/filters", searchFilters);
 
 module.exports = router;

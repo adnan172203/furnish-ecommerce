@@ -2,5 +2,5 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  /* flex-basis: 80%; */
+  flex-basis: 80%;
 }

@@ -12,3 +12,7 @@
   display: flex;
   padding: 0 2rem;
 }
+
+.product_filter{
+  flex-basis:15%;
+}

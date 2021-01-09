@@ -5,6 +5,7 @@ import {
   SINGLE_PRODUCT,
   PRODUCT_DELETE,
   PRODUCT_CREATE_REVIEW,
+  PRODUCT_CATEGORY_FILTER,
   PRODUCT_ERROR,
 } from './product-types';
 
@@ -50,6 +51,12 @@ export default function (state = initialState, action) {
 
     case PRODUCT_CREATE_REVIEW:
       return { ...state, product: payload };
+
+    case PRODUCT_CATEGORY_FILTER:
+      return {
+        ...state,
+        products: payload
+      };
 
     case PRODUCT_ERROR:
       return {

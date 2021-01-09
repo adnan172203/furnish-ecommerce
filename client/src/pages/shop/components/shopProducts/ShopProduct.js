@@ -11,7 +11,7 @@ const { product } = Styles;
 const ShopProduct = () => {
   const dispatch = useDispatch();
 
-  const { products } = useSelector((state) => state.product);
+  const {products}  = useSelector((state) => state.product);
   console.log(products);
 
   useEffect(() => {

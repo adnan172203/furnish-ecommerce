@@ -6,16 +6,11 @@ import Styles from './ProductCategories.module.css';
 
 const { categories_filter, categorie_container, checkmark } = Styles;
 
-const ProductCategories = () => {
+const ProductCategories = ({handleCategory}) => {
   const { products } = useSelector((state) => state.product);
+  
+  const [categoryIds, setCategoryIds] = useState([]);
 
-  const [category, setCategory] = useState('');
-
-  const handleCategory = (e) => {
-console.log(e.target.value);
-    setCategory(e.target.value);
-
-  };
 
   return (
     <>
@@ -27,8 +22,8 @@ console.log(e.target.value);
               {product.category}
               <input
                 type='radio'
-                name={product.category}
-                // onClick={() => setCategory(product.category)}
+                name="category"
+                value={product.category}
                 onChange={handleCategory}
               />
               <span className={checkmark}></span>
