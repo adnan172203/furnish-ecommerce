@@ -13,7 +13,6 @@ const {
   order_table100_head,
   order_column1,
   order_column2,
-  order_column3,
   order_column4,
   order_column5,
   order_column6,

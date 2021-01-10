@@ -14,7 +14,7 @@ console.log('action', category);
 
     dispatch({
       type: CREATE_CATEGORY,
-      payload: data,
+      payload: data.data,
     });
 
   } catch (error) {
@@ -29,3 +29,25 @@ console.log('action', category);
     });
   }
 };
+
+export const categoryList = () => async (dispatch) => {
+    try {
+  
+      const { data } = await axios.get(`/api/v1/category`);
+  
+      dispatch({
+        type: CATEGORY_LIST,
+        payload: data,
+      })
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+  
+      dispatch({
+        type: CATEGORY_ERROR,
+        payload: message,
+      })
+    }
+  }

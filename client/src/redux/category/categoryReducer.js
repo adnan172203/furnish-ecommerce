@@ -18,7 +18,7 @@ const categoryReducer = (state = INITIAL_STATE, action) => {
     case CREATE_CATEGORY:
       return {
         ...state,
-        category: [...state.category, payload],
+        categories: [...state.categories, payload],
       };
 
     default:

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TabItem from './components/tab/Tab';
-import Rating from './components/rating/Rating';
-import { FaStar } from 'react-icons/fa';
 
 //action
 import {

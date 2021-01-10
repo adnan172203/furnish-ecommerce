@@ -13,11 +13,7 @@ const {
   checkout_order_details_name,
   checkout_order_total_details,
   checkout_sub_total,
-  checkout_sub_total_price,
-  shipping_container,
-  shipping_checkmark,
-  checkout_payment_method,
-  checkout_payment_shipping,
+  checkout_sub_total_price
 } = Styles;
 
 const OrderItems = () => {

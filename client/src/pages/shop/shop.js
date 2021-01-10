@@ -21,14 +21,15 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(productFilter({ price }));
-  }, [fire]);
+  }, [dispatch,fire,price]);
 
   useEffect(()=>{
     dispatch(productFilter({ query }));
-  },[query]);
+  },[dispatch,query]);
 
   const handleCategory = (e) => {
     let category = e.target.value;
+    console.log(category);
     dispatch(productFilter({ category }));
   };
 
