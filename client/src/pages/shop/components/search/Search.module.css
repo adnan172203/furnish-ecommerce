@@ -1,0 +1,23 @@
+.search_product {
+  position: relative;
+  margin-top: 75px;
+}
+
+.search_product #psearch {
+  position: relative;
+  background: white;
+  border: none;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  padding: 16px 46px;
+  width: 100%;
+}
+
+.search_product .search_icon {
+  position: absolute;
+  z-index: 1;
+  top: 17px;
+  left: 19px;
+  border-right: 1px solid #b2a9a9;
+  color: #b2a9a9;
+  padding-right: 5px;
+}

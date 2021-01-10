@@ -189,8 +189,7 @@ exports.createProductReview = asyncHandler(async (req, res) => {
 
 //Filter
 module.exports.searchFilters = async (req, res) => {
-  
-  const { category,price } = req.body;
+  const { category, price, query } = req.body;
 
   if (category) {
     await handleCategory(req, res, category);
@@ -198,6 +197,10 @@ module.exports.searchFilters = async (req, res) => {
 
   if (price !== undefined) {
     await handlePrice(req, res, price);
+  }
+
+  if (query) {
+    await handleQuery(req, res, query);
   }
 };
 
@@ -217,10 +220,16 @@ const handlePrice = async (req, res, price) => {
       price: {
         $lte: price,
       },
-    })
+    });
 
     res.json(products);
   } catch (err) {
     console.log(err);
   }
+};
+
+const handleQuery = async (req, res, query) => {
+
+  let products = await Product.find({ name: { $regex: query } });
+  res.json(products);
 };

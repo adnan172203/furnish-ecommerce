@@ -3,6 +3,7 @@ import Banner from '../../components/banner/banner';
 import ShopProduct from './components/shopProducts/ShopProduct';
 import ProductCategories from './components/ProductCategories/ProductCategories';
 import PriceFilter from './components/priceFilter/PriceFilter';
+import Search from './components/search/Search';
 
 import { productFilter } from '../../redux/product/product-action';
 import { useDispatch } from 'react-redux';
@@ -10,17 +11,21 @@ import { useDispatch } from 'react-redux';
 //css
 import Styles from './shop.module.css';
 
-const { main_shop, main_product,product_filter } = Styles;
+const { main_shop, main_product, product_filter } = Styles;
 
 const Shop = () => {
-  // const [products,setProducts] = useState('');
   const [price, setPrice] = useState(0);
+  const [query,setQuery] = useState('');
   const [fire, setFire] = useState(false);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(productFilter({ price }));
+  }, [fire]);
+
   useEffect(()=>{
-   dispatch(productFilter({ price}));
-  },[fire]);
+    dispatch(productFilter({ query }));
+  },[query]);
 
   const handleCategory = (e) => {
     let category = e.target.value;
@@ -28,15 +33,15 @@ const Shop = () => {
   };
 
   const handlePrice = (e) => {
-
-   console.log(e.target.value);
-
     setPrice(e.target.value);
 
     setTimeout(() => {
       setFire(!fire);
     }, 300);
+  };
 
+  const handleSearch = (e) => {
+    setQuery(e.target.value.toLowerCase());
   };
 
   return (
@@ -47,7 +52,8 @@ const Shop = () => {
           <div className={main_product}>
             <div className={product_filter}>
               <ProductCategories handleCategory={handleCategory} />
-              <PriceFilter handlePrice={handlePrice} price={price}/>
+              <Search handleSearch={handleSearch} />
+              <PriceFilter handlePrice={handlePrice} price={price} />
             </div>
             <ShopProduct />
           </div>
