@@ -149,7 +149,7 @@ module.exports.deleteProduct = asyncHandler(async (req, res) => {
 });
 
 //add review
-exports.createProductReview = asyncHandler(async (req, res) => {
+module.exports.createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
   const product = await Product.findById(req.params.id);
@@ -186,6 +186,14 @@ exports.createProductReview = asyncHandler(async (req, res) => {
     throw new Error('Product not found');
   }
 });
+
+//get top products
+module.exports.getTopProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(1)
+
+  res.status(200).json(products);
+})
+
 
 //Filter
 module.exports.searchFilters = async (req, res) => {

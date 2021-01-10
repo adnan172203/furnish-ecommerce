@@ -2,6 +2,10 @@
   display: none;
 } */
 
+.rating_intput{
+  display: none;
+}
+
 .star_color{
     color:purple;
 }

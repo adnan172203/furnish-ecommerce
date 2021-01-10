@@ -7,6 +7,7 @@ import {
   PRODUCT_CREATE_REVIEW,
   PRODUCT_CATEGORY_FILTER,
   PRODUCT_ERROR,
+  TOP_PRODUCT,
 } from './product-types';
 
 const initialState = {
@@ -55,7 +56,13 @@ export default function (state = initialState, action) {
     case PRODUCT_CATEGORY_FILTER:
       return {
         ...state,
-        products: payload
+        products: payload,
+      };
+
+    case TOP_PRODUCT:
+      return {
+        ...state,
+        products: payload,
       };
 
     case PRODUCT_ERROR:

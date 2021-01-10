@@ -4,6 +4,8 @@ import { FaStar,FaRegStar } from 'react-icons/fa';
 //css
 import Styles from './Rating.module.css';
 
+const { rating_intput } = Styles;
+
 const Rating = ({ rating,setRating }) => {
 
   return (
@@ -15,6 +17,7 @@ const Rating = ({ rating,setRating }) => {
             <input
               type='radio'
               name='rating'
+              className={rating_intput}
               value={ratingValue}
               onClick={() => setRating(ratingValue)}
             />

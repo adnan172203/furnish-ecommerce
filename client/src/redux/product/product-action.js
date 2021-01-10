@@ -7,7 +7,8 @@ import {
   PRODUCT_UPDATE,
   PRODUCT_CREATE_REVIEW,
   PRODUCT_ERROR,
-  PRODUCT_CATEGORY_FILTER
+  PRODUCT_CATEGORY_FILTER,
+  TOP_PRODUCT
 } from './product-types';
 
 export const listProducts = () => async (dispatch) => {
@@ -183,4 +184,24 @@ export const productFilter = (arg) => async (dispatch) => {
   }
 };
 
+
+export const topProduct = () => async (dispatch) => {
+  try {
+
+    const { data } = await axios.get(`/api/v1/products/top/top`);
+
+    dispatch({
+      type: TOP_PRODUCT,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
