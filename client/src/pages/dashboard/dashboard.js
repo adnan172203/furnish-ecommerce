@@ -4,6 +4,7 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import AdminProduct from '../../components/admin-product/admin-product';
 import OrderList from '../../components/order-list/order-list';
 import UserList from '../../components/user-list/user-list';
+import CategoryList from './components/categoryList/CategoryList';
 
 //css
 import Styles from './dashboard.module.css';
@@ -19,6 +20,7 @@ const Dashboard = () => {
         <Route exact path={`${path}/adminproduct`} component={AdminProduct} />
         <Route exact path={`${path}/order`} component={OrderList} />
         <Route exact path={`${path}/user`} component={UserList} />
+        <Route exact path={`${path}/category`} component={CategoryList} />
       </Switch>
     </div>
   );
