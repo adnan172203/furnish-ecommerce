@@ -1,6 +1,9 @@
 
 .categories_filter{
-
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 7px;
 }
 
 .categories_filter h3{
