@@ -14,3 +14,8 @@ module.exports.addCategory = asyncHandler(async (req, res) => {
       .json({ message: 'New Category Created', data: newCategory });
   }
 });
+
+module.exports.getCategory = asyncHandler(async (req, res) => {
+  const category = await Category.find();
+  res.status(200).json(category);
+});
