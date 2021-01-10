@@ -17,11 +17,11 @@ const { auth, authorize } = require('../middleware/auth');
 //get product
 router.get('/', getProducts);
 
+//get top products
+router.get('/top', getTopProducts);
+
 //get single product
 router.get('/:id', getProduct);
-
-//get top products
-router.get('/top/top', getTopProducts);
 
 //add product
 router.post('/', addProduct);

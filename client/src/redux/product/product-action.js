@@ -188,7 +188,7 @@ export const productFilter = (arg) => async (dispatch) => {
 export const topProduct = () => async (dispatch) => {
   try {
 
-    const { data } = await axios.get(`/api/v1/products/top/top`);
+    const { data } = await axios.get(`/api/v1/products/top`);
 
     dispatch({
       type: TOP_PRODUCT,
