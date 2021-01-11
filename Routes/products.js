@@ -10,7 +10,9 @@ const {
   createProductReview,
   searchFilters,
   getTopProducts,
-  getLatestProducts
+  getLatestProducts,
+  getBestSellingProducts,
+  lowsoldProducts
 } = require('../controller/productController');
 
 const { auth, authorize } = require('../middleware/auth');
@@ -23,6 +25,12 @@ router.get('/top', getTopProducts );
 
 //get latest products
 router.get('/latest', getLatestProducts );
+
+//get best selling products
+router.get('/best', getBestSellingProducts );
+
+//get low sold product /  items on sale
+router.get('/onsale', lowsoldProducts );
 
 //get single product
 router.get('/:id', getProduct);

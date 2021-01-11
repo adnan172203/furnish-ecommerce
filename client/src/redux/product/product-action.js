@@ -9,7 +9,9 @@ import {
   PRODUCT_ERROR,
   PRODUCT_CATEGORY_FILTER,
   TOP_PRODUCT,
-  LATEST_PRODUCTS
+  LATEST_PRODUCTS,
+  BEST_SELLING_PRODUCTS,
+  LOW_SOLD_PRODUCT
 } from './product-types';
 
 export const listProducts = () => async (dispatch) => {
@@ -185,7 +187,6 @@ export const productFilter = (arg) => async (dispatch) => {
   }
 };
 
-
 export const topProduct = () => async (dispatch) => {
   try {
 
@@ -206,11 +207,10 @@ export const topProduct = () => async (dispatch) => {
   }
 };
 
-
-export const latestProducts = (sort, order) => async (dispatch) => {
+export const latestProducts = () => async (dispatch) => {
   try {
 
-    const { data } = await axios.get(`/api/v1/products/latest`,{sort, order});
+    const { data } = await axios.get(`/api/v1/products/latest`);
 
     dispatch({
       type: LATEST_PRODUCTS,
@@ -226,3 +226,45 @@ export const latestProducts = (sort, order) => async (dispatch) => {
     });
   }
 };
+
+export const bestsellingProducts = () => async (dispatch) => {
+  try {
+
+    const { data } = await axios.get(`/api/v1/products/best`);
+
+    dispatch({
+      type: BEST_SELLING_PRODUCTS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const itemsOnSaleProducts = () => async (dispatch) => {
+  try {
+
+    const { data } = await axios.get(`/api/v1/products/onsale`);
+
+    dispatch({
+      type: LOW_SOLD_PRODUCT,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+

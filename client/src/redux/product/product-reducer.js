@@ -8,12 +8,16 @@ import {
   PRODUCT_CATEGORY_FILTER,
   PRODUCT_ERROR,
   TOP_PRODUCT,
-  LATEST_PRODUCTS
+  LATEST_PRODUCTS,
+  BEST_SELLING_PRODUCTS,
+  LOW_SOLD_PRODUCT
 } from './product-types';
 
 const initialState = {
   products: [],
-  topProducts:[],
+  topProducts: [],
+  bestSellProducts: [],
+  itemsOnSale:[],
   product: null,
   error: {},
 };
@@ -68,10 +72,22 @@ export default function (state = initialState, action) {
       };
 
     case LATEST_PRODUCTS:
-      return{
+      return {
         ...state,
-        products: payload
-      }  
+        products: payload,
+      };
+
+    case BEST_SELLING_PRODUCTS:
+      return {
+        ...state,
+        bestSellProducts: payload,
+      };
+      
+    case LOW_SOLD_PRODUCT:
+      return {
+        ...state,
+        itemsOnSale: payload,
+      };
 
     case PRODUCT_ERROR:
       return {

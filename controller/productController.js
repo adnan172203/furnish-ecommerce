@@ -194,6 +194,8 @@ module.exports.getTopProducts = asyncHandler(async (req, res) => {
   res.status(200).json(products);
 });
 
+
+// get latest products
 module.exports.getLatestProducts = async (req, res) => {
   // console.table(req.body);
   try {
@@ -202,6 +204,33 @@ module.exports.getLatestProducts = async (req, res) => {
 
     const products = await Product.find({})
       .sort({sold:-1})
+      .limit(3);
+
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+// get best selling products
+module.exports.getBestSellingProducts = async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .sort({sold:-1})
+      .limit(10);
+
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+// get low sold product/items on sale
+module.exports.lowsoldProducts = async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .sort({sold:1})
       .limit(3);
 
     res.json(products);

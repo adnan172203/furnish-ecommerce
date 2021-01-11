@@ -23,7 +23,7 @@ const LatestProducts = () => {
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.product);
-  console.log(products);
+
   useEffect(() => {
     dispatch(latestProducts());
   }, [dispatch]);
