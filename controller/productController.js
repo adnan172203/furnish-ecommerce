@@ -189,11 +189,26 @@ module.exports.createProductReview = asyncHandler(async (req, res) => {
 
 //get top products
 module.exports.getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(1)
+  const products = await Product.find({}).sort({ rating: -1 }).limit(1);
 
   res.status(200).json(products);
-})
+});
 
+module.exports.getLatestProducts = async (req, res) => {
+  // console.table(req.body);
+  try {
+    // createdAt/updatedAt, desc/asc, 3
+    const { sort, order } = req.body;
+
+    const products = await Product.find({})
+      .sort({sold:-1})
+      .limit(3);
+
+    res.json(products);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 //Filter
 module.exports.searchFilters = async (req, res) => {
@@ -237,7 +252,6 @@ const handlePrice = async (req, res, price) => {
 };
 
 const handleQuery = async (req, res, query) => {
-
   let products = await Product.find({ name: { $regex: query } });
   res.json(products);
 };

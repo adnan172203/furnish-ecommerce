@@ -8,10 +8,12 @@ import {
   PRODUCT_CATEGORY_FILTER,
   PRODUCT_ERROR,
   TOP_PRODUCT,
+  LATEST_PRODUCTS
 } from './product-types';
 
 const initialState = {
   products: [],
+  topProducts:[],
   product: null,
   error: {},
 };
@@ -62,8 +64,14 @@ export default function (state = initialState, action) {
     case TOP_PRODUCT:
       return {
         ...state,
-        products: payload,
+        topProducts: payload,
       };
+
+    case LATEST_PRODUCTS:
+      return{
+        ...state,
+        products: payload
+      }  
 
     case PRODUCT_ERROR:
       return {

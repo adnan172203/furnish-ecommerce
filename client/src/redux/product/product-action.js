@@ -8,7 +8,8 @@ import {
   PRODUCT_CREATE_REVIEW,
   PRODUCT_ERROR,
   PRODUCT_CATEGORY_FILTER,
-  TOP_PRODUCT
+  TOP_PRODUCT,
+  LATEST_PRODUCTS
 } from './product-types';
 
 export const listProducts = () => async (dispatch) => {
@@ -205,3 +206,23 @@ export const topProduct = () => async (dispatch) => {
   }
 };
 
+
+export const latestProducts = (sort, order) => async (dispatch) => {
+  try {
+
+    const { data } = await axios.get(`/api/v1/products/latest`,{sort, order});
+
+    dispatch({
+      type: LATEST_PRODUCTS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_ERROR,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

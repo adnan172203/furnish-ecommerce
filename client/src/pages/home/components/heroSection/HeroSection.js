@@ -21,7 +21,7 @@ const {
 
 const HeroSection = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product);
+  const { topProducts } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(topProduct());
@@ -32,7 +32,7 @@ const HeroSection = () => {
       <section className={banner_area}>
         <div className='container'>
           <div className={banner_row}>
-            {products.map((product) => (
+            {topProducts.map((product) => (
               <div className={banner} key={product._id}>
                 <div className={slider_img}>
                   <img src={product.image.url[0]} alt='' />
