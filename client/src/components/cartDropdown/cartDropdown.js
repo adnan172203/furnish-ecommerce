@@ -30,7 +30,9 @@ const CartDropdown = () => {
           </div>
           <div className={header_cart_total}>
             <p>Total</p>
-            <p>$900</p>
+            <p>${cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                }</p>
           </div>
           <div className={header_view_cart}>
             <Link to='/cart'>

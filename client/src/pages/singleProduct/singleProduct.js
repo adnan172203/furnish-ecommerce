@@ -33,8 +33,7 @@ const {
   single_product_price,
   product_info,
   product_add_to_cart,
-  single_product_count,
-  wishlist,
+  single_product_count
 } = Styles;
 
 const SingleProduct = ({ match }) => {
@@ -126,10 +125,6 @@ const SingleProduct = ({ match }) => {
                     </i>
                   </span>
                 </div>
-              </div>
-              <div className={wishlist}>
-                <FaRegHeart className='heart_icon' />
-                <span>Add to wish list</span>
               </div>
             </div>
           </div>

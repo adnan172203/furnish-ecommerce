@@ -18,7 +18,7 @@ const {
 const CartItem = ({ cartItem }) => {
   
   const dispatch = useDispatch();
-  const { name, image, price,productId } = cartItem;
+  const { name, image, price,productId,qty } = cartItem;
 
   return (
     <>
@@ -29,7 +29,7 @@ const CartItem = ({ cartItem }) => {
         <div className={header_cart_item_name}>
           <p>{name}</p>
 
-          <p>2 x {price}</p>
+          <p>{qty} x {price}</p>
         </div>
         <div className={header_cart_item_delete}>
           <BsXCircle onClick={()=>dispatch(removeCartItem(productId))}/>
