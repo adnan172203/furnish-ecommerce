@@ -106,7 +106,7 @@ const UserUpdate = () => {
               </button>
 
               <h5>
-                <Link to='/dashboard/user'>back</Link>
+                <Link to='/dashboard/profile'>back</Link>
               </h5>
             </form>
           </div>

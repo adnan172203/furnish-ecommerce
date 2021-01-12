@@ -34,36 +34,36 @@ console.log(itemsOnSale);
 
   return (
     <>
-      <section class={items_on_sale}>
-        <div class='container'>
-          <div class={items_sale_heading}>
+      <section className={items_on_sale}>
+        <div className='container'>
+          <div className={items_sale_heading}>
             <h2>Items On Sale</h2>
           </div>
-          <div class={on_sale_items}>
+          <div className={on_sale_items}>
             {itemsOnSale.map((product, i) =>
               i % 2 !== 0 ? (
-                <div class={column_one}>
-                  <div class={one}>
-                    <div class={sale_discount_one}>
+                <div className={column_one} key={product._id}>
+                  <div className={one}>
+                    <div className={sale_discount_one}>
                       <h3>-25%</h3>
                     </div>
                     <img src={product.image.url[0]} alt='' />
-                    <div class={one_text}>
-                      <h4 class=''>{product.name}</h4>
-                      <p class={sale_price}>${product.price}</p>
+                    <div className={one_text}>
+                      <h4 className=''>{product.name}</h4>
+                      <p className={sale_price}>${product.price}</p>
                     </div>
                   </div>
                 </div>
               ) : (
-                <div class={column_two}>
-                  <div class={two}>
-                    <div class={sale_discount_two}>
+                <div className={column_two} key={product._id}>
+                  <div className={two}>
+                    <div className={sale_discount_two}>
                       <h3>-25%</h3>
                     </div>
                     <img src={product.image.url[0]} alt='' />
-                    <div class={two_text}>
+                    <div className={two_text}>
                       <h4>{product.name}</h4>
-                      <p class={sale_price}>${product.price}</p>
+                      <p className={sale_price}>${product.price}</p>
                     </div>
                   </div>
                 </div>

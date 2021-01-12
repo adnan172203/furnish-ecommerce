@@ -33,7 +33,7 @@ const {
   header_icon,
 } = Styles;
 
-const Header = () => {
+const Header = ({history}) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -42,6 +42,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    history.push('/login');
   };
 
   return (
@@ -52,8 +53,8 @@ const Header = () => {
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
             <Link to='/contact'>Contact</Link>
-            {userInfo && userInfo.user.role === 'admin' && (
-              <Link to='/dashboard'>dashboard</Link>
+            {userInfo  && (
+              <Link to='/dashboard/adminproduct'>dashboard</Link>
             )}
           </ul>
         </nav>

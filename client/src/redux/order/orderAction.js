@@ -1,15 +1,19 @@
 import axios from 'axios';
-import { ORDER_CREATE, ORDER_ERROR,ORDER_LIST } from './orderTypes';
+import {
+  ORDER_CREATE,
+  ORDER_ERROR,
+  ORDER_LIST,
+  MY_ORDER_LIST,
+} from './orderTypes';
 
 export const createOrder = (order) => async (dispatch) => {
-
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    
+
     const { data } = await axios.post(`/api/v1/orders`, order, config);
 
     dispatch({
@@ -17,7 +21,28 @@ export const createOrder = (order) => async (dispatch) => {
       payload: data,
     });
 
-    // localStorage.removeItem('cartItems');
+    localStorage.removeItem('cartItems');
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+
+    dispatch({
+      type: ORDER_ERROR,
+      payload: message,
+    });
+  }
+};
+
+export const listOrders = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`/api/v1/orders`);
+
+    dispatch({
+      type: ORDER_LIST,
+      payload: data,
+    });
   } catch (error) {
     const message =
       error.response && error.response.data.message
@@ -32,24 +57,23 @@ export const createOrder = (order) => async (dispatch) => {
 };
 
 
-export const listOrders = () => async (dispatch) => {
+export const myOrderList = () => async (dispatch) => {
   try {
-
-    const { data } = await axios.get(`/api/v1/orders`);
+    const { data } = await axios.get(`/api/v1/orders/myorders`);
 
     dispatch({
-      type: ORDER_LIST,
+      type: MY_ORDER_LIST,
       payload: data,
-    })
+    });
   } catch (error) {
     const message =
       error.response && error.response.data.message
         ? error.response.data.message
-        : error.message
+        : error.message;
 
     dispatch({
       type: ORDER_ERROR,
       payload: message,
-    })
+    });
   }
-}
+};

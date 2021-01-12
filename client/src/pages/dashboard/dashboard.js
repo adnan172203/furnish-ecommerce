@@ -5,6 +5,8 @@ import AdminProduct from '../../components/admin-product/admin-product';
 import OrderList from '../../components/order-list/order-list';
 import UserList from '../../components/user-list/user-list';
 import CategoryList from './components/categoryList/CategoryList';
+import Profile from '../../components/profile/Profile';
+import MyOrder from '../../components/myOrder/MyOrder';
 
 //css
 import Styles from './dashboard.module.css';
@@ -21,6 +23,8 @@ const Dashboard = () => {
         <Route exact path={`${path}/order`} component={OrderList} />
         <Route exact path={`${path}/user`} component={UserList} />
         <Route exact path={`${path}/category`} component={CategoryList} />
+        <Route exact path={`${path}/profile`} component={Profile} />
+        <Route exact path={`${path}/myorders`} component={MyOrder} />
       </Switch>
     </div>
   );

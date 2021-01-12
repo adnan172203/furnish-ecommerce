@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 import Styles from './Login.module.css';
 
@@ -75,7 +76,7 @@ const Login = ({history,location}) => {
               <h4>or</h4>
 
               <h5>
-                Didn't Have An Account? ? <a href='login.html'>Register</a>
+                Didn't Have An Account? ? <Link to="/register">Register</Link>
               </h5>
             </form>
           </div>

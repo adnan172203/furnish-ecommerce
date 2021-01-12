@@ -50,7 +50,7 @@ const UserList = () => {
                   <th className={user_column1}>Name</th>
                   <th className={user_column2}>Email</th>
                   <th className={user_column3}>Role</th>
-                  <th className={user_column4}></th>
+
                   <th className={user_column5}></th>
                 </tr>
               </thead>
@@ -61,13 +61,7 @@ const UserList = () => {
                       <td className={user_column1}>{user.name}</td>
                       <td className={user_column2}>{user.email}</td>
                       <td className={user_column3}>{user.role}</td>
-                      <td className={user_column4}>
-                        {user._id === loginfo._id && (
-                          <Link to={`/user/edit/${user._id}`}>
-                            <FaRegEdit />
-                          </Link>
-                        )}
-                      </td>
+
                       <td className={user_column5}></td>
                     </tr>
                   ))}

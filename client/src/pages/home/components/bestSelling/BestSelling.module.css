@@ -14,13 +14,16 @@
 }
 
 .slide_items img {
-    max-width: 100%;
-
+  max-width: 100%;
 }
 
+.selling_slide {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
 
-.slick-slide {
-    width: 5% !important;
-    margin-right: 1rem !important;
-    margin-top: 1rem;
+.selling_slide .slick-slide {
+  margin-right: 1rem;
+  border: 1px solid #eee;
 }

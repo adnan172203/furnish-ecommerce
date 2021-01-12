@@ -7,11 +7,11 @@ import {
 
 import Styles from './CategoryList.module.css';
 
-const { category_container, input_field, category_list } = Styles;
+const { category_container,category_input, input_field, category_list } = Styles;
 
 const CategoryList = () => {
   const dispatch = useDispatch();
-  const {categories} = useSelector((state) => state.categoryReducer);
+  const { categories } = useSelector((state) => state.categoryReducer);
 
   const [category, setCategory] = useState('');
 
@@ -32,13 +32,17 @@ const CategoryList = () => {
   return (
     <>
       <div className={category_container}>
-        <div className={input_field}>
-          <input type='text' value={category} onChange={handleChange} />
-          <button onClick={handleCategory}>Create</button>
+        <div className={category_input}>
+          <div className={input_field}>
+            <input type='text' value={category} onChange={handleChange} />
+            <button onClick={handleCategory}>Create</button>
+          </div>
         </div>
 
         <div className={category_list}>
-          {categories.map(category => <p key={category._id}>{category.name}</p> )}
+          {categories.map((category) => (
+            <p key={category._id}>{category.name}</p>
+          ))}
         </div>
       </div>
     </>

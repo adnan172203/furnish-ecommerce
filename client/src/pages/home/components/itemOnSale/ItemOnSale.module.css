@@ -1,7 +1,7 @@
 .items_on_sale {
   margin-bottom: 8rem;
   margin-top: 8rem;
-  position:relative;
+  position: relative;
 }
 
 .items_sale_heading h2 {
@@ -10,25 +10,25 @@
 }
 
 .items_on_sale .column_two:nth-child(1) {
-    position: absolute;
-    width: 20%;
-    top: 65%;
-    z-index: 1;
-    right: 19%;
+  position: absolute;
+  width: 24%;
+  top: 58.5%;
+  left: 63%;
 }
-.items_on_sale .on_sale_items {
+ .on_sale_items {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .items_on_sale .on_sale_items .column_one {
-  flex-basis: 47%;
+  flex-basis: 49%;
   margin-right: 10px;
   text-align: center;
 }
 
 .items_on_sale .on_sale_items .column_two {
-  flex-basis: 23%;
+  flex-basis: 24%;
 }
 
 .items_on_sale .on_sale_items .one img,

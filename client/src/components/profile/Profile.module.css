@@ -1,0 +1,23 @@
+.profile_container {
+  width: 80%;
+}
+
+.profile_content {
+  background: #fff;
+  padding: 2rem;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 8%;
+  border: 1px solid #eee;
+}
+
+.profile_content p {
+  margin-bottom: 10px;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 7px;
+}
+
+.profile_content span {
+  font-weight: 500;
+}

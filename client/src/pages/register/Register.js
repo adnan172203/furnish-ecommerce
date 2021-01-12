@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { Link } from 'react-router-dom';
 
 //action
 import { register } from '../../redux/user/userAction';
@@ -90,7 +91,7 @@ const Register = () => {
               <h4>or</h4>
 
               <h5>
-                Already Have An Account? <a href='login.html'>Login</a>
+                Already Have An Account? <Link to="/login">Login</Link>
               </h5>
             </form>
           </div>

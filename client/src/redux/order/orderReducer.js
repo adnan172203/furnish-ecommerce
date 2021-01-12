@@ -1,10 +1,15 @@
-import { ORDER_CREATE, ORDER_ERROR,ORDER_LIST } from './orderTypes';
+import {
+  ORDER_CREATE,
+  ORDER_ERROR,
+  ORDER_LIST,
+  MY_ORDER_LIST,
+} from './orderTypes';
 
 const INITIAL_STATE = {
-    orders: [],
-    order: null,
-    error: {},
-  };
+  orders: [],
+  order: null,
+  error: {},
+};
 
 const orderReducer = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
@@ -19,7 +24,13 @@ const orderReducer = (state = INITIAL_STATE, action) => {
     case ORDER_CREATE:
       return {
         ...state,
-        orders: [...state.orders,payload]
+        orders: [...state.orders, payload],
+      };
+
+    case MY_ORDER_LIST:
+      return {
+        ...state,
+        orders: payload,
       };
     case ORDER_ERROR:
       return {
