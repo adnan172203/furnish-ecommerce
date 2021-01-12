@@ -1,11 +1,22 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Rating from '../rating/Rating';
 
+//css
 import './Tab.css';
 
-const TabItem = ({ description, reviews, handleChange, handleSubmit,rating,setRating }) => {
+//icon
+import { FaStar } from 'react-icons/fa';
 
+const TabItem = ({
+  description,
+  reviews,
+  handleChange,
+  handleSubmit,
+  rating,
+  setRating,
+}) => {
   return (
     <>
       <Tabs>
@@ -19,13 +30,24 @@ const TabItem = ({ description, reviews, handleChange, handleSubmit,rating,setRa
         </TabPanel>
 
         <TabPanel className='react-tabs__tab-panel'>
-          {reviews &&
-            reviews.map((review) => (
-              <div className='reveiw_tab' key={review._id}>
-                <h4>{review.name}</h4>
-                <p>{review.comment}</p>
-              </div>
-            ))}
+          <div className='tab_flexibility'>
+            {reviews &&
+              reviews.map((review) => (
+                <div className='reveiw_tab' key={review._id}>
+                  <div className='review_content'>
+                    <h4>{review.name}</h4>
+                    <p>{review.comment}</p>
+                  </div>
+                  <div className='review_star'>
+                    <p>
+                      {[...Array(Math.round(review.rating))].map((star, i) => (
+                        <FaStar key={i} />
+                      ))}
+                    </p>
+                  </div>
+                </div>
+              ))}
+          </div>
 
           <div className='add-review'>
             <div className='review-heading'>

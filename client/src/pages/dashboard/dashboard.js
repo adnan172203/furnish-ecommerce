@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminNav from '../../components/admin-nav/admin-nav';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, useRouteMatch } from 'react-router-dom';
 import AdminProduct from '../../components/admin-product/admin-product';
 import OrderList from '../../components/order-list/order-list';
 import UserList from '../../components/user-list/user-list';

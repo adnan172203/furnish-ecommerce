@@ -11,9 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //icon
 import {
-  FaSearch,
   FaShoppingCart,
-  FaRegHeart,
   FaBars,
   FaEllipsisV,
 } from 'react-icons/fa';

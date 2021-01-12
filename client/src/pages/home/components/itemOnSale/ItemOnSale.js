@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { itemsOnSaleProducts } from '../../../../redux/product/product-action';
 
@@ -19,9 +18,6 @@ const {
   sale_discount_two,
   two_text,
   sale_price,
-  three,
-  sale_discount_three,
-  three_text,
 } = Styles;
 
 const ItemOnSale = () => {

@@ -23,7 +23,7 @@ const CategoryList = ({history}) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch]);
+  }, [dispatch,history,user]);
 
   const handleChange = (e) => {
     setCategory(e.target.value);

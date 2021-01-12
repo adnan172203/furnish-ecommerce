@@ -17,7 +17,6 @@ const {
   user_column1,
   user_column2,
   user_column3,
-  user_column4,
   user_column5,
 } = Styles;
 
@@ -35,7 +34,7 @@ const UserList = ({history}) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch]);
+  }, [dispatch,user,history]);
 
   return (
     <div className={user_list}>

@@ -70,7 +70,7 @@ const AdminProduct = ({ history }) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch]);
+  }, [dispatch,history,user]);
 
   const uploadFileHandler = async (e) => {
     setLoading(true);

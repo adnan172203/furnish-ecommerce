@@ -10,7 +10,12 @@ import {
 import { addToCart } from '../../redux/cart/cartAction';
 
 //icon
-import { FaChevronRight, FaChevronLeft, FaRegHeart } from 'react-icons/fa';
+import {
+  FaChevronRight,
+  FaChevronLeft,
+  FaRegHeart,
+  FaStar,
+} from 'react-icons/fa';
 
 //css
 import Styles from './singleProduct.module.css';
@@ -41,9 +46,10 @@ const SingleProduct = ({ match }) => {
 
   const { product } = products;
 
-  // let avgRating = product && product.reviews >= 0 && product.reviews
-  //   .map((review) => review.rating)
-  //   .reduce((r, i) => r + i / product.reviews.length);
+  let avgRating = product && product.reviews
+    .map((review) => review.rating)
+    .reduce((r, i) => r + i / product.reviews.length, 0);
+
 
   const [index, setIndex] = useState(0);
   const [rating, setRating] = useState(null);
@@ -94,7 +100,9 @@ const SingleProduct = ({ match }) => {
                 <h2>{product && product.name}</h2>
               </div>
               <div className={product_rating}>
-                {/* {[...Array(Math.round(avgRating))].map(() => <FaStar />)} */}
+                {[...Array(Math.round(avgRating))].map((star,i) => (
+                  <FaStar key={i} />
+                ))}
               </div>
               <div className={single_product_price}>
                 <h3>${product && product.price}</h3>

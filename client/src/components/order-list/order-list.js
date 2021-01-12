@@ -33,7 +33,7 @@ const OrderList = ({history}) => {
     } else {
       history.push('/login');
     }
-  }, [dispatch]);
+  }, [dispatch,history,user]);
 
 
   return (
