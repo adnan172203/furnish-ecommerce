@@ -18,14 +18,23 @@ const {
   order_column6,
 } = Styles;
 
-const OrderList = () => {
+const OrderList = ({history}) => {
   const dispatch = useDispatch();
   const order = useSelector((state) => state.orderReducer);
   const { orders } = order;
 
+  const {
+    userInfo: { user },
+  } = useSelector((state) => state.userLogin);
+
   useEffect(() => {
-    dispatch(listOrders());
+    if (user && user.role === 'admin') {
+      dispatch(listOrders());
+    } else {
+      history.push('/login');
+    }
   }, [dispatch]);
+
 
   return (
     <div className={order_list}>

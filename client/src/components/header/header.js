@@ -52,9 +52,8 @@ const Header = ({history}) => {
           <ul>
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
-            <Link to='/contact'>Contact</Link>
             {userInfo  && (
-              <Link to='/dashboard/adminproduct'>dashboard</Link>
+              <Link to='/dashboard'>dashboard</Link>
             )}
           </ul>
         </nav>
@@ -73,11 +72,9 @@ const Header = ({history}) => {
 
         <div className={shop_essentials}>
           <div className={shop_essentials_icon}>
-            <FaSearch className={header_icon} />
 
             <FaShoppingCart onClick={()=>dispatch(toggleCartHidden())} className={header_icon} />
 
-            <FaRegHeart className={header_icon} />
             {userInfo ? (
               <Link to='' onClick={logoutHandler}>
                 Log out

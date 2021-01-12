@@ -7,6 +7,7 @@ import UserList from '../../components/user-list/user-list';
 import CategoryList from './components/categoryList/CategoryList';
 import Profile from '../../components/profile/Profile';
 import MyOrder from '../../components/myOrder/MyOrder';
+import PrivateRoute from '../../components/privateRoute/PrivateRoute';
 
 //css
 import Styles from './dashboard.module.css';
@@ -18,13 +19,14 @@ const Dashboard = () => {
   return (
     <div className={admin_body}>
       <AdminNav url={url} />
+
       <Switch>
-        <Route exact path={`${path}/adminproduct`} component={AdminProduct} />
-        <Route exact path={`${path}/order`} component={OrderList} />
-        <Route exact path={`${path}/user`} component={UserList} />
-        <Route exact path={`${path}/category`} component={CategoryList} />
-        <Route exact path={`${path}/profile`} component={Profile} />
-        <Route exact path={`${path}/myorders`} component={MyOrder} />
+        <PrivateRoute exact path={`${path}/adminproduct`} component={AdminProduct} />
+        <PrivateRoute exact path={`${path}/order`} component={OrderList} />
+        <PrivateRoute exact path={`${path}/user`} component={UserList} />
+        <PrivateRoute exact path={`${path}/category`} component={CategoryList} />
+        <PrivateRoute exact path={`${path}/profile`} component={Profile} />
+        <PrivateRoute exact path={`${path}/myorders`} component={MyOrder} />
       </Switch>
     </div>
   );

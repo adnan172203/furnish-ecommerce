@@ -12,6 +12,7 @@ import ProductUpdate from './pages/productUpdate/ProductUpdate';
 import Cart from './pages/cart/Cart';
 import Checkout from './pages/checkout/Checkout';
 import PlaceOrder from './pages/placeOrder/PlaceOrder';
+import PrivateRoute from './components/privateRoute/PrivateRoute';
 import './App.css';
 
 function App() {
@@ -26,11 +27,11 @@ function App() {
         <Route exact path='/product/:id' component={SingleProduct} />
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
-        <Route path='/user/edit/:id' component={UserUpdate} />
-        <Route path='/product/edit/:id' component={ProductUpdate} />
+        <PrivateRoute path='/user/edit/:id' component={UserUpdate} />
+        <PrivateRoute path='/product/edit/:id' component={ProductUpdate} />
         <Route path='/cart' component={Cart} />
         <Route path='/checkout' component={Checkout} />
-        <Route path='/placeorder' component={PlaceOrder} />
+        <PrivateRoute path='/placeorder' component={PlaceOrder} />
       </Switch>
     </div>
   );

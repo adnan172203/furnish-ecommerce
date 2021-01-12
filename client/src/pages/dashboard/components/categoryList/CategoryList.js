@@ -9,14 +9,20 @@ import Styles from './CategoryList.module.css';
 
 const { category_container,category_input, input_field, category_list } = Styles;
 
-const CategoryList = () => {
+const CategoryList = ({history}) => {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.categoryReducer);
+
+  const { userInfo: { user } } = useSelector((state) => state.userLogin);
 
   const [category, setCategory] = useState('');
 
   useEffect(() => {
-    dispatch(categoryList());
+    if (user && user.role === 'admin') {
+      dispatch(categoryList());
+    } else {
+      history.push('/login');
+    }
   }, [dispatch]);
 
   const handleChange = (e) => {

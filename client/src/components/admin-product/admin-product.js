@@ -42,7 +42,7 @@ const {
   delete_icon,
 } = Styles;
 
-const AdminProduct = () => {
+const AdminProduct = ({ history }) => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -55,14 +55,21 @@ const AdminProduct = () => {
   });
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
-  const { name, description, price,category, sku, sold } = formData;
+  const { name, description, price, category, sku, sold } = formData;
   const [display, setDisplay] = useState(false);
 
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.product);
+  const {
+    userInfo: { user },
+  } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
-    dispatch(listProducts());
+    if (user && user.role === 'admin') {
+      dispatch(listProducts());
+    } else {
+      history.push('/login');
+    }
   }, [dispatch]);
 
   const uploadFileHandler = async (e) => {
@@ -141,23 +148,22 @@ const AdminProduct = () => {
               id={create_product_description}
               value={description || ''}
               onChange={(e) => onChange(e)}
-            >
-            </textarea>
+            ></textarea>
             <label className={label_edit} htmlFor='create_product_price'>
-                Price
-              </label>
-              <br />
-              <input
-                type='number'
-                name='price'
-                className={create_product_price}
-                value={price || ''}
-                onChange={(e) => onChange(e)}
-              />
+              Price
+            </label>
+            <br />
+            <input
+              type='number'
+              name='price'
+              className={create_product_price}
+              value={price || ''}
+              onChange={(e) => onChange(e)}
+            />
             <label className={label_edit} htmlFor='create_product_price'>
               Category
             </label>
-            <br/>
+            <br />
             <input
               type='text'
               className={create_product_name}

@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 //action
 import { listUsers } from '../../redux/user/userAction';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-//icon
-import { FaRegEdit } from 'react-icons/fa';
 
 //css
 import Styles from './user-list.module.css';
@@ -25,7 +21,7 @@ const {
   user_column5,
 } = Styles;
 
-const UserList = () => {
+const UserList = ({history}) => {
   const dispatch = useDispatch();
   const allUser = useSelector((state) => state.userList);
   const { users } = allUser;
@@ -33,10 +29,12 @@ const UserList = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo: { user } } = userLogin;
   
-  const loginfo = user;
-
   useEffect(() => {
-    dispatch(listUsers());
+    if (user && user.role === 'admin') {
+      dispatch(listUsers());
+    } else {
+      history.push('/login');
+    }
   }, [dispatch]);
 
   return (
