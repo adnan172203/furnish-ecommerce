@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CART_CLEAR_ITEMS } from '../cart/cartTypes';
 import {
   ORDER_CREATE,
   ORDER_ERROR,
@@ -18,6 +19,11 @@ export const createOrder = (order) => async (dispatch) => {
 
     dispatch({
       type: ORDER_CREATE,
+      payload: data,
+    });
+
+    dispatch({
+      type: CART_CLEAR_ITEMS,
       payload: data,
     });
 
@@ -55,7 +61,6 @@ export const listOrders = () => async (dispatch) => {
     });
   }
 };
-
 
 export const myOrderList = () => async (dispatch) => {
   try {

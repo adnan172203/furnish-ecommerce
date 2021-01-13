@@ -1,0 +1,17 @@
+.confirmation_container{
+    display: flex;
+    justify-content: center;
+}
+
+.confirmation_message{
+    width: 35%;
+    text-align: center;
+}
+.confirmation_message img{
+    max-width: 100%;
+}
+.confirmation_message h3{
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1rem;
+}

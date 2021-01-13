@@ -10,7 +10,7 @@ import Styles from './PlaceOrder.module.css';
 
 const { place_order_button, button_position } = Styles;
 
-const PlaceOrder = () => {
+const PlaceOrder = ({history}) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer);
 
@@ -27,6 +27,7 @@ const PlaceOrder = () => {
         totalPrice: cart.itemsPrice
       })
     );
+    history.push('/confirmation');
   };
 
   return (

@@ -9,13 +9,13 @@ import {
 } from '../../redux/product/product-action';
 import { addToCart } from '../../redux/cart/cartAction';
 
-//icon
 import {
-  FaChevronRight,
-  FaChevronLeft,
-  FaRegHeart,
-  FaStar,
-} from 'react-icons/fa';
+  cartProductInrement,
+  cartProductDecrement,
+} from '../../redux/cart/cartAction';
+
+//icon
+import { FaChevronRight, FaChevronLeft, FaStar } from 'react-icons/fa';
 
 //css
 import Styles from './singleProduct.module.css';
@@ -33,22 +33,26 @@ const {
   single_product_price,
   product_info,
   product_add_to_cart,
-  single_product_count
+  single_product_count,
 } = Styles;
 
 const SingleProduct = ({ match }) => {
   const [formData, setFormData] = useState({
     comment: '',
   });
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
+  const cart = useSelector((state) => state.cartReducer);
+  console.log(cart);
 
   const { product } = products;
 
-  let avgRating = product && product.reviews
-    .map((review) => review.rating)
-    .reduce((r, i) => r + i / product.reviews.length, 0);
-
+  let avgRating =
+    product &&
+    product.reviews
+      .map((review) => review.rating)
+      .reduce((r, i) => r + i / product.reviews.length, 0);
 
   const [index, setIndex] = useState(0);
   const [rating, setRating] = useState(null);
@@ -64,6 +68,16 @@ const SingleProduct = ({ match }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProductReview(match.params.id, { rating, ...formData }));
+  };
+
+  const incrementProductCartCount = (productId) => {
+    dispatch(cartProductInrement(productId));
+    setQuantity(quantity + 1);
+  };
+
+  const decrementProductCartCount = (productId) => {
+    dispatch(cartProductDecrement(productId));
+    setQuantity(quantity - 1);
   };
 
   return (
@@ -99,7 +113,7 @@ const SingleProduct = ({ match }) => {
                 <h2>{product && product.name}</h2>
               </div>
               <div className={product_rating}>
-                {[...Array(Math.round(avgRating))].map((star,i) => (
+                {[...Array(Math.round(avgRating))].map((star, i) => (
                   <FaStar key={i} />
                 ))}
               </div>
@@ -117,11 +131,15 @@ const SingleProduct = ({ match }) => {
                 <div className={single_product_count}>
                   <span>
                     <i>
-                      <FaChevronLeft />
+                      <FaChevronLeft
+                        onClick={() => decrementProductCartCount(product._id)}
+                      />
                     </i>
-                    1
+                    {quantity}
                     <i>
-                      <FaChevronRight />
+                      <FaChevronRight
+                        onClick={() => incrementProductCartCount(product._id)}
+                      />
                     </i>
                   </span>
                 </div>

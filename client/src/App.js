@@ -12,6 +12,7 @@ import ProductUpdate from './pages/productUpdate/ProductUpdate';
 import Cart from './pages/cart/Cart';
 import Checkout from './pages/checkout/Checkout';
 import PlaceOrder from './pages/placeOrder/PlaceOrder';
+import Confirmation from './pages/confirmation/Confirmation';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
 import './App.css';
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/checkout' component={Checkout} />
         <PrivateRoute path='/placeorder' component={PlaceOrder} />
+        <PrivateRoute path='/confirmation' component={Confirmation} />
       </Switch>
     </div>
   );
