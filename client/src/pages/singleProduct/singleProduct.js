@@ -43,8 +43,11 @@ const SingleProduct = ({ match }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
-  const cart = useSelector((state) => state.cartReducer);
-  console.log(cart);
+  const { cartItems } = useSelector((state) => state.cartReducer);
+
+  const filterProduct = cartItems.filter(
+    (cart) => cart.productId === match.params.id
+  );
 
   const { product } = products;
 
@@ -135,7 +138,10 @@ const SingleProduct = ({ match }) => {
                         onClick={() => decrementProductCartCount(product._id)}
                       />
                     </i>
-                    {quantity}
+                    {/* {filterProduct && typeof filterProduct[0].qty != 'undefined'
+                      ? filterProduct[0].qty
+                      : 1} */}
+
                     <i>
                       <FaChevronRight
                         onClick={() => incrementProductCartCount(product._id)}

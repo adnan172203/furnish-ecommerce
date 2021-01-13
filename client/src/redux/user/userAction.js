@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CART_CLEAR_ITEMS } from '../cart/cartTypes';
 import {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
@@ -69,8 +70,11 @@ export const login = (user) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo')
+  localStorage.removeItem('cartItems')
+  localStorage.removeItem('shippingAddress')
 
   dispatch({ type: USER_LOGOUT })
+  dispatch({ type: CART_CLEAR_ITEMS })
   document.location.href = '/login'
 
 }
