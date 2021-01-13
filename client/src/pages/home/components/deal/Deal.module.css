@@ -85,7 +85,10 @@ button.shop_now_button {
 /* ============== Responsive =========== */
 
 @media screen and (max-width: 900px) {
-  .days,
+  .countdown_timer {
+    width: 40%;
+  }
+  .daysTotal,
   .hour,
   .min,
   .sec {
@@ -99,5 +102,90 @@ button.shop_now_button {
   .shop_count .button {
     margin-top: 3rem;
     margin-left: 38%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .countdown_timer {
+    width: 45%;
+  }
+
+  .daysTotal,
+  .hour,
+  .min,
+  .sec {
+    width: 21%;
+    border-radius: 3px;
+  }
+
+  .daysTotal p,
+  .hour p,
+  .min p,
+  .sec p {
+    font-size: 3vw;
+  }
+  .deal .heading {
+    margin-left: 40%;
+  }
+
+  .shop-count .button {
+    margin-top: 3rem;
+    margin-left: 40%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .countdown_timer {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .deal {
+    background: #fff;
+    height: 70vh;
+    box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  }
+
+  .shop_count {
+    margin-top: 3rem;
+  }
+
+  .deal .heading {
+    margin-left: 0;
+  }
+
+  .deal .heading h1 {
+    font-size: 4.5vw;
+  }
+
+  .shop_count .button {
+    margin-top: 4rem;
+    margin-left: 0;
+  }
+
+  .countdown_timer {
+    width: 77%;
+    margin: 0 auto;
+  }
+
+  .daysTotal,
+  .hour,
+  .min,
+  .sec {
+    width: 18vw;
+    height: 16vw;
+  }
+
+  .daysTotal p,
+  .hour p,
+  .min p,
+  .sec p {
+    font-size: 5vw;
+  }
+
+  .countdown_timer .duration {
+    font-size: 4vw;
+    margin-top: 11px;
   }
 }
