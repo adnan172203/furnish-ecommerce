@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { itemsOnSaleProducts } from '../../../../redux/product/product-action';
 
@@ -43,11 +44,13 @@ console.log(itemsOnSale);
                     <div className={sale_discount_one}>
                       <h3>-25%</h3>
                     </div>
+                    <Link to={`/product/${product._id}`}>
                     <img src={product.image.url[0]} alt='' />
                     <div className={one_text}>
                       <h4 className=''>{product.name}</h4>
                       <p className={sale_price}>${product.price}</p>
                     </div>
+                    </Link>
                   </div>
                 </div>
               ) : (
@@ -56,11 +59,13 @@ console.log(itemsOnSale);
                     <div className={sale_discount_two}>
                       <h3>-25%</h3>
                     </div>
+                    <Link to={`/product/${product._id}`}>
                     <img src={product.image.url[0]} alt='' />
                     <div className={two_text}>
                       <h4>{product.name}</h4>
                       <p className={sale_price}>${product.price}</p>
                     </div>
+                    </Link>
                   </div>
                 </div>
               )

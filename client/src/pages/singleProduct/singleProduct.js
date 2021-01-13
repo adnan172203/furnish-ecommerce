@@ -128,7 +128,7 @@ const SingleProduct = ({ match }) => {
                 <p>SKU : {product && product.sku}</p>
               </div>
               <div className={product_add_to_cart}>
-                <button onClick={() => dispatch(addToCart(match.params.id))}>
+                <button onClick={() => dispatch(addToCart(product._id,quantity))}>
                   Add To Cart
                 </button>
                 <div className={single_product_count}>
@@ -138,9 +138,7 @@ const SingleProduct = ({ match }) => {
                         onClick={() => decrementProductCartCount(product._id)}
                       />
                     </i>
-                    {/* {filterProduct && typeof filterProduct[0].qty != 'undefined'
-                      ? filterProduct[0].qty
-                      : 1} */}
+                    {quantity}
 
                     <i>
                       <FaChevronRight

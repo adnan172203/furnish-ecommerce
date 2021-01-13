@@ -115,3 +115,32 @@ svg.heart_icon {
   color: #919191;
   margin-top: 2rem;
 }
+
+/* ============ responsive ============== */
+
+@media screen and (max-width: 900px) {
+  .product_details .product_container {
+    flex-direction: column;
+  }
+
+  .product_details .product_image {
+    padding: 2rem;
+  }
+
+  .tabs .tab_row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabs .tab_item {
+    width: 75%;
+  }
+
+  .tab_content .tab_content_item {
+    padding: 3rem;
+  }
+
+  .review_image {
+    margin-top: 4%;
+  }
+}

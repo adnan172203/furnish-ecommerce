@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const connectDB = require('./config/db'); 
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -15,6 +16,7 @@ connectDB();
 //middleware
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.use(cors());
 
 // Route files
 const usersRoute = require('./Routes/users');

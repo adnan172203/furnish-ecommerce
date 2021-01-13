@@ -13,6 +13,30 @@
   padding: 0 2rem;
 }
 
-.product_filter{
-  flex-basis:18%;
+.product_filter {
+  flex-basis: 18%;
+}
+
+@media screen and (max-width: 900px) {
+  .main_shop .main_product {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .main_shop .product {
+    justify-content: center;
+  }
+
+  .main_shop .product_filter {
+    width: 36%;
+    margin-left: 2rem;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .main_shop .product_filter {
+    width: 60%;
+    margin-left: 2rem;
+  }
 }
