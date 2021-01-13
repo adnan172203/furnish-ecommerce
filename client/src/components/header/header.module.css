@@ -3,6 +3,7 @@
   justify-content: space-evenly;
   align-items: center;
   padding: 1rem;
+  position: relative;
 }
 
 .main_header nav ul {
@@ -10,7 +11,7 @@
   list-style: none;
 }
 
-.navbar ul a {
+.main_navbar ul a {
   padding: 0.75rem;
   text-decoration: none;
   color: rgb(19, 18, 18);
@@ -47,11 +48,14 @@
   align-items: center;
 }
 
-/* responsive code */
+/* =============== responsive code ===================*/
 
 @media screen and (max-width: 600px) {
   .logo {
     padding: 0 20%;
+  }
+  .main_navbar{
+    display:none;
   }
 
   .navbar_toggler {
@@ -60,10 +64,30 @@
   }
 
   .navbar {
-    display: none;
+   
   }
 
-  .show_menu > .navbar {
+  .navbar ul{
+    position: absolute;
+    width: 34%;
+    background: #fff;
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+    z-index: 2;
+    left: 13%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar ul a{
+    padding: 0.75rem;
+    color: rgb(19, 18, 18);
+    border-bottom: 1px solid #ececec;
+    width: 45%;
+  }
+
+  /* .show_menu > .navbar {
     display: block;
     position: absolute;
     width: 34%;
@@ -73,12 +97,12 @@
     box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
     z-index: 2;
     left: 9%;
-  }
+  } */
 
-  .show_menu > .navbar ul {
+  /* .show_menu > .navbar ul {
     display: flex;
     flex-direction: column;
-  }
+  } */
 
   .show_menu > .navbar ul a {
     padding: 0.5rem;
@@ -162,5 +186,27 @@
 
   .show_essential > .shop_essentials_text ul li {
     padding: 1rem;
+  }
+
+  .mini_shop_essential{
+    
+  }
+  .mini_shop_essential ul{
+    position: absolute;
+    width: 34%;
+    background: #fff;
+    text-align: center;
+    margin-top: 2rem;
+    box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+    z-index: 2;
+    right: 13%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mini_shop_essential ul a{
+    padding: 0.75rem;
+    color:#000;
   }
 }

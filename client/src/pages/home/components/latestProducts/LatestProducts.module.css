@@ -71,3 +71,71 @@
 .featured_items .feature_price {
   color: #42b883;
 }
+
+/* ================ Responsive =================== */
+@media screen and (max-width: 900px) {
+  section.featured_products {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .featured_products .featured_items {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    width: 100%;
+    margin-left: 7rem;
+  }
+
+  .featured_products .featured_items .one img,
+  .featured_products .featured_items .two img,
+  .featured_products .featured_items .three img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .featured_products .featured_items .column_one {
+    position: relative;
+    display: flex;
+  }
+
+  .featured_products .featured_items .one {
+    margin-bottom: 34px;
+    margin-right: 1rem;
+  }
+
+  .featured_products .featured_items .column_two {
+    display: flex;
+    width: 70%;
+  }
+
+  .featured_items .one {
+    flex-basis: 35%;
+  }
+
+  .featured_items .two {
+    flex-basis: 39%;
+  }
+
+  .featured_items .three {
+    flex-basis: 70%;
+  }
+
+  .featured_products .featured_items .three-text {
+    left: 27%;
+  }
+
+  .featured_products .featured_items .two-text {
+    margin-top: -55px;
+    font-size: 14px;
+  }
+
+  .featured_items .column_two:nth-child(1) {
+    position: absolute;
+    top: -24%;
+    max-width: 34%;
+    right: 53%;
+  }
+}

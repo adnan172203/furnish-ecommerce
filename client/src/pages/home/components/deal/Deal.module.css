@@ -81,3 +81,23 @@ button.shop_now_button {
   font-weight: 600;
   color: #42b883;
 }
+
+/* ============== Responsive =========== */
+
+@media screen and (max-width: 900px) {
+  .days,
+  .hour,
+  .min,
+  .sec {
+    width: 20%;
+  }
+
+  .deal .heading {
+    margin-left: 35%;
+  }
+
+  .shop_count .button {
+    margin-top: 3rem;
+    margin-left: 38%;
+  }
+}
