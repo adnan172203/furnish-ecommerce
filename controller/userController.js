@@ -43,7 +43,7 @@ module.exports.addUser = asyncHandler(async (req, res) => {
   });
 
   const newUser = await user.save();
-  res.status(200).json(newUser);
+  res.status(200).json({ message: 'New Account Has Been Created', data: newUser });
 });
 
 //update user

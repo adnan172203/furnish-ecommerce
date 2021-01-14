@@ -8,7 +8,7 @@ const errorHandler = require('./middleware/error');
 const path = require('path');
 
 // Load env vars
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './config/.env' });
 
 //connect Database
 connectDB();

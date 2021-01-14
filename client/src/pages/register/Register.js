@@ -1,9 +1,9 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 //action
 import { register } from '../../redux/user/userAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Styles from './Register.module.css';
 
@@ -15,6 +15,7 @@ const {
   form_control,
   btn,
   common_btn,
+  success_message
 } = Styles;
 
 const Register = () => {
@@ -26,7 +27,8 @@ const Register = () => {
   });
 
   const dispatch = useDispatch();
-
+  const { message } = useSelector((state) => state.userRegister);
+  console.log(message);
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -40,6 +42,7 @@ const Register = () => {
     <>
       <div className={`${user_area} ${ptb_100}`}>
         <div className='container'>
+          { message && <div className={success_message}><p>{message}</p></div>}
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
               <h2>Register</h2>
@@ -91,7 +94,7 @@ const Register = () => {
               <h4>or</h4>
 
               <h5>
-                Already Have An Account? <Link to="/login">Login</Link>
+                Already Have An Account? <Link to='/login'>Login</Link>
               </h5>
             </form>
           </div>

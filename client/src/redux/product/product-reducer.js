@@ -22,7 +22,7 @@ const initialState = {
   error: {},
 };
 
-export default function (state = initialState, action) {
+const product = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -99,3 +99,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default product;

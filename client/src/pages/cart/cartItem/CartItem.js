@@ -18,8 +18,7 @@ const {
   cart_product_price,
   cart_product_qty,
   cart_product_total,
-  cart_product_delete,
-  cart_alignment
+  cart_product_delete
 } = Styles;
 
 const CartItem = ({ cartItem }) => {

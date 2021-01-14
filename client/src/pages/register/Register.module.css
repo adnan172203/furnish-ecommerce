@@ -7,6 +7,20 @@
 }
 
 
+.success_message{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.success_message p{
+    width: 37%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid #42b883;
+    border-radius: 7px;
+    font-weight: 500;
+}
+
 .user_area .user_item {
     max-width: 700px;
     margin-left: auto;

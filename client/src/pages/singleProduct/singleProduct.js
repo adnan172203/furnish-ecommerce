@@ -43,11 +43,6 @@ const SingleProduct = ({ match }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
-  const { cartItems } = useSelector((state) => state.cartReducer);
-
-  const filterProduct = cartItems.filter(
-    (cart) => cart.productId === match.params.id
-  );
 
   const { product } = products;
 
