@@ -7,7 +7,7 @@
 }
 
 
-.success_message{
+.success_message, .error_message{
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -17,6 +17,16 @@
     background: #fff;
     padding: 1rem;
     border: 1px solid #42b883;
+    border-radius: 7px;
+    font-weight: 500;
+}
+
+.error_message p{
+    width: 37%;
+    margin: 0 auto;
+    background: #fff;
+    padding: 1rem;
+    border: 1px solid red;
     border-radius: 7px;
     font-weight: 500;
 }

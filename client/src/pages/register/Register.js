@@ -15,7 +15,8 @@ const {
   form_control,
   btn,
   common_btn,
-  success_message
+  success_message,
+  error_message
 } = Styles;
 
 const Register = () => {
@@ -27,8 +28,8 @@ const Register = () => {
   });
 
   const dispatch = useDispatch();
-  const { message } = useSelector((state) => state.userRegister);
-  console.log(message);
+  const { message, error } = useSelector((state) => state.userRegister);
+  
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -42,7 +43,16 @@ const Register = () => {
     <>
       <div className={`${user_area} ${ptb_100}`}>
         <div className='container'>
-          { message && <div className={success_message}><p>{message}</p></div>}
+          {(message && (
+            <div className={success_message}>
+              <p>{message}</p>
+            </div>
+          )) ||
+            (error && (
+              <div className={error_message}>
+                <p>{error}</p>
+              </div>
+            ))}
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
               <h2>Register</h2>
