@@ -1,11 +1,11 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('./config/db'); 
+const connectDB = require('./config/db');
 const app = express();
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
-
+const path = require('path');
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -32,8 +32,17 @@ app.use('/api/v1/orders', ordersRoute);
 app.use('/api/v1/uploads', uploadsRoute);
 app.use('/api/v1/category', categoryRoute);
 
-
 app.use(errorHandler);
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
