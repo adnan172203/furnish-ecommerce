@@ -194,17 +194,13 @@ module.exports.getTopProducts = asyncHandler(async (req, res) => {
   res.status(200).json(products);
 });
 
-
 // get latest products
 module.exports.getLatestProducts = async (req, res) => {
-  // console.table(req.body);
   try {
     // createdAt/updatedAt, desc/asc, 3
     const { sort, order } = req.body;
 
-    const products = await Product.find({})
-      .sort({sold:-1})
-      .limit(3);
+    const products = await Product.find({}).sort({ sold: -1 }).limit(3);
 
     res.json(products);
   } catch (err) {
@@ -215,9 +211,7 @@ module.exports.getLatestProducts = async (req, res) => {
 // get best selling products
 module.exports.getBestSellingProducts = async (req, res) => {
   try {
-    const products = await Product.find({})
-      .sort({sold:-1})
-      .limit(10);
+    const products = await Product.find({}).sort({ sold: -1 }).limit(10);
 
     res.json(products);
   } catch (err) {
@@ -225,13 +219,10 @@ module.exports.getBestSellingProducts = async (req, res) => {
   }
 };
 
-
 // get low sold product/items on sale
 module.exports.lowsoldProducts = async (req, res) => {
   try {
-    const products = await Product.find({})
-      .sort({sold:1})
-      .limit(3);
+    const products = await Product.find({}).sort({ sold: 1 }).limit(3);
 
     res.json(products);
   } catch (err) {
@@ -256,31 +247,22 @@ module.exports.searchFilters = async (req, res) => {
   }
 };
 
-const handleCategory = async (req, res, category) => {
-  try {
-    let products = await Product.find({ category });
+const handleCategory = asyncHandler(async (req, res, category) => {
+  let products = await Product.find({ category });
+  res.json(products);
+});
 
-    res.json(products);
-  } catch (err) {
-    console.log(err);
-  }
-};
+const handlePrice = asyncHandler(async (req, res, price) => {
+  let products = await Product.find({
+    price: {
+      $lte: price,
+    },
+  });
 
-const handlePrice = async (req, res, price) => {
-  try {
-    let products = await Product.find({
-      price: {
-        $lte: price,
-      },
-    });
+  res.json(products);
+});
 
-    res.json(products);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const handleQuery = async (req, res, query) => {
+const handleQuery = asyncHandler(async (req, res, query) => {
   let products = await Product.find({ name: { $regex: query } });
   res.json(products);
-};
+});

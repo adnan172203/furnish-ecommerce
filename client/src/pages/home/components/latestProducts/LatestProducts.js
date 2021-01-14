@@ -9,6 +9,7 @@ import Styles from './LatestProducts.module.css';
 const {
   featured_products,
   featured_heading,
+  featured_heading_background,
   featured_items,
   column_one,
   one,
@@ -33,7 +34,10 @@ const LatestProducts = () => {
       <section className={featured_products}>
         <div className='container'>
           <div className={featured_heading}>
+            <div className={featured_heading_background}>
+
             <h1>Latest Products</h1>
+            </div>
           </div>
           <div className={featured_items}>
             {products.map((product, i) =>

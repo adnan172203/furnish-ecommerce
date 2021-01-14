@@ -4,9 +4,23 @@
   position: relative;
 }
 
+.items_sale_heading {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .items_sale_heading h2 {
   text-align: center;
-  margin: 4rem 0;
+}
+
+.heading_background {
+  width: 25%;
+  margin: 0 auto;
+  background: #fff;
+  padding: 0.5rem;
+  border: 1px solid #eee;
+  border-radius: 7px;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
 }
 
 .items_on_sale .column_two:nth-child(1) {
@@ -15,7 +29,7 @@
   top: 58.5%;
   left: 63%;
 }
- .on_sale_items {
+.on_sale_items {
   display: flex;
   justify-content: center;
   position: relative;
@@ -81,4 +95,92 @@
 .sale_discount_three h3 {
   font-size: 1.5vw;
   font-weight: 500;
+}
+
+@media screen and (max-width: 900px) {
+  .heading_background {
+    font-size: 1.8vw;
+  }
+  section.items_on_sale {
+    overflow: hidden;
+  }
+
+  .items_on_sale .on_sale_items {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    margin-left: 7rem;
+  }
+
+  .items_on_sale .column_two:nth-child(1) {
+    position: absolute;
+    width: 100%;
+    top: 66%;
+    left: 35%;
+  }
+
+  .items_on_sale .on_sale_items .one img,
+  .items_on_sale .on_sale_items .two img,
+  .items_on_sale .on_sale_items .three img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .items_on_sale .on_sale_items .column_two {
+    display: flex;
+  }
+
+  .items_on_sale .on_sale_items .one {
+    margin-bottom: 50px;
+  }
+
+  .items_on_sale .on_sale_items .two {
+    margin-bottom: 30px;
+    margin-right: 10px;
+  }
+
+  .items_on_sale .on_sale_items .column_one {
+    position: relative;
+    display: flex;
+  }
+
+  .on_sale_items .one {
+    flex-basis: 70%;
+  }
+
+  .on_sale_items .two {
+    flex-basis: 34%;
+  }
+
+  .on_sale_items .three {
+    flex-basis: 39%;
+  }
+
+  .items_on_sale .on_sale_items .one_text {
+    margin-top: -5rem;
+  }
+
+  .items_on_sale .on_sale_items .three_text {
+    left: 27%;
+  }
+
+  .items_on_sale .on_sale_items .two_text {
+    margin-top: -55px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .items_on_sale .on_sale_items {
+    margin-left: 6rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .heading_background {
+    font-size: 2vw;
+    width: 26%;
+  }
 }

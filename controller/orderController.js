@@ -27,7 +27,7 @@ module.exports.getOrderById = asyncHandler(async (req, res) => {
 
 //get orders by user
 module.exports.getOrdersByUser = asyncHandler(async (req, res) => {
-console.log(req.user._id);
+
   const order = await Order.find({ user: req.user._id });
   if (!order) return res.status(404).json({ msg: 'order not exist' });
   res.status(200).json(order);

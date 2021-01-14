@@ -9,6 +9,7 @@ import Styles from './ItemOnSale.module.css';
 const {
   items_on_sale,
   items_sale_heading,
+  heading_background,
   on_sale_items,
   column_one,
   one,
@@ -24,7 +25,7 @@ const {
 const ItemOnSale = () => {
   const dispatch = useDispatch();
   const { itemsOnSale } = useSelector((state) => state.product);
-console.log(itemsOnSale);
+
   useEffect(() => {
     dispatch(itemsOnSaleProducts());
   }, [dispatch]);
@@ -34,7 +35,9 @@ console.log(itemsOnSale);
       <section className={items_on_sale}>
         <div className='container'>
           <div className={items_sale_heading}>
-            <h2>Items On Sale</h2>
+            <div className={heading_background}>
+              <h2>Items On Sale</h2>
+            </div>
           </div>
           <div className={on_sale_items}>
             {itemsOnSale.map((product, i) =>
@@ -45,11 +48,11 @@ console.log(itemsOnSale);
                       <h3>-25%</h3>
                     </div>
                     <Link to={`/product/${product._id}`}>
-                    <img src={product.image.url[0]} alt='' />
-                    <div className={one_text}>
-                      <h4 className=''>{product.name}</h4>
-                      <p className={sale_price}>${product.price}</p>
-                    </div>
+                      <img src={product.image.url[0]} alt='' />
+                      <div className={one_text}>
+                        <h4 className=''>{product.name}</h4>
+                        <p className={sale_price}>${product.price}</p>
+                      </div>
                     </Link>
                   </div>
                 </div>
@@ -60,11 +63,11 @@ console.log(itemsOnSale);
                       <h3>-25%</h3>
                     </div>
                     <Link to={`/product/${product._id}`}>
-                    <img src={product.image.url[0]} alt='' />
-                    <div className={two_text}>
-                      <h4>{product.name}</h4>
-                      <p className={sale_price}>${product.price}</p>
-                    </div>
+                      <img src={product.image.url[0]} alt='' />
+                      <div className={two_text}>
+                        <h4>{product.name}</h4>
+                        <p className={sale_price}>${product.price}</p>
+                      </div>
                     </Link>
                   </div>
                 </div>

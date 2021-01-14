@@ -155,20 +155,19 @@ export const createProductReview = (productId, review) => async (dispatch) => {
 };
 
 export const productFilter = (arg) => async (dispatch) => {
+
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    console.log('action',arg);
     
     const { data } = await axios.post(
       `/api/v1/products/search/filters`,
       arg,
       config
       );
-      console.log('action data:',data);
 
     dispatch({
       type: PRODUCT_CATEGORY_FILTER,

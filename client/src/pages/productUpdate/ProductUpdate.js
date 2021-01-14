@@ -201,13 +201,6 @@ const ProductUpdate = ({ match }) => {
                 )}
               </div>
 
-              <div className={loaded_image}>
-                {product &&
-                  product.image &&
-                  product.image.url.map((url, i) => (
-                    <img src={url} alt='updateimg' key={i} />
-                  ))}
-              </div>
 
               <button type='submit' className={`${btn} ${common_btn}`}>
                 Update Product

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CREATE_CATEGORY,CATEGORY_LIST,CATEGORY_ERROR } from './categoryTypes';
 
 export const createCategory = (category) => async (dispatch) => {
-console.log('action', category);
+
   try {
     const config = {
       headers: {

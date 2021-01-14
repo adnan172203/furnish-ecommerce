@@ -89,6 +89,7 @@ input.create_product_submit {
 .admin_main_shop .admin_product {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 0 0 2rem;
 }
 
 .admin_main_shop .admin_product_item {

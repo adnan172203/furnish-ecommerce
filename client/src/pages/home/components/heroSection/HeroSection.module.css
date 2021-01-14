@@ -18,7 +18,7 @@
 }
 
 .slider_img {
-  width: 42%;
+  width: 55%;
   position: absolute;
   right: 0;
   z-index: 1;
@@ -94,6 +94,7 @@
   position: absolute;
   top: 21%;
   left: 17%;
+  z-index: 1;
 }
 
 .banner_text h1 {

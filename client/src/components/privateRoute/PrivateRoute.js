@@ -6,7 +6,6 @@ const PrivateRoute = ({component: Component, ...rest}) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-  console.log(userInfo);
     return (
     <Route
       {...rest}

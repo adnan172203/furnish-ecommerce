@@ -29,7 +29,6 @@ const Shop = () => {
 
   const handleCategory = (e) => {
     let category = e.target.value;
-    console.log(category);
     dispatch(productFilter({ category }));
   };
 
@@ -42,12 +41,12 @@ const Shop = () => {
   };
 
   const handleSearch = (e) => {
-    setQuery(e.target.value.toLowerCase());
+    setQuery(e.target.value);
   };
 
   return (
     <>
-      <Banner title='Shop' breadCrumb='Shop' />
+
       <section className={main_shop}>
         <div>
           <div className={main_product}>

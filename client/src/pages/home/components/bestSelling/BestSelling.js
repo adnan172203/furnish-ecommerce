@@ -9,7 +9,13 @@ import { bestsellingProducts } from '../../../../redux/product/product-action';
 //css
 import Styles from './BestSelling.module.css';
 
-const { best_selling_items, best_selling_heading, slide_items,selling_slide } = Styles;
+const {
+  best_selling_items,
+  best_selling_heading,
+  heading_background,
+  slide_items,
+  selling_slide,
+} = Styles;
 
 const BestSelling = () => {
   const dispatch = useDispatch();
@@ -25,13 +31,15 @@ const BestSelling = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 3,
-    adaptiveHeight: true
+    adaptiveHeight: true,
   };
   return (
     <>
       <section id={best_selling_items}>
         <div className={best_selling_heading}>
-          <h2>Best Selling Items</h2>
+          <div className={heading_background}>
+            <h2>Best Selling Items</h2>
+          </div>
         </div>
         <Slider {...settings} className={selling_slide}>
           {bestSellProducts.map((product) => (
