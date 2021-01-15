@@ -44,7 +44,7 @@
 
 # add uri of your mongodb connection for example
 
- "MONGO_URI": "mongodb://localhost/dev-social",
+ "MONGO_URI": "mongodb://localhost:27017/furnish",
  
 ```
 
