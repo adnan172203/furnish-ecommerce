@@ -41,10 +41,16 @@ const SingleProduct = ({ match }) => {
     comment: '',
   });
   const [quantity, setQuantity] = useState(1);
+  
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product);
 
+  const products = useSelector((state) => state.product);
   const { product } = products;
+
+
+  const { cartItems } = useSelector((state) => state.cartReducer);
+  let cartItem = cartItems.filter((item) => item.productId === match.params.id); 
+
 
   let avgRating =
     product &&
@@ -123,25 +129,29 @@ const SingleProduct = ({ match }) => {
                 <p>SKU : {product && product.sku}</p>
               </div>
               <div className={product_add_to_cart}>
-                <button onClick={() => dispatch(addToCart(product._id,quantity))}>
-                  Add To Cart
-                </button>
-                <div className={single_product_count}>
-                  <span>
-                    <i>
-                      <FaChevronLeft
-                        onClick={() => decrementProductCartCount(product._id)}
-                      />
-                    </i>
-                    {quantity}
+      
+                  <button
+                    onClick={() => dispatch(addToCart(product._id, quantity))}
+                  >
+                    Add To Cart
+                  </button>
+              
+                  <div className={single_product_count}>
+                    <span>
+                      <i>
+                        <FaChevronLeft
+                          onClick={() => decrementProductCartCount(product._id)}
+                        />
+                      </i>
+                      {quantity}
 
-                    <i>
-                      <FaChevronRight
-                        onClick={() => incrementProductCartCount(product._id)}
-                      />
-                    </i>
-                  </span>
-                </div>
+                      <i>
+                        <FaChevronRight
+                          onClick={() => incrementProductCartCount(product._id)}
+                        />
+                      </i>
+                    </span>
+                  </div>
               </div>
             </div>
           </div>

@@ -98,10 +98,10 @@ export const listUsers = () => async (dispatch) => {
   }
 };
 
-export const getUserDetails = () => async (dispatch) => {
+export const getUserDetails = () => async (dispatch,getState) => {
   try {
-    const { data } = await axios.get(`/api/v1/users/me`);
 
+    const { data } = await axios.get(`/api/v1/users/me`);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,

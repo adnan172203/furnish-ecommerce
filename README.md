@@ -1,6 +1,6 @@
 ## Live Demo
 
-# [Furnish](https://furnish-shop.herokuapp.com//)
+# [Furnish](https://furnish-shop.herokuapp.com)
 
 
 
