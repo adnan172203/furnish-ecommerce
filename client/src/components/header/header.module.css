@@ -35,8 +35,9 @@
 }
 
 .main_header .shop_essentials .header_icon {
-  padding: 0.75rem;
   cursor: pointer;
+  font-size: 28px;
+  color: #424242;
 }
 
 .dot_icon {
@@ -46,14 +47,39 @@
 .shop_essentials_icon {
   display: flex;
   align-items: center;
+  position:relative;
 }
 
-.user_name{
+.shop_essentials_icon a {
+  color: #000;
+}
+
+.user_name {
   border: 1px solid #a5a5a5;
   border-radius: 4px;
   padding: 5px;
   margin: 0 1rem;
-  color:#000;
+  color: #000;
+}
+
+.cartitem_length {
+  left: 8%;
+  top: -14%;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 1px 6px;
+  background: #42b883;
+  font-size: 14px;
+  position: absolute;
+  border-radius: 50%;
+  text-align: center;
+  width: 5%;
+}
+
+.cart_item{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
 }
 
 /* =============== responsive code ===================*/
@@ -62,8 +88,8 @@
   .logo {
     padding: 0 20%;
   }
-  .main_navbar{
-    display:none;
+  .main_navbar {
+    display: none;
   }
 
   .navbar_toggler {
@@ -71,11 +97,7 @@
     display: block;
   }
 
-  .navbar {
-   
-  }
-
-  .navbar ul{
+  .navbar ul {
     position: absolute;
     width: 34%;
     background: #fff;
@@ -88,7 +110,7 @@
     align-items: center;
   }
 
-  .navbar ul a{
+  .navbar ul a {
     padding: 0.75rem;
     color: rgb(19, 18, 18);
     border-bottom: 1px solid #ececec;
@@ -196,10 +218,7 @@
     padding: 1rem;
   }
 
-  .mini_shop_essential{
-    
-  }
-  .mini_shop_essential ul{
+  .mini_shop_essential ul {
     position: absolute;
     width: 34%;
     background: #fff;
@@ -213,8 +232,8 @@
     align-items: center;
   }
 
-  .mini_shop_essential ul a{
+  .mini_shop_essential ul a {
     padding: 0.75rem;
-    color:#000;
+    color: #000;
   }
 }

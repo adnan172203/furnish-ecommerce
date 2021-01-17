@@ -48,6 +48,11 @@
   cursor:pointer;
 }
 
+.plus_icon:hover{
+  background:#42b883;
+  color:#fff;
+  font-weight: 700;
+}
 
 .single_product_count {
   background: #fff;
@@ -57,13 +62,15 @@
   border: 1px solid #eee;
 }
 
+
+
 .single_product_count span{
   display:flex;
   align-items: center;
 }
 
 
-.single_product_count span i {
+.single_product_count span button {
   padding: 1rem 1rem;
   color: #919191;
   cursor: pointer;

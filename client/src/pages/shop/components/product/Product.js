@@ -62,18 +62,18 @@ const Product = ({ product }) => {
             cartItem[0].productId === product._id ? (
               <div className={single_product_count} >
                 <span>
-                  <i>
+                  <button>
                     <FaChevronLeft
                       onClick={() => decrementProductCartCount(product._id)}
                     />
-                  </i>
+                  </button>
                   {cartItem.length > 0 && cartItem[0].qty}
 
-                  <i>
+                  <button>
                     <FaChevronRight
                       onClick={() => incrementProductCartCount(product._id)}
                     />
-                  </i>
+                  </button>
                 </span>
               </div>
             ) : (

@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //icon
 import { FaShoppingCart, FaBars, FaEllipsisV } from 'react-icons/fa';
+import { CgShoppingCart } from "react-icons/cg";
 
 //css
 import Styles from './header.module.css';
@@ -28,12 +29,20 @@ const {
   header_icon,
   mini_shop_essential,
   user_name,
+  cartitem_length,
+  cart_item,
 } = Styles;
 
 const Header = ({ history }) => {
   const dispatch = useDispatch();
+
+  //user info
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+
+  //cart item
+  const { cartItems } = useSelector((state) => state.cartReducer);
+
   const [menu, setMenu] = useState(true);
   const [shopEssential, setShopEssential] = useState(true);
   const { hidden } = useSelector((state) => state.cartReducer);
@@ -104,12 +113,15 @@ const Header = ({ history }) => {
 
         <div className={shop_essentials}>
           <div className={shop_essentials_icon}>
-            <FaShoppingCart
-              onClick={() => dispatch(toggleCartHidden())}
-              className={header_icon}
-            />
+            <div className={cart_item} onClick={() => dispatch(toggleCartHidden())}>
+              <span className={cartitem_length}>{cartItems.length}</span>
+              <CgShoppingCart
+                
+                className={header_icon}
+              />
+            </div>
 
-            { userInfo && userInfo.user ? (
+            {userInfo && userInfo.user ? (
               <Link
                 to='/dashboard/profile'
                 className={user_name}

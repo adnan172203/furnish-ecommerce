@@ -34,7 +34,7 @@ const {
   product_info,
   product_add_to_cart,
   single_product_count,
-  pushReleaseFromRight
+  add_single_product
 } = Styles;
 
 const SingleProduct = ({ match }) => {
@@ -131,22 +131,23 @@ const SingleProduct = ({ match }) => {
                 cartItem[0].productId === match.params.id ? (
                   <div className={single_product_count}>
                     <span>
-                      <i>
+                      <button>
                         <FaChevronLeft
                           onClick={() => decrementProductCartCount(product._id)}
                         />
-                      </i>
+                      </button>
                       {cartItem.length > 0 && cartItem[0].qty}
 
-                      <i>
+                      <button>
                         <FaChevronRight
                           onClick={() => incrementProductCartCount(product._id)}
                         />
-                      </i>
+                      </button>
                     </span>
                   </div>
                 ) : (
                   <button
+                    className={add_single_product}
                     onClick={() => dispatch(addToCart(product._id, quantity))}
                   >
                     Add To Cart
