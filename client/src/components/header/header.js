@@ -27,6 +27,7 @@ const {
   shop_essentials_icon,
   header_icon,
   mini_shop_essential,
+  user_name,
 } = Styles;
 
 const Header = ({ history }) => {
@@ -35,7 +36,6 @@ const Header = ({ history }) => {
   const { userInfo } = userLogin;
   const [menu, setMenu] = useState(true);
   const [shopEssential, setShopEssential] = useState(true);
-
   const { hidden } = useSelector((state) => state.cartReducer);
 
   const logoutHandler = () => {
@@ -108,6 +108,16 @@ const Header = ({ history }) => {
               onClick={() => dispatch(toggleCartHidden())}
               className={header_icon}
             />
+
+            { userInfo && userInfo.user ? (
+              <Link
+                to='/dashboard/profile'
+                className={user_name}
+                onClick={logoutHandler}
+              >
+                {userInfo.user.name.split(' ').slice(0, 1)}
+              </Link>
+            ) : null}
 
             {userInfo ? (
               <Link to='' onClick={logoutHandler}>
