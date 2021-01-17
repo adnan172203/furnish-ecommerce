@@ -30,8 +30,8 @@ module.exports.getProducts = asyncHandler(async (req, res, next) => {
   query = Product.find(JSON.parse(queryStr));
 
   // Pagination
-  const page = parseInt(req.query.page, 10) || 1;
-  const limit = parseInt(req.query.limit, 10) || 12;
+  const page = parseInt(req.query.page, 1) || 1;
+  const limit = parseInt(req.query.limit, 3) || 12;
   const startIndex = (page - 1) * limit;
   const endIndex = page * limit;
   const total = await Product.countDocuments();

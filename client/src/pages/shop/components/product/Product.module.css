@@ -1,11 +1,12 @@
 .product_item {
-  flex-basis: 26%;
+  flex-basis: 28%;
   margin-right: 1.5rem;
   margin-bottom: 3rem;
   background: #fff;
   padding: 9px;
   border-radius: 8px;
   box-shadow: 0px 2px 12px 0px rgb(0 0 0 / 0.06);
+  border:1px solid #e6e6e6;
 }
 
 .desc_item {
@@ -46,3 +47,28 @@
   margin-top: 27px;
   cursor:pointer;
 }
+
+
+.single_product_count {
+  background: #fff;
+  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  border-radius: 7px;
+  /* padding: 4px 0px 10px 0px; */
+  border: 1px solid #eee;
+}
+
+.single_product_count span{
+  display:flex;
+  align-items: center;
+}
+
+
+.single_product_count span i {
+  padding: 1rem 1rem;
+  color: #919191;
+  cursor: pointer;
+}
+
+/* .single_product_count span i svg {
+  margin-top: 12px;
+} */

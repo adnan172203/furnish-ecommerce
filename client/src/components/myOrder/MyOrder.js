@@ -23,8 +23,6 @@ const MyOrder = () => {
   const order = useSelector((state) => state.orderReducer);
   const { orders } = order;
 
-  console.log(orders);
-
   useEffect(() => {
     dispatch(myOrderList());
   }, [dispatch]);

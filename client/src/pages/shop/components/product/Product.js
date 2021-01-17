@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../../../../redux/cart/cartAction';
-import { useDispatch } from 'react-redux';
+import {
+  addToCart,
+  cartProductInrement,
+  cartProductDecrement,
+} from '../../../../redux/cart/cartAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 //icon
-import { BsPlus } from "react-icons/bs";
+import { BsPlus } from 'react-icons/bs';
+import { FaChevronLeft,FaChevronRight } from 'react-icons/fa';
 
 //css
 import Styles from './Product.module.css';
@@ -16,11 +21,25 @@ const {
   product_name,
   product_price,
   desc_item,
-  plus_icon
+  plus_icon,
+  product_add_to_cart,
+  single_product_count
 } = Styles;
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
+
+  const { cartItems } = useSelector((state) => state.cartReducer);
+  let cartItem = cartItems.filter((item) => item.productId === product._id);
+
+  //product increment/decrement
+  const incrementProductCartCount = (productId) => {
+    dispatch(cartProductInrement(productId));
+  };
+
+  const decrementProductCartCount = (productId) => {
+    dispatch(cartProductDecrement(productId));
+  };
 
   return (
     <>
@@ -37,7 +56,33 @@ const Product = ({ product }) => {
             </Link>
             <p className={product_price}>${product.price}</p>
           </div>
-          <BsPlus className={plus_icon} onClick={()=>dispatch(addToCart(product._id,1))} />
+
+          <div className={product_add_to_cart}>
+            {cartItem.length > 0 &&
+            cartItem[0].productId === product._id ? (
+              <div className={single_product_count} >
+                <span>
+                  <i>
+                    <FaChevronLeft
+                      onClick={() => decrementProductCartCount(product._id)}
+                    />
+                  </i>
+                  {cartItem.length > 0 && cartItem[0].qty}
+
+                  <i>
+                    <FaChevronRight
+                      onClick={() => incrementProductCartCount(product._id)}
+                    />
+                  </i>
+                </span>
+              </div>
+            ) : (
+              <BsPlus
+                className={plus_icon}
+                onClick={() => dispatch(addToCart(product._id, 1))}
+              />
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -34,22 +34,22 @@ const {
   product_info,
   product_add_to_cart,
   single_product_count,
+  pushReleaseFromRight
 } = Styles;
 
 const SingleProduct = ({ match }) => {
   const [formData, setFormData] = useState({
     comment: '',
   });
-  const [quantity, setQuantity] = useState(1);
-  
+
+  const [quantity,setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.product);
   const { product } = products;
 
-
   const { cartItems } = useSelector((state) => state.cartReducer);
-  let cartItem = cartItems.filter((item) => item.productId === match.params.id); 
+  let cartItem = cartItems.filter((item) => item.productId === match.params.id);
 
 
   let avgRating =
@@ -76,12 +76,10 @@ const SingleProduct = ({ match }) => {
 
   const incrementProductCartCount = (productId) => {
     dispatch(cartProductInrement(productId));
-    setQuantity(quantity + 1);
   };
 
   const decrementProductCartCount = (productId) => {
     dispatch(cartProductDecrement(productId));
-    setQuantity(quantity - 1);
   };
 
   return (
@@ -129,13 +127,8 @@ const SingleProduct = ({ match }) => {
                 <p>SKU : {product && product.sku}</p>
               </div>
               <div className={product_add_to_cart}>
-      
-                  <button
-                    onClick={() => dispatch(addToCart(product._id, quantity))}
-                  >
-                    Add To Cart
-                  </button>
-              
+                {cartItem.length > 0 &&
+                cartItem[0].productId === match.params.id ? (
                   <div className={single_product_count}>
                     <span>
                       <i>
@@ -143,7 +136,7 @@ const SingleProduct = ({ match }) => {
                           onClick={() => decrementProductCartCount(product._id)}
                         />
                       </i>
-                      {quantity}
+                      {cartItem.length > 0 && cartItem[0].qty}
 
                       <i>
                         <FaChevronRight
@@ -152,6 +145,13 @@ const SingleProduct = ({ match }) => {
                       </i>
                     </span>
                   </div>
+                ) : (
+                  <button
+                    onClick={() => dispatch(addToCart(product._id, quantity))}
+                  >
+                    Add To Cart
+                  </button>
+                )}
               </div>
             </div>
           </div>
