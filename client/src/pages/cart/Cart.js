@@ -33,7 +33,7 @@ const Cart = () => {
             <div className={cart_specification_name}>
               <h5>Product</h5>
               <h5>Price</h5>
-              <h5>Qty</h5>
+              <h5>Quantity</h5>
               <h5>Total</h5>
             </div>
             {cartItems &&

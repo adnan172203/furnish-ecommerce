@@ -37,15 +37,21 @@
 .cart_product_price,
 .cart_product_total,
 .cart_product_delete {
-  color: #919191;
+  color: #040404;
 }
 
-.cart_product_qty i {
+.cart_product_qty button {
   color: #42b883;
 }
 .cart_product_qty span {
   color: #919191;
   padding: 0.3rem;
+}
+
+.delete_icon{
+  font-size: 20px;
+  color: #828282;
+  cursor: pointer;
 }
 
 /* ============== responsive code ===================== */

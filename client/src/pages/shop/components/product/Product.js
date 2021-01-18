@@ -4,12 +4,13 @@ import {
   addToCart,
   cartProductInrement,
   cartProductDecrement,
+  removeCartItem,
 } from '../../../../redux/cart/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 //icon
 import { BsPlus } from 'react-icons/bs';
-import { FaChevronLeft,FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 //css
 import Styles from './Product.module.css';
@@ -23,7 +24,7 @@ const {
   desc_item,
   plus_icon,
   product_add_to_cart,
-  single_product_count
+  single_product_count,
 } = Styles;
 
 const Product = ({ product }) => {
@@ -58,21 +59,25 @@ const Product = ({ product }) => {
           </div>
 
           <div className={product_add_to_cart}>
-            {cartItem.length > 0 &&
-            cartItem[0].productId === product._id ? (
-              <div className={single_product_count} >
+            {cartItem.length > 0 && cartItem[0].productId === product._id ? (
+              <div className={single_product_count}>
                 <span>
-                  <button>
-                    <FaChevronLeft
-                      onClick={() => decrementProductCartCount(product._id)}
-                    />
+                  <button
+                    onClick={() => decrementProductCartCount(product._id)}
+                  >
+                    {cartItem[0].qty < 1
+                      ? dispatch(removeCartItem(product._id))
+                      : null}
+                    <FaChevronLeft />
                   </button>
-                  {cartItem.length > 0 && cartItem[0].qty}
+                  {cartItem.length > 0 && cartItem[0].qty < 1
+                    ? 1
+                    : cartItem[0].qty}
 
-                  <button>
-                    <FaChevronRight
-                      onClick={() => incrementProductCartCount(product._id)}
-                    />
+                  <button
+                    onClick={() => incrementProductCartCount(product._id)}
+                  >
+                    <FaChevronRight />
                   </button>
                 </span>
               </div>

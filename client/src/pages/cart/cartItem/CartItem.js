@@ -2,6 +2,7 @@ import React from 'react';
 import {
   cartProductInrement,
   cartProductDecrement,
+  removeCartItem,
 } from '../../../redux/cart/cartAction';
 import { useDispatch } from 'react-redux';
 
@@ -10,6 +11,7 @@ import Styles from './CartItem.module.css';
 
 //icon
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { TiDeleteOutline } from 'react-icons/ti';
 
 const {
   cart_product_details,
@@ -18,7 +20,8 @@ const {
   cart_product_price,
   cart_product_qty,
   cart_product_total,
-  cart_product_delete
+  cart_product_delete,
+  delete_icon,
 } = Styles;
 
 const CartItem = ({ cartItem }) => {
@@ -40,36 +43,39 @@ const CartItem = ({ cartItem }) => {
         <div className={cart_product_image}>
           <img src={image && image.url[0]} alt='' />
         </div>
-   
-          <div className={cart_product_name}>
-            <h5>{name}</h5>
-          </div>
-          <div className={cart_product_price}>
-            <p>${price}</p>
-          </div>
-          <div className={cart_product_qty}>
-            <span>
-              <FaChevronLeft
-                onClick={() => decrementProductCartCount(productId)}
-              />
-            </span>
 
-            <span>{qty}</span>
+        <div className={cart_product_name}>
+          <h5>{name}</h5>
+        </div>
+        <div className={cart_product_price}>
+          <p>${price}</p>
+        </div>
+        <div className={cart_product_qty}>
+          <span>
+            <button onClick={() => decrementProductCartCount(productId)}>
+            {qty < 1 ? dispatch(removeCartItem(productId)) : null}
+              <FaChevronLeft />
+            </button>
+          </span>
 
-            <span>
-              <FaChevronRight
-                onClick={() => incrementProductCartCount(productId)}
-              />
-            </span>
-          </div>
-          <div className={cart_product_total}>
-            <p>${price * qty}</p>
-          </div>
+          <span>{qty}</span>
+
+          <span>
+            <button onClick={() => incrementProductCartCount(productId)}>
+              <FaChevronRight />
+            </button>
+          </span>
+        </div>
+        <div className={cart_product_total}>
+          <p>${price * qty}</p>
         </div>
         <div className={cart_product_delete}>
-          <i className='far fa-times-circle'></i>
+          <TiDeleteOutline
+            className={delete_icon}
+            onClick={() => dispatch(removeCartItem(productId))}
+          />
         </div>
- 
+      </div>
     </>
   );
 };

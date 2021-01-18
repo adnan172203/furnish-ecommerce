@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 //icon
 import { FaShoppingCart, FaBars, FaEllipsisV } from 'react-icons/fa';
-import { CgShoppingCart } from "react-icons/cg";
+import { CgShoppingCart } from 'react-icons/cg';
 
 //css
 import Styles from './header.module.css';
@@ -113,19 +113,16 @@ const Header = ({ history }) => {
 
         <div className={shop_essentials}>
           <div className={shop_essentials_icon}>
-            <div className={cart_item} onClick={() => dispatch(toggleCartHidden())}>
+            <div
+              className={cart_item}
+              onClick={() => dispatch(toggleCartHidden())}
+            >
               <span className={cartitem_length}>{cartItems.length}</span>
-              <CgShoppingCart
-                
-                className={header_icon}
-              />
+              <CgShoppingCart className={header_icon} />
             </div>
 
             {userInfo && userInfo.user ? (
-              <Link
-                to='/dashboard/profile'
-                className={user_name}
-              >
+              <Link to='/dashboard/profile' className={user_name}>
                 {userInfo.user.name.split(' ').slice(0, 1)}
               </Link>
             ) : null}
