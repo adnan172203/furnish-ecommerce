@@ -125,7 +125,6 @@ const Header = ({ history }) => {
               <Link
                 to='/dashboard/profile'
                 className={user_name}
-                onClick={logoutHandler}
               >
                 {userInfo.user.name.split(' ').slice(0, 1)}
               </Link>
