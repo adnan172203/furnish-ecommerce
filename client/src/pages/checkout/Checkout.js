@@ -39,7 +39,7 @@ const Checkout = ({history}) => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress({...formData}));
-    history.push('/placeorder')
+    history.push('/payment')
   };
 
   return (
@@ -96,7 +96,7 @@ const Checkout = ({history}) => {
                       />
                     </div>
                     <div className={place_order}>
-                      <button type='submit'>Places Order</button>
+                      <button type='submit'>Submit</button>
                     </div>
                   </form>
                 </div>

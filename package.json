@@ -13,6 +13,8 @@
   "author": "adnan",
   "license": "ISC",
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.2.0",
+    "@stripe/stripe-js": "^1.11.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.23.0",
     "cookie-parser": "^1.4.5",
@@ -27,7 +29,8 @@
     "react-icons": "^3.11.0",
     "react-slick": "^0.27.13",
     "react-tabs": "^3.1.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "stripe": "^8.131.1"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
