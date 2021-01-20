@@ -7,7 +7,7 @@ import {
   singleProductDetails,
   createProductReview,
 } from '../../redux/product/product-action';
-import { addToCart } from '../../redux/cart/cartAction';
+import { addToCart,removeCartItem } from '../../redux/cart/cartAction';
 
 import {
   cartProductInrement,
@@ -64,6 +64,14 @@ const SingleProduct = ({ match }) => {
   useEffect(() => {
     dispatch(singleProductDetails(match.params.id));
   }, [dispatch, match.params.id]);
+
+  useEffect(() => {
+    if (cartItem.length === 1 && cartItem[0].qty < 1) {
+      dispatch(removeCartItem(match.params.id));
+    } else {
+      return null;
+    }
+  }, [dispatch, cartItem, match.params.id]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

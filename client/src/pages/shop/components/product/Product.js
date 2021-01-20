@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   addToCart,
@@ -43,13 +43,12 @@ const Product = ({ product }) => {
   };
 
   useEffect(() => {
-    if(cartItem.length === 1 &&  cartItem[0].qty < 1){
-      dispatch(removeCartItem(product._id))
-    }else{
-     return null;
+    if (cartItem.length === 1 && cartItem[0].qty < 1) {
+      dispatch(removeCartItem(product._id));
+    } else {
+      return null;
     }
-
-  }, [dispatch,cartItem,product._id])
+  }, [dispatch, cartItem, product._id]);
 
   return (
     <>
@@ -74,7 +73,6 @@ const Product = ({ product }) => {
                   <button
                     onClick={() => decrementProductCartCount(product._id)}
                   >
-
                     <FaChevronLeft />
                   </button>
                   {cartItem.length > 0 && cartItem[0].qty < 1
