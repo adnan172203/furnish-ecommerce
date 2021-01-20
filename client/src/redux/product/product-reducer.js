@@ -29,7 +29,7 @@ const product = (state = initialState, action) => {
     case PRODUCT_LIST:
       return {
         ...state,
-        products: payload.products,
+        products: [...payload.products],
       };
 
     case PRODUCT_CREATE:

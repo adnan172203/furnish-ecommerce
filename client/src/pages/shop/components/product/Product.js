@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import {
   addToCart,
@@ -42,6 +42,15 @@ const Product = ({ product }) => {
     dispatch(cartProductDecrement(productId));
   };
 
+  useEffect(() => {
+    if(cartItem.length === 1 &&  cartItem[0].qty < 1){
+      dispatch(removeCartItem(product._id))
+    }else{
+     return null;
+    }
+
+  }, [dispatch,cartItem,product._id])
+
   return (
     <>
       <div className={product_item} key={product._id}>
@@ -65,9 +74,7 @@ const Product = ({ product }) => {
                   <button
                     onClick={() => decrementProductCartCount(product._id)}
                   >
-                    {cartItem[0].qty < 1
-                      ? dispatch(removeCartItem(product._id))
-                      : null}
+
                     <FaChevronLeft />
                   </button>
                   {cartItem.length > 0 && cartItem[0].qty < 1

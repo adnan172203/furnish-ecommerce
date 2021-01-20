@@ -10,7 +10,7 @@ import { toggleCartHidden } from '../../redux/cart/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 //icon
-import { FaShoppingCart, FaBars, FaEllipsisV } from 'react-icons/fa';
+import { FaBars, FaEllipsisV } from 'react-icons/fa';
 import { CgShoppingCart } from 'react-icons/cg';
 
 //css

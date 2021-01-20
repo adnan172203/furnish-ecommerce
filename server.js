@@ -24,6 +24,7 @@ const productsRoute = require('./Routes/products');
 const ordersRoute = require('./Routes/orders');
 const uploadsRoute = require('./Routes/upload');
 const categoryRoute = require('./Routes/category');
+const paymentRoute = require('./Routes/payment');
 
 // Mount routers
 app.use('/api/v1/users', usersRoute);
@@ -31,6 +32,7 @@ app.use('/api/v1/products', productsRoute);
 app.use('/api/v1/orders', ordersRoute);
 app.use('/api/v1/uploads', uploadsRoute);
 app.use('/api/v1/category', categoryRoute);
+app.use('/api/v1/payment', paymentRoute);
 
 app.use(errorHandler);
 

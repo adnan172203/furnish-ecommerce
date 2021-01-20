@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { createPaymentIntent } = require('../controller/stripe');
+const { createPaymentIntent } = require('../controller/paymentController');
 
 //middleware
 const { auth } = require('../middleware/auth');

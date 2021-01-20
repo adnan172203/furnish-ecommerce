@@ -51,28 +51,32 @@
 
 .shop_essentials_icon a {
   color: #000;
+  margin-left: 16px;
 }
 
 .user_name {
   border: 1px solid #a5a5a5;
   border-radius: 4px;
   padding: 5px;
-  margin: 0 1rem;
   color: #000;
 }
 
+.cart_item{
+  position: relative;
+}
+
 .cartitem_length {
-  left: 8%;
-  top: -14%;
+  left: 48%;
+  top: -23%;
   color: #ffffff;
-  font-weight: 600;
-  padding: 1px 6px;
+  font-weight: 500;
+  padding: 1px 7px;
   background: #42b883;
   font-size: 14px;
   position: absolute;
   border-radius: 50%;
   text-align: center;
-  width: 5%;
+  width: 27%;
 }
 
 .cart_item{

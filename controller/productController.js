@@ -7,6 +7,7 @@ const Product = require('../models/Product');
 
 //Get All Product
 module.exports.getProducts = asyncHandler(async (req, res, next) => {
+
   let query;
 
   // Copy req.query
@@ -58,6 +59,18 @@ module.exports.getProducts = asyncHandler(async (req, res, next) => {
   }
 
   res.status(200).json({ pagination, products });
+});
+
+//get single Product
+module.exports.getProduct = asyncHandler(async (req, res, next) => {
+  const id = req.params.id;
+  const product = await Product.findById(id);
+  if (!product)
+    return next(
+      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+    );
+
+  res.status(200).json(product);
 });
 
 //get single Product
@@ -238,7 +251,7 @@ module.exports.searchFilters = async (req, res) => {
     await handleCategory(req, res, category);
   }
 
-  if (price !== undefined) {
+  if (price) {
     await handlePrice(req, res, price);
   }
 
