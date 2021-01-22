@@ -61,7 +61,7 @@
 .countdown_timer .duration {
   color: #a9a7a7;
   position: absolute;
-  left: 29%;
+  width: 100%;
   font-size: 1.5vw;
   font-weight: 400;
 }
@@ -187,5 +187,18 @@ button.shop_now_button {
   .countdown_timer .duration {
     font-size: 4vw;
     margin-top: 11px;
+  }
+
+  button.shop_now_button {
+    font-size: 3.2vw;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .daysTotal p,
+  .hour p,
+  .min p,
+  .sec p {
+    padding: 1rem 1rem;
   }
 }

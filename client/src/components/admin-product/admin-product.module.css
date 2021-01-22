@@ -68,6 +68,7 @@ label.stock_margin {
 
 .label_edit {
   font-weight: 600;
+  margin-right: 10px;
 }
 
 input.create_product_submit {
@@ -77,6 +78,7 @@ input.create_product_submit {
   color: #fff;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* admin product list */
@@ -121,6 +123,7 @@ input.create_product_submit {
 .loaded_image {
   width: 15%;
   display: flex;
+  margin-bottom: 16px;
 }
 
 .loaded_image img {

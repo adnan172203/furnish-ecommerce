@@ -7,7 +7,7 @@ import {
   singleProductDetails,
   createProductReview,
 } from '../../redux/product/product-action';
-import { addToCart,removeCartItem } from '../../redux/cart/cartAction';
+import { addToCart, removeCartItem } from '../../redux/cart/cartAction';
 
 import {
   cartProductInrement,
@@ -42,7 +42,7 @@ const SingleProduct = ({ match }) => {
     comment: '',
   });
 
-  const [quantity,setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.product);
@@ -50,7 +50,6 @@ const SingleProduct = ({ match }) => {
 
   const { cartItems } = useSelector((state) => state.cartReducer);
   let cartItem = cartItems.filter((item) => item.productId === match.params.id);
-
 
   let avgRating =
     product &&

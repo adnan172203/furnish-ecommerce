@@ -25,13 +25,41 @@ const BestSelling = () => {
     dispatch(bestsellingProducts());
   }, [dispatch]);
 
-  const settings = {
-    dots: true,
+  var settings = {
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 3,
-    adaptiveHeight: true,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    autoplay: true,
+    centerMode: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   return (
     <>
@@ -41,13 +69,15 @@ const BestSelling = () => {
             <h2>Best Selling Items</h2>
           </div>
         </div>
-        <Slider {...settings} className={selling_slide}>
-          {bestSellProducts.map((product) => (
-            <div className={slide_items} key={product._id}>
-              <img src={product.image.url[0]} alt='' />
-            </div>
-          ))}
-        </Slider>
+        <div>
+          <Slider {...settings} className={selling_slide}>
+            {bestSellProducts.map((product) => (
+              <div className={slide_items} key={product._id}>
+                <img src={product.image.url[0]} alt='' />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </section>
     </>
   );

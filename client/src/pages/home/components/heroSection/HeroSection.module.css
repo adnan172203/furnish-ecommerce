@@ -6,6 +6,8 @@
 .banner_row {
   display: flex;
   flex-direction: column;
+  height: 40vw;
+  background:#fff;
 }
 
 .banner {
