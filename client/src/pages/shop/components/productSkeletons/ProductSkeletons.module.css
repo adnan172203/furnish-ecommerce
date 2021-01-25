@@ -1,0 +1,20 @@
+.skeleton_bg {
+  background: #fff;
+  border-radius: 5px;
+}
+
+ul.list {
+  padding: 1rem;
+}
+
+ul.list li {
+  list-style: none;
+}
+
+ul.list li span {
+  border-radius: 0;
+}
+.card_channel span {
+  padding-right: 1rem;
+  border-radius: 0;
+}

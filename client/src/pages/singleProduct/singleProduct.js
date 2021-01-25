@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TabItem from './components/tab/Tab';
+import SingleSkeleton from './components/singleSkeleton/SingleSkeleton';
 
 //action
 import {
@@ -34,7 +35,7 @@ const {
   product_info,
   product_add_to_cart,
   single_product_count,
-  add_single_product
+  add_single_product,
 } = Styles;
 
 const SingleProduct = ({ match }) => {
@@ -94,29 +95,32 @@ const SingleProduct = ({ match }) => {
       <section className={product_details}>
         <div className='container'>
           <div className={product_container}>
-            <div className={product_image}>
-              <div className={column_one}>
-                <div className={one}>
-                  {product &&
-                    product.image &&
-                    product.image.url.map((image, i) => (
-                      <img
-                        src={image}
-                        alt='imagegallery'
-                        key={i}
-                        onClick={() => setIndex(i)}
-                      />
-                    ))}
+            {!product ? (
+              <SingleSkeleton />
+            ) : (
+              <div className={product_image}>
+                <div className={column_one}>
+                  <div className={one}>
+                    {product &&
+                      product.image &&
+                      product.image.url.map((image, i) => (
+                        <img
+                          src={image}
+                          alt='imagegallery'
+                          key={i}
+                          onClick={() => setIndex(i)}
+                        />
+                      ))}
+                  </div>
+                </div>
+
+                <div className={column_two}>
+                  {product && product.image && (
+                    <img src={product.image.url[index]} alt='shopimage' />
+                  )}
                 </div>
               </div>
-
-              <div className={column_two}>
-                {product && product.image && (
-                  <img src={product.image.url[index]} alt='shopimage' />
-                )}
-              </div>
-            </div>
-
+            )}
             <div className={single_product_desc}>
               <div className={single_product_name}>
                 <h2>{product && product.name}</h2>
