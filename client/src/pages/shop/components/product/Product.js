@@ -89,7 +89,7 @@ const Product = ({ product }) => {
             ) : (
               <BsPlus
                 className={plus_icon}
-                onClick={() => dispatch(addToCart(product._id, 1))}
+                onClick={() => dispatch(addToCart(product._id))}
               />
             )}
           </div>

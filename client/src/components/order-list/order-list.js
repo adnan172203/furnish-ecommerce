@@ -7,6 +7,7 @@ import Styles from './order-list.module.css';
 
 const {
   order_list,
+  order_list_table,
   order_container_table100,
   order_wrap_table100,
   order_table100,
@@ -41,7 +42,7 @@ const OrderList = ({history}) => {
       <div className={order_container_table100}>
         <div className={order_wrap_table100}>
           <div className={order_table100}>
-            <table>
+            <table className={order_list_table}>
               <thead>
                 <tr className={order_table100_head}>
                   <th className={order_column1}>Date</th>

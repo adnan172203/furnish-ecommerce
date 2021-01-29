@@ -4,7 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 //css
 import Styles from './ProductSkeletons.module.css';
 
-const { skeleton_bg, list, card_channel } = Styles;
+const { skeleton_bg, list } = Styles;
 
 const ProductSkeletons = () => {
   return (

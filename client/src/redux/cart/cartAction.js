@@ -14,7 +14,7 @@ export const toggleCartHidden = () => {
   };
 };
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
+export const addToCart = (id, qty = 1) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/v1/products/${id}`);
 
   dispatch({

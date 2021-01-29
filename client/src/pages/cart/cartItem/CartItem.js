@@ -48,7 +48,7 @@ const CartItem = ({ cartItem }) => {
           <h5>{name}</h5>
         </div>
         <div className={cart_product_price}>
-          <p>${price}</p>
+          <p>${price} <span> x </span></p> 
         </div>
         <div className={cart_product_qty}>
           <span>

@@ -188,23 +188,26 @@ tbody tr:hover {
     left: 30px;
     top: 0;
   }
-  table tbody tr td:nth-child(1):before {
+  .order_list_table tbody tr td:nth-child(1):before {
     content: 'Date';
   }
-  table tbody tr td:nth-child(2):before {
+  .order_list_table tbody tr td:nth-child(2):before {
     content: 'Order ID';
   }
-  table tbody tr td:nth-child(3):before {
-    content: 'Name';
+  .order_list_table tbody tr td:nth-child(3):before {
+    content: 'Paid';
   }
-  table tbody tr td:nth-child(4):before {
-    content: 'Price';
-  }
-  table tbody tr td:nth-child(5):before {
+  .order_list_table tbody tr td:nth-child(4):before {
     content: 'Quantity';
   }
-  table tbody tr td:nth-child(6):before {
+
+  .order_list_table tbody tr td:nth-child(5):before {
     content: 'Total';
+  }
+
+  .order_column1,.order_column2 {
+
+    text-align: left;
   }
 
   .order_column4,

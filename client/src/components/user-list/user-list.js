@@ -10,6 +10,7 @@ import Styles from './user-list.module.css';
 
 const {
   user_list,
+  userlist_table,
   user_container_table100,
   user_wrap_table100,
   user_table100_head,
@@ -41,7 +42,7 @@ const UserList = ({history}) => {
       <div className={user_container_table100}>
         <div className={user_wrap_table100}>
           <div className={user_table100}>
-            <table>
+            <table className={userlist_table}>
               <thead>
                 <tr className={user_table100_head}>
                   <th className={user_column1}>Name</th>

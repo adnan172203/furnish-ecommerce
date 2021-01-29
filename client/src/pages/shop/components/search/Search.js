@@ -10,7 +10,7 @@ const Search = ({ handleSearch }) => {
   return (
     <>
       <div className={search_product}>
-        <form action=''>
+        <form>
           <FaSearch className={search_icon} />
           <input
             type='search'

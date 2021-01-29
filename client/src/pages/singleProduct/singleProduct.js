@@ -43,7 +43,6 @@ const SingleProduct = ({ match }) => {
     comment: '',
   });
 
-  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.product);
@@ -159,7 +158,7 @@ const SingleProduct = ({ match }) => {
                 ) : (
                   <button
                     className={add_single_product}
-                    onClick={() => dispatch(addToCart(product._id, quantity))}
+                    onClick={() => dispatch(addToCart(product._id))}
                   >
                     Add To Cart
                   </button>

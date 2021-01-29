@@ -7,12 +7,12 @@
   display: flex;
   flex-direction: column;
   height: 40vw;
-  background:#fff;
+  background: #fff;
 }
 
 .banner {
   background: #fff;
-  height: 40vw;
+  height: 100%;
   position: relative;
   box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
   max-width: 100%;
@@ -183,4 +183,22 @@
   border-radius: 3px;
   color: #42b883;
   outline: none;
+}
+
+@media screen and (max-width: 700px) {
+  .banner_row {
+    height: 55vw;
+  }
+
+  .slider_img {
+    width: 65%;
+  }
+
+  .banner_button {
+    z-index: 1;
+  }
+
+  .banner_button button {
+    font-size: 2.2vw;
+  }
 }

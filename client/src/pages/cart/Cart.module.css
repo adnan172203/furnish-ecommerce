@@ -135,5 +135,7 @@
 }
 
 @media screen and (max-width: 450px) {
-
+  .cart_update{
+    margin-bottom: 16px;
+  }
 }

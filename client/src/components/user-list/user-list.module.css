@@ -195,24 +195,21 @@ tbody tr:hover {
     left: 30px;
     top: 0;
   }
-  table tbody tr td:nth-child(1):before {
-    content: 'Date';
-  }
-  table tbody tr td:nth-child(2):before {
-    content: 'Order ID';
-  }
-  table tbody tr td:nth-child(3):before {
+  .userlist_table tbody tr td:nth-child(1):before {
     content: 'Name';
   }
-  table tbody tr td:nth-child(4):before {
-    content: 'Price';
+  .userlist_table tbody tr td:nth-child(2):before {
+    content: 'Email';
   }
-  table tbody tr td:nth-child(5):before {
-    content: 'Quantity';
+  .userlist_table tbody tr td:nth-child(3):before {
+    content: 'Role';
   }
-  table tbody tr td:nth-child(6):before {
-    content: 'Total';
+
+  .user_column3{
+    align-items: baseline;
+    justify-content: flex-start;
   }
+
 
   .user_column4,
   .user_column5,

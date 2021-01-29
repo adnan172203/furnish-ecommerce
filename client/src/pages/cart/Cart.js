@@ -12,7 +12,6 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 const {
   shoping_cart,
   cart_area,
-  cart_specification_name,
   cart_calculation,
   cart_total_calculation,
   sub_total,
@@ -30,12 +29,12 @@ const Cart = () => {
       <section className={shoping_cart}>
         <div className='container'>
           <div className={cart_area}>
-            <div className={cart_specification_name}>
+            {/* <div className={cart_specification_name}>
               <h5>Product</h5>
               <h5>Price</h5>
               <h5>Quantity</h5>
               <h5>Total</h5>
-            </div>
+            </div> */}
             {cartItems &&
               cartItems.map((cartItem) => (
                 <CartItem cartItem={cartItem} key={cartItem.productId} />
@@ -45,7 +44,7 @@ const Cart = () => {
           <div className={cart_calculation}>
             <div className={cart_update}>
               <p>
-                <FaLongArrowAltLeft className={shopping_arrow}/> <Link to="/shop">continue shipping</Link>
+                <FaLongArrowAltLeft className={shopping_arrow}/> <Link to="/shop">continue shopping</Link>
               </p>
               
             </div>
