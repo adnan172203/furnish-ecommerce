@@ -100,9 +100,10 @@
 }
 
 .banner_text h1 {
-  color: #a8a8a8;
-  font-weight: 500;
-  font-size: 2.5vw;
+  color: #464646;
+  font-weight: 100;
+  font-size: 3vw;
+  font-family: 'Anton',Fantasy;
 }
 
 .banner_text h1 {
@@ -132,7 +133,7 @@
 }
 
 .banner_text h3 {
-  color: #c8c8c8;
+  color: #565656;
   font-size: 1.5vw;
   font-weight: 400;
   margin-top: 10%;
@@ -165,7 +166,7 @@
 }
 
 .banner_text .real_price {
-  color: #c8c8c8;
+  color:#757575;
   text-decoration: line-through;
 }
 
@@ -185,6 +186,12 @@
   outline: none;
 }
 
+@media screen and (max-width: 900px) {
+  .banner_button{
+    bottom: 24%;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .banner_row {
     height: 55vw;
@@ -192,6 +199,7 @@
 
   .slider_img {
     width: 65%;
+    right: -35px;
   }
 
   .banner_button {
@@ -201,4 +209,18 @@
   .banner_button button {
     font-size: 2.2vw;
   }
+
+  .banner_text h1{
+    font-size: 3.8vw;
+  }
+
+  .banner_text h3{
+    font-size: 2vw;
+  }
+
+  .banner_text .discount_price {
+    font-size: 2.4vw;
+
+  }
+
 }

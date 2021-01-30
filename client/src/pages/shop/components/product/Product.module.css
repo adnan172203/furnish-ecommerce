@@ -5,7 +5,7 @@
   background: #fff;
   padding: 9px;
   border-radius: 8px;
-  border:1px solid #d0d0d0;
+  border: 1px solid #d0d0d0;
 }
 
 .desc_item {
@@ -44,12 +44,12 @@
   padding: 10px;
   border-radius: 6px;
   margin-top: 27px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.plus_icon:hover{
-  background:#42b883;
-  color:#fff;
+.plus_icon:hover {
+  background: #42b883;
+  color: #fff;
   font-weight: 700;
 }
 
@@ -60,16 +60,32 @@
   border: 1px solid #eee;
 }
 
-
-
-.single_product_count span{
-  display:flex;
+.single_product_count span {
+  display: flex;
   align-items: center;
 }
-
 
 .single_product_count span button {
   padding: 1rem 1rem;
   color: #919191;
   cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .product_item {
+    flex-basis: 25%;
+  }
+}
+
+
+@media screen and (max-width: 800px){
+  .product_item {
+    flex-basis: 40%;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .product_item {
+    flex-basis: 75%;
+  }
 }

@@ -19,7 +19,7 @@ import Styles from './header.module.css';
 const {
   main_header,
   main_navbar,
-  navbar,
+  show,
   navbar_toggler,
   bars,
   logo,
@@ -27,7 +27,7 @@ const {
   shop_essentials,
   shop_essentials_icon,
   header_icon,
-  mini_shop_essential,
+  show_item,
   user_name,
   cartitem_length,
   cart_item,
@@ -62,18 +62,7 @@ const Header = ({ history }) => {
   return (
     <>
       <header className={main_header}>
-        {!menu ? (
-          <nav className={navbar}>
-            <ul>
-              <Link to='/'>Home</Link>
-              <Link to='/shop'>Shop</Link>
-              <Link to='/cart'>Cart</Link>
-              {userInfo && <Link to='/dashboard'>dashboard</Link>}
-            </ul>
-          </nav>
-        ) : null}
-
-        <nav className={main_navbar}>
+        <nav className={main_navbar} id={menu ? show : ''}>
           <ul>
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
@@ -95,32 +84,14 @@ const Header = ({ history }) => {
           <FaEllipsisV onClick={handleShopEssential} />
         </div>
 
-        {!shopEssential ? (
-          <div className={mini_shop_essential}>
-            <ul>
-              <Link to='/cart'>Cart Item</Link>
-
-              {userInfo ? (
-                <Link to='' onClick={logoutHandler}>
-                  Log out
-                </Link>
-              ) : (
-                <Link to='/login'>log in</Link>
-              )}
-            </ul>
-          </div>
-        ) : null}
-
-        <div className={shop_essentials}>
+        <div className={cart_item} onClick={() => dispatch(toggleCartHidden())}>
+          <span className={cartitem_length}>{cartItems.length}</span>
+          <CgShoppingCart className={header_icon} />
+        </div>
+        {!hidden ? null : <CartDropdown />}
+        
+        <div className={shop_essentials} id={shopEssential ? show_item : ''}>
           <div className={shop_essentials_icon}>
-            <div
-              className={cart_item}
-              onClick={() => dispatch(toggleCartHidden())}
-            >
-              <span className={cartitem_length}>{cartItems.length}</span>
-              <CgShoppingCart className={header_icon} />
-            </div>
-
             {userInfo && userInfo.user ? (
               <Link to='/dashboard/profile' className={user_name}>
                 {userInfo.user.name.split(' ').slice(0, 1)}
@@ -135,7 +106,6 @@ const Header = ({ history }) => {
               <Link to='/login'>log in</Link>
             )}
           </div>
-          {!hidden ? null : <CartDropdown />}
         </div>
       </header>
     </>
