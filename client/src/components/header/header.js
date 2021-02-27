@@ -67,7 +67,7 @@ const Header = ({ history }) => {
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
             <Link to='/cart'>Cart</Link>
-            {userInfo && <Link to='/dashboard'>dashboard</Link>}
+            {userInfo && <Link to='/dashboard'>Dashboard</Link>}
           </ul>
         </nav>
 

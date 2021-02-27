@@ -9,12 +9,14 @@ import { bestsellingProducts } from '../../../../redux/product/product-action';
 //css
 import Styles from './BestSelling.module.css';
 
+
 const {
   best_selling_items,
   best_selling_heading,
   heading_background,
   slide_items,
   selling_slide,
+  product_name
 } = Styles;
 
 const BestSelling = () => {
@@ -26,6 +28,7 @@ const BestSelling = () => {
   }, [dispatch]);
 
   var settings = {
+    className: 'ting_tong',
     dots: false,
     infinite: true,
     speed: 500,
@@ -34,6 +37,7 @@ const BestSelling = () => {
     initialSlide: 0,
     autoplay: true,
     centerMode: true,
+    swipeToSlide: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -74,6 +78,9 @@ const BestSelling = () => {
             {bestSellProducts.map((product) => (
               <div className={slide_items} key={product._id}>
                 <img src={product.image.url[0]} alt='' />
+                <div className={product_name}>
+                  <p>{product.name}</p>
+                </div>
               </div>
             ))}
           </Slider>

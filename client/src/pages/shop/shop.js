@@ -67,7 +67,9 @@ const Shop = () => {
               <Search handleSearch={handleSearch} />
               <PriceFilter handlePrice={handlePrice} price={price} />
             </div>
+            
             <ShopProduct />
+
             <Link to="/cart">
             <div className={responsive_cart_item}>
               <div className={responsive_cart_item_length}>

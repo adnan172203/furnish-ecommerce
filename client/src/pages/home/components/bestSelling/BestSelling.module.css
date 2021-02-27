@@ -28,15 +28,17 @@
 }
 
 .slide_items {
-  margin-right: 15px !important;
-  width: 91% !important;
+  width: 95% !important;
   border: 1px solid #d0d0d0;
   border-radius: 8px;
+  height: 47vh;
+  position:relative;
 }
 
 .slide_items img {
   max-width: 100%;
   border-radius: 7px;
+  height: 100%;
 }
 
 .selling_slide {
@@ -45,11 +47,14 @@
   overflow: hidden;
 }
 
-.selling_slide .slick-slide {
-  margin-right: 1rem;
-  border: 1px solid #eee;
+.product_name p {
+  text-transform: capitalize;
+  position: absolute;
+  z-index: 5;
+  top: 85%;
+  left: 36%;
+  color: #4e4e4e;
 }
-
 
 @media screen and (max-width: 900px) {
   .heading_background {

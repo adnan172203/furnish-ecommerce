@@ -45,7 +45,6 @@ const ProductUpdate = ({ match }) => {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.product);
 
-
   useEffect(() => {
     dispatch(singleProductDetails(productId));
   }, [dispatch, productId]);
@@ -102,7 +101,7 @@ const ProductUpdate = ({ match }) => {
         sku,
         sold,
         stock,
-        image,
+        image:image ? image : formData.image,
       })
     );
   };
@@ -194,8 +193,11 @@ const ProductUpdate = ({ match }) => {
                 {loading ? (
                   <img src={loadgif} alt='loading' />
                 ) : (
-                  image &&
-                  image.url.map((url, i) => (
+                  image ? image.url.map((url, i) => (
+                    <img src={url} alt='loadimage' key={i} />
+                  )):
+                  formData.image &&
+                  formData.image.url.map((url, i) => (
                     <img src={url} alt='loadimage' key={i} />
                   ))
                 )}

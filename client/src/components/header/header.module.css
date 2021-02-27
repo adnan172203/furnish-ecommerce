@@ -46,6 +46,10 @@
 
 .shop_essentials_icon a {
   color: #000;
+  margin-bottom: 13px;
+}
+
+.shop_essentials_icon a:nth-child(2) {
   margin-left: 16px;
 }
 
@@ -73,7 +77,7 @@
   top: -23%;
   color: #ffffff;
   font-weight: 500;
-  padding: 1px 7px;
+  padding: 0px 7px;
   background: #42b883;
   font-size: 14px;
   position: absolute;
@@ -93,6 +97,10 @@
 @media screen and (max-width: 900px) {
   .main_header {
     justify-content: center;
+  }
+
+  .shop_essentials_icon a:nth-child(2) {
+    margin-left: 0;
   }
 
   #show {
