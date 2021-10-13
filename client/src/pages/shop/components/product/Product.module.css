@@ -48,6 +48,7 @@
 }
 
 .plus_icon:hover {
+  border:none;
   background: #42b883;
   color: #fff;
   font-weight: 700;

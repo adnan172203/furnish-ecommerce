@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import {
   addToCart,
@@ -50,8 +51,14 @@ const Product = ({ product }) => {
     }
   }, [dispatch, cartItem, product._id]);
 
+  const addToCartHandler = () => {
+    dispatch(addToCart(product._id));
+    toast.success('Added to the cart');
+  };
+
   return (
     <>
+      <Toaster position='bottom-center' reverseOrder={false} />
       <div className={product_item} key={product._id}>
         <Link to={`/product/${product._id}`}>
           <div className={product_img}>
@@ -89,7 +96,7 @@ const Product = ({ product }) => {
             ) : (
               <BsPlus
                 className={plus_icon}
-                onClick={() => dispatch(addToCart(product._id))}
+                onClick={() => addToCartHandler()}
               />
             )}
           </div>

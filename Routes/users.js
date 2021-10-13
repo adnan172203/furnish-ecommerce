@@ -38,7 +38,16 @@ router.post(
 router.put('/profile', auth, updateUser);
 
 //login
-router.post('/login', login);
+router.post(
+  '/login',
+  [
+    check('email', 'email is required').notEmpty(),
+    check('email', 'email must be valid').isEmail(),
+    check('password', 'password is required').notEmpty(),
+    check('password', 'password must be 6 character').isLength({ min: 6 }),
+  ],
+  login
+);
 
 //logout user route
 router.post('/logout', auth, logOut);

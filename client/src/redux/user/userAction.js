@@ -28,7 +28,6 @@ export const register = (user) => async (dispatch) => {
       type: USER_REGISTER_SUCCESS,
       payload: data,
     });
-
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -68,15 +67,14 @@ export const login = (user) => async (dispatch) => {
 };
 
 export const logout = () => (dispatch) => {
-  localStorage.removeItem('userInfo')
-  localStorage.removeItem('cartItems')
-  localStorage.removeItem('shippingAddress')
+  localStorage.removeItem('userInfo');
+  localStorage.removeItem('cartItems');
+  localStorage.removeItem('shippingAddress');
 
-  dispatch({ type: USER_LOGOUT })
-  dispatch({ type: CART_CLEAR_ITEMS })
-  document.location.href = '/login'
-
-}
+  dispatch({ type: USER_LOGOUT });
+  dispatch({ type: CART_CLEAR_ITEMS });
+  document.location.href = '/login';
+};
 
 export const listUsers = () => async (dispatch) => {
   try {
@@ -98,9 +96,8 @@ export const listUsers = () => async (dispatch) => {
   }
 };
 
-export const getUserDetails = () => async (dispatch,getState) => {
+export const getUserDetails = () => async (dispatch, getState) => {
   try {
-
     const { data } = await axios.get(`/api/v1/users/me`);
     dispatch({
       type: USER_DETAILS_SUCCESS,

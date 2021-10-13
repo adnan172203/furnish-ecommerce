@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Styles from './Login.module.css';
@@ -15,9 +15,10 @@ const {
   form_control,
   btn,
   common_btn,
+  loader,
 } = Styles;
 
-const Login = ({history,location}) => {
+const Login = ({ history }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,20 +27,26 @@ const Login = ({history,location}) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{
-    if(userInfo){
+  useEffect(() => {
+    if (userInfo) {
       history.push('/');
     }
-  },[history,userInfo]);
+  }, [history, userInfo]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     dispatch(login({ ...formData }));
+
+    setTimeout(function () {
+      setLoading(false);
+    }, 1000);
   };
   return (
     <>
@@ -70,13 +77,14 @@ const Login = ({history,location}) => {
               </div>
 
               <button type='submit' className={`${btn} ${common_btn}`}>
-                Login
+                <span> Login </span>{' '}
+                <span>{loading ? <div className={loader}></div> : ''}</span>
               </button>
 
               <h4>or</h4>
 
               <h5>
-                Didn't Have An Account? ? <Link to="/register">Register</Link>
+                Didn't Have An Account? <Link to='/register'>Register</Link>
               </h5>
             </form>
           </div>
