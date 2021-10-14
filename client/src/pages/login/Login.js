@@ -77,7 +77,7 @@ const Login = ({ history }) => {
               </div>
 
               <button type='submit' className={`${btn} ${common_btn}`}>
-                <span> Login </span>{' '}
+                <span> Login </span>
                 <span>{loading ? <div className={loader}></div> : ''}</span>
               </button>
 

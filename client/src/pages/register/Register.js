@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 //action
 import { register } from '../../redux/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,8 +14,8 @@ const {
   form_control,
   btn,
   common_btn,
-  success_message,
-  error_message
+  loader,
+  form_validation_text,
 } = Styles;
 
 const Register = () => {
@@ -24,35 +23,32 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    P: '',
   });
 
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
-  const { message, error } = useSelector((state) => state.userRegister);
-  
+  const { error } = useSelector((state) => state.userRegister);
+
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     dispatch(register({ ...formData }));
+
+    setTimeout(function () {
+      setLoading(false);
+    }, 1000);
   };
 
   return (
     <>
       <div className={`${user_area} ${ptb_100}`}>
         <div className='container'>
-          {(message && (
-            <div className={success_message}>
-              <p>{message}</p>
-            </div>
-          )) ||
-            (error && (
-              <div className={error_message}>
-                <p>{error}</p>
-              </div>
-            ))}
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
               <h2>Register</h2>
@@ -62,43 +58,46 @@ const Register = () => {
                   type='text'
                   name='name'
                   className={form_control}
-                  placeholder='Your Name:'
+                  placeholder='Your Name'
                   onChange={(e) => onChange(e)}
                 />
               </div>
-
+              <p className={form_validation_text}>{error?.name}</p>
               <div className={form_group}>
                 <input
                   type='email'
                   name='email'
                   className={form_control}
-                  placeholder='Your Email:'
+                  placeholder='Your Email'
                   onChange={(e) => onChange(e)}
                 />
               </div>
-
+              <p className={form_validation_text}>{error?.email}</p>
               <div className={form_group}>
                 <input
                   type='password'
                   name='password'
                   className={form_control}
-                  placeholder='Password:'
+                  placeholder='Password'
                   onChange={(e) => onChange(e)}
                 />
               </div>
-
+              <p className={form_validation_text}>{error?.password}</p>
               <div className={form_group}>
                 <input
                   type='password'
-                  name='confirmpassword'
+                  name='confirmPassword'
                   className={form_control}
-                  placeholder='Confirm Password:'
+                  placeholder='Confirm Password'
                   onChange={(e) => onChange(e)}
                 />
               </div>
-
+              <p className={form_validation_text}>
+                {error?.confirmPassword}
+              </p>
               <button type='submit' className={`${btn} ${common_btn}`}>
-                Register
+                <span>Register</span>{' '}
+                <span>{loading ? <div className={loader}></div> : ''}</span>
               </button>
 
               <h4>or</h4>

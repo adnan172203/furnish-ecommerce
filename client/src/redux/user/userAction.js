@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+import valid from '../../utils/validation';
 import { CART_CLEAR_ITEMS } from '../cart/cartTypes';
 import {
   USER_REGISTER_SUCCESS,
@@ -15,6 +17,10 @@ import {
 } from './userTypes';
 
 export const register = (user) => async (dispatch) => {
+  const check = valid(user);
+  if (check.errLength > 0) {
+    return dispatch({ type: USER_REGISTER_FAIL, payload: check.errMsg });
+  }
   try {
     const config = {
       headers: {
@@ -22,7 +28,7 @@ export const register = (user) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post('/api/v1/users', user, config);
+    const data = await axios.post('/api/v1/users', user, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -32,8 +38,8 @@ export const register = (user) => async (dispatch) => {
     dispatch({
       type: USER_REGISTER_FAIL,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data.errors
+          ? error.response.data.errors
           : error.message,
     });
   }
