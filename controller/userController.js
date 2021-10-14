@@ -25,7 +25,7 @@ module.exports.addUser = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    return res.status(400).send(  errors );
+    return res.status(400).send(errors);
   }
   const { name, email, password, isAdmin } = req.body;
 
@@ -42,7 +42,9 @@ module.exports.addUser = asyncHandler(async (req, res) => {
   });
 
   const newUser = await user.save();
-  res.status(200).json({ message: 'New Account Has Been Created', data: newUser });
+  res
+    .status(200)
+    .json({ message: 'New Account Has Been Created', data: newUser });
 });
 
 //update user
@@ -71,21 +73,21 @@ module.exports.login = asyncHandler(async (req, res, next) => {
 
   // Validate emil & password
   if (!email || !password) {
-    return next(new ErrorResponse('Please provide an email and password', 400));
+    return  res.status(400).json({ message: 'Please provide an email and password' })
   }
 
   // Check for user
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    return next(new ErrorResponse('Invalid credentials', 401));
+    return res.status(400).json({ message: 'This email does not exist.' });
   }
 
   // Check if password matches
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    return next(new ErrorResponse('Invalid credentials', 401));
+    return res.status(400).json({ message: 'Password is incorrect.' });
   }
 
   sendTokenResponse(user, 200, res);

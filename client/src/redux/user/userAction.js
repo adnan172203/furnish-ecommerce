@@ -38,8 +38,8 @@ export const register = (user) => async (dispatch) => {
     dispatch({
       type: USER_REGISTER_FAIL,
       payload:
-        error.response && error.response.data.errors
-          ? error.response.data.errors
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
   }
@@ -65,10 +65,11 @@ export const login = (user) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
+        error.response && error.response.data
+          ? error.response.data
           : error.message,
     });
+    console.log('login action==>>>>', error.response.data);
   }
 };
 

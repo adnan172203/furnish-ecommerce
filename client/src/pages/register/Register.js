@@ -15,6 +15,7 @@ const {
   btn,
   common_btn,
   loader,
+  form_warning_message,
   form_validation_text,
 } = Styles;
 
@@ -52,6 +53,13 @@ const Register = () => {
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
               <h2>Register</h2>
+              {error && error.message ? (
+                <div className={form_warning_message}>
+                  {error && error.message}
+                </div>
+              ) : (
+                ''
+              )}
 
               <div className={form_group}>
                 <input
@@ -73,6 +81,7 @@ const Register = () => {
                 />
               </div>
               <p className={form_validation_text}>{error?.email}</p>
+
               <div className={form_group}>
                 <input
                   type='password'
@@ -92,9 +101,7 @@ const Register = () => {
                   onChange={(e) => onChange(e)}
                 />
               </div>
-              <p className={form_validation_text}>
-                {error?.confirmPassword}
-              </p>
+              <p className={form_validation_text}>{error?.confirmPassword}</p>
               <button type='submit' className={`${btn} ${common_btn}`}>
                 <span>Register</span>{' '}
                 <span>{loading ? <div className={loader}></div> : ''}</span>

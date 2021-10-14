@@ -16,6 +16,7 @@ const {
   btn,
   common_btn,
   loader,
+  form_warning_message,
 } = Styles;
 
 const Login = ({ history }) => {
@@ -25,8 +26,8 @@ const Login = ({ history }) => {
   });
 
   const dispatch = useDispatch();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo, error } = useSelector((state) => state.userLogin);
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const Login = ({ history }) => {
       setLoading(false);
     }, 1000);
   };
+
   return (
     <>
       <div className={`${user_area} ${ptb_100}`}>
@@ -55,6 +57,13 @@ const Login = ({ history }) => {
           <div className={user_item}>
             <form onSubmit={(e) => onSubmit(e)}>
               <h2>Login</h2>
+              {error && error.message ? (
+                <div className={form_warning_message}>
+                  {error && error.message}
+                </div>
+              ) : (
+                ''
+              )}
 
               <div className={form_group}>
                 <input

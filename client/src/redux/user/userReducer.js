@@ -59,7 +59,6 @@ export const userDetails = (state = { user: {} }, action) => {
       return { user: payload };
     case USER_DETAILS_FAIL:
       return { error: payload };
-
     default:
       return state;
   }

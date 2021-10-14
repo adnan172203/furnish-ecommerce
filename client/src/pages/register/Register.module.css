@@ -121,3 +121,13 @@
     margin-bottom: 15px;
     margin-top: 5px;
 }
+
+.form_warning_message{
+  color: red;
+  text-align: center;
+  border: 1px solid #a6a6a6;
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 19px;
+}
