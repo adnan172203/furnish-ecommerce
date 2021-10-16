@@ -41,10 +41,37 @@ module.exports.addUser = asyncHandler(async (req, res) => {
     isAdmin,
   });
 
-  const newUser = await user.save();
-  res
-    .status(200)
-    .json({ message: 'New Account Has Been Created', data: newUser });
+   user = await user.save();
+
+  sendTokenResponse(user, 200, res);
+});
+
+//login user
+module.exports.login = asyncHandler(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  // Validate emil & password
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ message: 'Please provide an email and password' });
+  }
+
+  // Check for user
+  const user = await User.findOne({ email }).select('+password');
+
+  if (!user) {
+    return res.status(400).json({ message: 'This email does not exist.' });
+  }
+
+  // Check if password matches
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.status(400).json({ message: 'Password is incorrect.' });
+  }
+
+  sendTokenResponse(user, 200, res);
 });
 
 //update user
@@ -65,32 +92,6 @@ module.exports.updateUser = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('User not found');
   }
-});
-
-//login user
-module.exports.login = asyncHandler(async (req, res, next) => {
-  const { email, password } = req.body;
-
-  // Validate emil & password
-  if (!email || !password) {
-    return  res.status(400).json({ message: 'Please provide an email and password' })
-  }
-
-  // Check for user
-  const user = await User.findOne({ email }).select('+password');
-
-  if (!user) {
-    return res.status(400).json({ message: 'This email does not exist.' });
-  }
-
-  // Check if password matches
-  const isMatch = await bcrypt.compare(password, user.password);
-
-  if (!isMatch) {
-    return res.status(400).json({ message: 'Password is incorrect.' });
-  }
-
-  sendTokenResponse(user, 200, res);
 });
 
 //log out user controller

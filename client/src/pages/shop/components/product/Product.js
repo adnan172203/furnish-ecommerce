@@ -52,7 +52,7 @@ const Product = ({ product }) => {
   }, [dispatch, cartItem, product._id]);
 
   const addToCartHandler = () => {
-    dispatch(addToCart(product._id));
+    dispatch(addToCart(product));
     toast.success('Added to the cart');
   };
 

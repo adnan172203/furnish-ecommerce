@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 //action
 import { register } from '../../redux/user/userAction';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +22,9 @@ const {
 } = Styles;
 
 const Register = () => {
+
+  let history = useHistory();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,7 +35,13 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const { error } = useSelector((state) => state.userRegister);
+  const { error, registerInfo } = useSelector((state) => state.userRegister);
+
+  useEffect(() => {
+    if (registerInfo) {
+      history.push('/dashboard/profile');
+    }
+  }, [history, registerInfo]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

@@ -37,8 +37,9 @@ const Header = ({ history }) => {
   const dispatch = useDispatch();
 
   //user info
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { registerInfo } = useSelector((state) => state.userRegister);
+
 
   //cart item
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -89,7 +90,7 @@ const Header = ({ history }) => {
           <CgShoppingCart className={header_icon} />
         </div>
         {!hidden ? null : <CartDropdown />}
-        
+
         <div className={shop_essentials} id={shopEssential ? show_item : ''}>
           <div className={shop_essentials_icon}>
             {userInfo && userInfo.user ? (
@@ -98,7 +99,17 @@ const Header = ({ history }) => {
               </Link>
             ) : null}
 
+            {registerInfo && registerInfo.user ? (
+              <Link to='/dashboard/profile' className={user_name}>
+                {registerInfo.user.name.split(' ').slice(0, 1)}
+              </Link>
+            ) : null}
+
             {userInfo ? (
+              <Link to='' onClick={logoutHandler}>
+                Log out
+              </Link>
+            ) : registerInfo ? (
               <Link to='' onClick={logoutHandler}>
                 Log out
               </Link>

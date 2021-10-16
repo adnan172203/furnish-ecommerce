@@ -28,12 +28,13 @@ export const register = (user) => async (dispatch) => {
       },
     };
 
-    const data = await axios.post('/api/v1/users', user, config);
+    const {data} = await axios.post('/api/v1/users', user, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
       payload: data,
     });
+    localStorage.setItem('registerInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -69,12 +70,12 @@ export const login = (user) => async (dispatch) => {
           ? error.response.data
           : error.message,
     });
-    console.log('login action==>>>>', error.response.data);
   }
 };
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('userInfo');
+  localStorage.removeItem('registerInfo');
   localStorage.removeItem('cartItems');
   localStorage.removeItem('shippingAddress');
 

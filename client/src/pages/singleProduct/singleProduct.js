@@ -141,24 +141,24 @@ const SingleProduct = ({ match }) => {
                 cartItem[0].productId === match.params.id ? (
                   <div className={single_product_count}>
                     <span>
-                      <button>
-                        <FaChevronLeft
-                          onClick={() => decrementProductCartCount(product._id)}
-                        />
+                      <button
+                        onClick={() => decrementProductCartCount(product._id)}
+                      >
+                        <FaChevronLeft />
                       </button>
                       {cartItem.length > 0 && cartItem[0].qty}
 
-                      <button>
-                        <FaChevronRight
-                          onClick={() => incrementProductCartCount(product._id)}
-                        />
+                      <button
+                        onClick={() => incrementProductCartCount(product._id)}
+                      >
+                        <FaChevronRight />
                       </button>
                     </span>
                   </div>
                 ) : (
                   <button
                     className={add_single_product}
-                    onClick={() => dispatch(addToCart(product._id))}
+                    onClick={() => dispatch(addToCart(product))}
                   >
                     Add To Cart
                   </button>

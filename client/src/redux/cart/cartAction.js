@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import {
   TOGGLE_CART_HIDDEN,
   ADD_CART_ITEM,
@@ -14,11 +14,7 @@ export const toggleCartHidden = () => {
   };
 };
 
-export const addToCart =
-  (id, qty = 1) =>
-  async (dispatch, getState) => {
-    const { data } = await axios.get(`/api/v1/products/${id}`);
-
+export const addToCart = (data, qty = 1) => async (dispatch, getState) => {
     dispatch({
       type: ADD_CART_ITEM,
       payload: {

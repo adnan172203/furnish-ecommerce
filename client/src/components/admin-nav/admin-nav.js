@@ -3,15 +3,21 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 //icon
-import { FaShoppingBag, FaTruck, FaUsers,FaRegAddressCard,FaClipboardList } from 'react-icons/fa';
+import {
+  FaShoppingBag,
+  FaTruck,
+  FaUsers,
+  FaRegAddressCard,
+  FaClipboardList,
+} from 'react-icons/fa';
 
 //css
 import Styles from './admin-nav.module.css';
 const { admin_nav, rm } = Styles;
 
 const AdminNav = ({ url }) => {
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const { userInfo } = useSelector((state) => state.userLogin);
+  const { registerInfo } = useSelector((state) => state.userRegister);
 
   return (
     <div className={admin_nav}>
@@ -41,18 +47,32 @@ const AdminNav = ({ url }) => {
           </Link>
         )}
 
-        {userInfo  && (
+        {userInfo ? (
           <Link to={`${url}/profile`}>
             <FaRegAddressCard className={rm} />
             Profile
           </Link>
+        ) : registerInfo ? (
+          <Link to={`${url}/profile`}>
+            <FaRegAddressCard className={rm} />
+            Profile
+          </Link>
+        ) : (
+          ''
         )}
 
-        {userInfo && userInfo.user.role === 'user' && (
+        {userInfo && userInfo.user.role === 'user' ? (
           <Link to={`${url}/myorders`}>
             <FaUsers className={rm} />
             My Order
           </Link>
+        ) : registerInfo && registerInfo.user.role === 'user' ? (
+          <Link to={`${url}/myorders`}>
+            <FaUsers className={rm} />
+            My Order
+          </Link>
+        ) : (
+          ''
         )}
       </ul>
     </div>

@@ -17,7 +17,7 @@ export const userRegister = (state = {}, action) => {
 
   switch (type) {
     case USER_REGISTER_SUCCESS:
-      return { userInfo: payload.data, message: payload.message };
+      return { registerInfo: payload, message: payload.message };
     case USER_REGISTER_FAIL:
       return { error: payload };
     default:
