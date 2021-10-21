@@ -30,32 +30,30 @@ const HeroSection = () => {
   return (
     <>
       <section className={banner_area}>
-        <div className='container'>
-          <div className={banner_row}>
-            {topProducts.map((product) => (
-              <div className={banner} key={product._id}>
-                <div className={slider_img}>
-                  <img src={product.image.url[0]} alt='' />
-                </div>
-                <div className={ellipse}></div>
-
-                <div className={banner_text}>
-                  <h1>
-                    We Don't Make Furniture <br />
-                    We<span> Craft </span>It
-                  </h1>
-                  <h3>{product.name}</h3>
-                  <span className={discount_price}>${product.price}</span>
-                  <span className={real_price}>$400</span>
-                </div>
-                <div className={banner_button}>
-                  <Link to={`/product/${product._id}`}>
-                    <button>Shop Now</button>
-                  </Link>
-                </div>
+        <div className={banner_row}>
+          {topProducts.map((product) => (
+            <div className={banner} key={product._id}>
+              <div className={slider_img}>
+                <img src={product.image.url[0]} alt='' />
               </div>
-            ))}
-          </div>
+              <div className={ellipse}></div>
+
+              <div className={banner_text}>
+                <h1>
+                  We Don't Make Furniture <br />
+                  We<span> Craft </span>It
+                </h1>
+                <h3>{product.name}</h3>
+                <span className={discount_price}>${product.price}</span>
+                <span className={real_price}>$400</span>
+              </div>
+              <div className={banner_button}>
+                <Link to={`/product/${product._id}`}>
+                  <button>Shop Now</button>
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </>

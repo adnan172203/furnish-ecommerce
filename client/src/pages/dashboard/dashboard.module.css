@@ -3,4 +3,5 @@
   display: flex;
   position: relative;
   height: 100vw;
+  overflow: hidden;
 }

@@ -164,7 +164,7 @@ export const productFilter = (arg) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     };
-    
+    console.log('action=====>>>>>', arg);
     const { data } = await axios.post(
       `/api/v1/products/search/filters`,
       arg,

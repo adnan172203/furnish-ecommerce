@@ -19,7 +19,7 @@ const ProductCategories = ({ handleCategory }) => {
     <>
       <div className={categories_filter}>
         <h3>Product Categories</h3>
-        <form action=''>
+        <form>
           {categories.map((category) => (
             <label className={categorie_container} key={category._id}>
               {category.name}

@@ -21,6 +21,9 @@ const {
   dark_back,
   create_product_btn,
   create_product_form,
+  active,
+  inner_form,
+  body_overlay,
   create_product_name,
   label_edit,
   create_product_description,
@@ -40,6 +43,7 @@ const {
   admin_product_price,
   loaded_image,
   delete_icon,
+  close_form
 } = Styles;
 
 const AdminProduct = ({ history }) => {
@@ -118,6 +122,7 @@ const AdminProduct = ({ history }) => {
 
   return (
     <>
+      <div className={display ? `${body_overlay}` : ''}></div>
       <div className={dark_back}>
         <div className={create_product_btn}>
           <button onClick={onFormChange}>Add Products</button>
@@ -125,113 +130,123 @@ const AdminProduct = ({ history }) => {
 
         <form
           action=''
-          style={{ display: display ? 'flex' : 'none' }}
+          // style={{ display: display ? 'flex' : 'none' }}
+          className={display ? `${active}` : ''}
           onSubmit={(e) => onSubmit(e)}
         >
           <div className={create_product_form} id='create-product-display'>
-            <label className={label_edit} htmlFor='create_product_name'>
-              Name
-            </label>
-            <br />
-            <input
-              type='text'
-              className={create_product_name}
-              value={name || ''}
-              name='name'
-              onChange={(e) => onChange(e)}
-            />
-            <label className={label_edit} htmlFor='create_product_description'>
-              Description
-            </label>
-            <br />
-            <textarea
-              name='description'
-              id={create_product_description}
-              value={description || ''}
-              onChange={(e) => onChange(e)}
-            ></textarea>
-            <label className={label_edit} htmlFor='create_product_price'>
-              Price
-            </label>
-            <br />
-            <input
-              type='number'
-              name='price'
-              className={create_product_price}
-              value={price || ''}
-              onChange={(e) => onChange(e)}
-            />
-            <label className={label_edit} htmlFor='create_product_price'>
-              Category
-            </label>
-            <br />
-            <input
-              type='text'
-              className={create_product_name}
-              value={category || ''}
-              name='category'
-              onChange={(e) => onChange(e)}
-            />
-            <label className={label_edit} htmlFor='create_product_sku'>
-              Sku
-            </label>
-            <br />
-            <input
-              type='number'
-              name='sku'
-              className={create_product_sku}
-              value={sku || ''}
-              onChange={(e) => onChange(e)}
-            />
-            <label className={label_edit} htmlFor='create_product_sold'>
-              Sold
-            </label>
-            <br />
-            <input
-              type='number'
-              name='sold'
-              className={create_product_sold}
-              value={sold || ''}
-              onChange={(e) => onChange(e)}
-            />
-            <label className={label_edit} htmlFor='create_product_image'>
-              Image
-            </label>
-            <br />
-            <input
-              type='file'
-              multiple
-              className={create_product_image}
-              onChange={uploadFileHandler}
-            />
-
-            <div className={loaded_image}>
-              {loading ? (
-                <img src={loadgif} alt='loading' />
-              ) : (
-                image &&
-                image.url.map((url, i) => (
-                  <img src={url} alt='loadimage' key={i} />
-                ))
-              )}
-            </div>
-
-            <div className={create_product_stock} onChange={(e) => onChange(e)}>
-              <label className={(stock_margin, label_edit)}>Stock</label>
-              <br />
-              <input type='radio' id='true' name='stock' value='true' />
-              <label className={stock_margin} htmlFor='true'>
-                true
+            <div className={inner_form}>
+              <TiDeleteOutline onClick={onFormChange} className={close_form}/>
+              <label className={label_edit} htmlFor='create_product_name'>
+                Name
               </label>
               <br />
-              <input type='radio' id='false' name='stock' value='false' />
-              <label htmlFor='false'>false</label>
+              <input
+                type='text'
+                className={create_product_name}
+                value={name || ''}
+                name='name'
+                onChange={(e) => onChange(e)}
+              />
+              <label
+                className={label_edit}
+                htmlFor='create_product_description'
+              >
+                Description
+              </label>
+              <br />
+              <textarea
+                name='description'
+                id={create_product_description}
+                value={description || ''}
+                onChange={(e) => onChange(e)}
+              ></textarea>
+              <label className={label_edit} htmlFor='create_product_price'>
+                Price
+              </label>
+              <br />
+              <input
+                type='number'
+                name='price'
+                className={create_product_price}
+                value={price || ''}
+                onChange={(e) => onChange(e)}
+              />
+              <label className={label_edit} htmlFor='create_product_price'>
+                Category
+              </label>
+              <br />
+              <input
+                type='text'
+                className={create_product_name}
+                value={category || ''}
+                name='category'
+                onChange={(e) => onChange(e)}
+              />
+              <label className={label_edit} htmlFor='create_product_sku'>
+                Sku
+              </label>
+              <br />
+              <input
+                type='number'
+                name='sku'
+                className={create_product_sku}
+                value={sku || ''}
+                onChange={(e) => onChange(e)}
+              />
+              <label className={label_edit} htmlFor='create_product_sold'>
+                Sold
+              </label>
+              <br />
+              <input
+                type='number'
+                name='sold'
+                className={create_product_sold}
+                value={sold || ''}
+                onChange={(e) => onChange(e)}
+              />
+              <label className={label_edit} htmlFor='create_product_image'>
+                Image
+              </label>
+              <br />
+              <input
+                type='file'
+                multiple
+                className={create_product_image}
+                onChange={uploadFileHandler}
+              />
+
+              <div className={loaded_image}>
+                {loading ? (
+                  <img src={loadgif} alt='loading' />
+                ) : (
+                  image &&
+                  image.url.map((url, i) => (
+                    <img src={url} alt='loadimage' key={i} />
+                  ))
+                )}
+              </div>
+
+              <div
+                className={create_product_stock}
+                onChange={(e) => onChange(e)}
+              >
+                <label className={(stock_margin, label_edit)}>Stock</label>
+                <br />
+                <input type='radio' id='true' name='stock' value='true' />
+                <label className={stock_margin} htmlFor='true'>
+                  true
+                </label>
+                <br />
+                <input type='radio' id='false' name='stock' value='false' />
+                <label htmlFor='false'>false</label>
+              </div>
+              <input
+                type='submit'
+                value='Create Product'
+                className={create_product_submit}
+              />
             </div>
-            <input
-              type='submit'
-              value='Create Product'
-              className={create_product_submit}
-            />
           </div>
         </form>
       </div>

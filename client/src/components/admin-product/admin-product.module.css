@@ -23,10 +23,67 @@
   width: 40%;
   padding: 1.5rem;
   background: #fff;
-  position: absolute;
-  right: 0;
-  top: 8%;
+  position: fixed;
+  right: -810px;
+  top: 0;
   z-index: 2;
+  transition: 0.2s;
+  height: 95%;
+  overflow-y: scroll;
+}
+
+.dark_back .active .create_product_form{
+  right: 0;
+  transition: 0.5s;
+}
+
+
+.create_product_form_slide{
+  animation-name: slide-in-right;
+  animation-duration: 0.4s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+.form_back_slide{
+  animation-name: slide-in-left;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-delay: 0s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+@keyframes slide-in-left {
+  0%{
+    -webkit-transform: translateX(-1000px);
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100%{
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .create_product_form input,
@@ -53,6 +110,18 @@
   outline-color: #42b883;
 }
 
+.inner_form{
+  display: flex;
+  flex-direction: column;
+}
+
+.close_form{
+  font-size: 24px;
+  cursor: pointer;
+  color: #6a5b5b;
+  margin-bottom: 18px;
+}
+
 .create_product_stock {
   display: flex;
   align-items: center;
@@ -67,7 +136,7 @@ label.stock_margin {
 }
 
 .label_edit {
-  font-weight: 600;
+  font-weight: 500;
   margin-right: 10px;
 }
 
@@ -137,4 +206,18 @@ input.create_product_submit {
   font-size: 1.5rem;
   top: -8px;
   cursor: pointer;
+}
+
+
+.body_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  content: '';
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  visibility: visible;
+  opacity: 1;
 }
