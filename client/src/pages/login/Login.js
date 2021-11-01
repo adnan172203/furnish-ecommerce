@@ -70,7 +70,7 @@ const Login = ({ history }) => {
                   type='email'
                   name='email'
                   className={form_control}
-                  placeholder='Your Email:'
+                  placeholder='Email'
                   onChange={(e) => onChange(e)}
                 />
               </div>
@@ -80,7 +80,7 @@ const Login = ({ history }) => {
                   type='password'
                   name='password'
                   className={form_control}
-                  placeholder='Password:'
+                  placeholder='Password'
                   onChange={(e) => onChange(e)}
                 />
               </div>
