@@ -53,7 +53,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
   // Validate emil & password
   if (!email || !password) {
     return res
-      .status(400)
+      .status(404)
       .json({ message: 'Please provide an email and password' });
   }
 

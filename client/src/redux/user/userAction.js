@@ -17,6 +17,7 @@ import {
 } from './userTypes';
 
 export const register = (user) => async (dispatch) => {
+
   const check = valid(user);
   if (check.errLength > 0) {
     return dispatch({ type: USER_REGISTER_FAIL, payload: check.errMsg });

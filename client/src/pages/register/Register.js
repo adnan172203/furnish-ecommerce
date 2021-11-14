@@ -29,7 +29,7 @@ const Register = () => {
     name: '',
     email: '',
     password: '',
-    P: '',
+    confirmPassword: '',
   });
 
   const [loading, setLoading] = useState(false);
@@ -113,7 +113,7 @@ const Register = () => {
                 />
               </div>
               <p className={form_validation_text}>{error?.confirmPassword}</p>
-              <button type='submit' className={`${btn} ${common_btn}`}>
+              <button type='submit' className={`${btn} ${common_btn}`}   data-testid='register-form'>
                 <span>Register</span>{' '}
                 <span>{loading ? <div className={loader}></div> : ''}</span>
               </button>

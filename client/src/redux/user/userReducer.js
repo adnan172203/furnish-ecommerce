@@ -14,11 +14,10 @@ import {
 
 export const userRegister = (state = {}, action) => {
   const { type, payload } = action;
-
   switch (type) {
     case USER_REGISTER_SUCCESS:
       return { registerInfo: payload, message: payload.message };
-    case USER_REGISTER_FAIL:
+      case USER_REGISTER_FAIL:
       return { error: payload };
     default:
       return state;

@@ -47,7 +47,7 @@ const Login = ({ history }) => {
 
     setTimeout(function () {
       setLoading(false);
-    }, 1000);
+    }, 500);
   };
 
   return (
@@ -55,11 +55,11 @@ const Login = ({ history }) => {
       <div className={`${user_area} ${ptb_100}`}>
         <div className='container'>
           <div className={user_item}>
-            <form onSubmit={(e) => onSubmit(e)}>
+            <form onSubmit={(e) => onSubmit(e)} data-testid='form'>
               <h2>Login</h2>
               {error && error.message ? (
-                <div className={form_warning_message}>
-                  {error && error.message}
+                <div className={form_warning_message}  data-testid='error_message'>
+                  {error.message}
                 </div>
               ) : (
                 ''
@@ -86,8 +86,8 @@ const Login = ({ history }) => {
               </div>
 
               <button type='submit' className={`${btn} ${common_btn}`}>
-                <span> Login </span>
-                <span>{loading ? <div className={loader}></div> : ''}</span>
+                <span>Login</span>
+                {/* <span>{loading ? <div className={loader}></div> : ''}</span> */}
               </button>
 
               <h4>or</h4>
