@@ -5,26 +5,19 @@ import {
   act,
   waitFor,
 } from '@testing-library/react';
-import RootWrapper from './setup';
+import RootWrapper from '../../setupTest';
 import '@testing-library/jest-dom';
 
-import Register from '../pages/register/Register';
-
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-
-import store from '../redux/store';
+import Register from '../register/Register';
 
 import userEvent from '@testing-library/user-event';
 
 describe('register component', () => {
   test('register form input', async () => {
     render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <Register />
-        </Provider>
-      </MemoryRouter>
+      <RootWrapper>
+        <Register />
+      </RootWrapper>
     );
 
     const name = '';

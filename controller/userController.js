@@ -61,7 +61,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    return res.status(400).json({ message: 'This email does not exist.' });
+    return res.status(404).json({ message: 'This email does not exist.' });
   }
 
   // Check if password matches
