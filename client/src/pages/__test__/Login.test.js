@@ -5,14 +5,8 @@ import '@testing-library/jest-dom';
 import Login from '../login/Login';
 
 import { createMemoryHistory } from 'history';
-import store from '../../redux/store';
 
 import userEvent from '@testing-library/user-event';
-
-// demo code
-
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
 
 var axios = require('axios');
 var MockAdapter = require('axios-mock-adapter');
@@ -55,11 +49,9 @@ describe('login component interaction', () => {
 
   const renderComponent = () => {
     render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <Login history={history} />
-        </Provider>
-      </MemoryRouter>
+      <RootWrapper>
+        <Login history={history} />
+      </RootWrapper>
     );
   };
 

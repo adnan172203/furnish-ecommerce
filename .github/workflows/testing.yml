@@ -1,0 +1,18 @@
+name: Furnish
+
+on:
+  push:
+    branches: [master]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Furnish Server Dependencies
+        run:  npm install
+
+      - name: Install Furnish client dependency
+        run: cd ./client && npm install && npm test

@@ -11,7 +11,7 @@ import {
   TOP_PRODUCT,
   LATEST_PRODUCTS,
   BEST_SELLING_PRODUCTS,
-  LOW_SOLD_PRODUCT
+  LOW_SOLD_PRODUCT,
 } from './product-types';
 
 export const listProducts = () => async (dispatch) => {
@@ -22,9 +22,7 @@ export const listProducts = () => async (dispatch) => {
       type: PRODUCT_LIST,
       payload: data,
     });
-    
   } catch (error) {
-
     dispatch({
       type: PRODUCT_ERROR,
       payload:
@@ -157,19 +155,18 @@ export const createProductReview = (productId, review) => async (dispatch) => {
 };
 
 export const productFilter = (arg) => async (dispatch) => {
-
   try {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
-    console.log('action=====>>>>>', arg);
+
     const { data } = await axios.post(
       `/api/v1/products/search/filters`,
       arg,
       config
-      );
+    );
 
     dispatch({
       type: PRODUCT_CATEGORY_FILTER,
@@ -190,7 +187,6 @@ export const productFilter = (arg) => async (dispatch) => {
 
 export const topProduct = () => async (dispatch) => {
   try {
-
     const { data } = await axios.get(`/api/v1/products/top`);
 
     dispatch({
@@ -210,7 +206,6 @@ export const topProduct = () => async (dispatch) => {
 
 export const latestProducts = () => async (dispatch) => {
   try {
-
     const { data } = await axios.get(`/api/v1/products/latest`);
 
     dispatch({
@@ -230,7 +225,6 @@ export const latestProducts = () => async (dispatch) => {
 
 export const bestsellingProducts = () => async (dispatch) => {
   try {
-
     const { data } = await axios.get(`/api/v1/products/best`);
 
     dispatch({
@@ -250,7 +244,6 @@ export const bestsellingProducts = () => async (dispatch) => {
 
 export const itemsOnSaleProducts = () => async (dispatch) => {
   try {
-
     const { data } = await axios.get(`/api/v1/products/onsale`);
 
     dispatch({
@@ -267,5 +260,3 @@ export const itemsOnSaleProducts = () => async (dispatch) => {
     });
   }
 };
-
-

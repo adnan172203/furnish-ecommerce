@@ -2,13 +2,11 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
-
-const RootWrapper = ({ children }) => {
-
+const RootWrapper = ({ children, history }) => {
   return (
-    <MemoryRouter>
-      <Provider store={store}>{children}</Provider>
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter history={history}>{children}</MemoryRouter>
+    </Provider>
   );
 };
 

@@ -26,7 +26,6 @@ const {
 
 const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
-
   const { name, price, qty, image, productId } = cartItem;
 
   const incrementProductCartCount = (productId) => {
