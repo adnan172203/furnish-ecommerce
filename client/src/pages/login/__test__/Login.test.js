@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import RootWrapper from '../../setupTest';
+import RootWrapper from '../../../setupTest';
 import '@testing-library/jest-dom';
 
-import Login from '../login/Login';
+import Login from '../Login';
 
 import { createMemoryHistory } from 'history';
 

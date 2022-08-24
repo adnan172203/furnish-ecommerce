@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import RootWrapper from '../../setupTest';
+import RootWrapper from '../../../setupTest';
 import '@testing-library/jest-dom';
 
-import Register from '../register/Register';
+import Register from '../Register';
 
 import userEvent from '@testing-library/user-event';
 

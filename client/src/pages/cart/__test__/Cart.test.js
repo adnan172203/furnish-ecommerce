@@ -17,7 +17,9 @@ describe('cart', () => {
       </RootWrapper>
     );
 
-    expect( screen.getByText('Your cart is currently empty.') ).toBeInTheDocument();
+    expect(
+      screen.getByText('Your cart is currently empty.')
+    ).toBeInTheDocument();
   });
 
   it('should check cart item', async () => {
@@ -26,16 +28,16 @@ describe('cart', () => {
         cartItems: [
           {
             name: 'chair',
-            price: 122,
-            qty: 3,
+            price: '150',
+            qty: 2,
             image: {
               url: ['abc.jpg'],
             },
             productId: 1,
           },
           {
-            name: 'chair',
-            price: 122,
+            name: 'table',
+            price: '100',
             qty: 2,
             image: {
               url: ['abc.jpg'],
@@ -43,36 +45,29 @@ describe('cart', () => {
             productId: 2,
           },
           {
-            name: 'chair',
-            price: 122,
+            name: 'sofa',
+            price: '200',
             qty: 2,
             image: {
               url: ['abc.jpg'],
             },
             productId: 3,
-          },
-          {
-            name: 'chair',
-            price: 122,
-            qty: 2,
-            image: {
-              url: ['abc.jpg'],
-            },
-            productId: 4,
-          },
+          }
         ],
       },
     };
     const store = mockStore(initialState);
-    const cartp=render(
+  const cartitem =  render(
       <Provider store={store}>
         <MemoryRouter>
           <Cart />
         </MemoryRouter>
       </Provider>
     );
-cartp.debug();
+    const price = screen.getByText('$40');
+cartitem.debug();
     const image = screen.getAllByRole('img');
-    expect(image.length).toBe(4);
+    expect(image.length).toBe(3);
+    expect(price).toBeInTheDocument();
   });
 });

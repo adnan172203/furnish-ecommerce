@@ -23,7 +23,7 @@ const {
   cart_empty_content,
   cart_empty_info,
   wc_backward,
-  return_to_shop
+  return_to_shop,
 } = Styles;
 
 const Cart = () => {
@@ -90,10 +90,7 @@ const Cart = () => {
                       Your cart is currently empty.
                     </p>
                     <p className={return_to_shop}>
-                      <Link
-                        className={wc_backward}
-                        to='/shop'
-                      >
+                      <Link className={wc_backward} to='/shop'>
                         Return to shop{' '}
                       </Link>
                     </p>
@@ -105,7 +102,7 @@ const Cart = () => {
         </div>
       )}
 
-      <Footer/>
+      <Footer />
     </>
   );
 };

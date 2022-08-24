@@ -7,7 +7,6 @@ const Product = require('../models/Product');
 
 //Get All Product
 module.exports.getProducts = asyncHandler(async (req, res, next) => {
-
   let query;
 
   // Copy req.query
