@@ -52,20 +52,19 @@ describe('cart', () => {
               url: ['abc.jpg'],
             },
             productId: 3,
-          }
+          },
         ],
       },
     };
     const store = mockStore(initialState);
-  const cartitem =  render(
+    const cartitem = render(
       <Provider store={store}>
         <MemoryRouter>
           <Cart />
         </MemoryRouter>
       </Provider>
     );
-    const price = screen.getByText('$40');
-cartitem.debug();
+    const price = screen.getByText('$100');
     const image = screen.getAllByRole('img');
     expect(image.length).toBe(3);
     expect(price).toBeInTheDocument();
