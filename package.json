@@ -2,11 +2,12 @@
   "name": "furnish",
   "version": "1.0.0",
   "description": "a mern stack ecommerce application",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
+    "start": "node index",
+    "server": "nodemon index",
     "client": "npm start --prefix client",
+    "test": "jest --watch --detectOpenHandles",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
@@ -30,6 +31,7 @@
   "devDependencies": {
     "concurrently": "^6.3.0",
     "jest": "^28.1.3",
+    "mongodb-memory-server": "^8.9.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "supertest": "^6.2.4"
