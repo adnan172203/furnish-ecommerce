@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('./config/db');
+
 const app = express();
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
@@ -9,9 +9,6 @@ const path = require('path');
 
 // Load env vars
 dotenv.config({ path: './config/.env' });
-
-//connect Database
-connectDB();
 
 //middleware
 app.use(express.json());
