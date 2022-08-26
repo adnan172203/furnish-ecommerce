@@ -19,6 +19,29 @@ describe('User Registration', () => {
       .expect(200);
   });
 
+  it('returns 400  when provide no email or password', async () => {
+    return request(app)
+      .post('/api/v1/users')
+      .send({
+        name: '',
+        email: '',
+        password: '',
+      })
+      .expect('Content-Type', /json/)
+      .expect(400);
+  });
+  it('returns 400  when password is under 6 character', async () => {
+    return request(app)
+      .post('/api/v1/users')
+      .send({
+        name: 'micheal',
+        email: 'abc@gmail.com',
+        password: 'abc',
+      })
+      .expect('Content-Type', /json/)
+      .expect(400);
+  });
+
   it('disallows duplicate emails', async () => {
     await request(app)
       .post('/api/v1/users')
@@ -40,25 +63,3 @@ describe('User Registration', () => {
       .expect(400);
   });
 });
-
-// it('disallows duplicate emails', async () => {
-//   return request(app)
-//     .post('/api/v1/users')
-//     .send({
-//       name: 'micheal',
-//       email: 'abc@gmail.com',
-//       password: 'abc123',
-//     })
-//     .expect('Content-Type', /json/)
-//     .expect(200);
-// });
-
-// await request(app)
-// .post('/api/v1/users')
-// .send({
-//   name: 'micheal',
-//   email: 'abc@gmail.com',
-//   password: 'abc123',
-// })
-// .expect('Content-Type', /json/)
-// .expect(400);
