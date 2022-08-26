@@ -2,6 +2,9 @@ const request = require('supertest');
 const app = require('../server');
 const db = require('../test/setup');
 
+//model
+const User = require('../models/User');
+
 // beforeAll(async () => await db.connect());
 afterEach(async () => await db.clear());
 afterAll(async () => await db.close());
@@ -17,6 +20,21 @@ describe('User Registration', () => {
       })
       .expect('Content-Type', /json/)
       .expect(200);
+  });
+
+  it('saves user in database', async () => {
+    await request(app)
+      .post('/api/v1/users')
+      .send({
+        name: 'micheal',
+        email: 'abc@gmail.com',
+        password: 'abc123',
+      })
+      .expect('Content-Type', /json/)
+      .expect(200);
+
+    const users = await User.find();
+    expect(users.length).toBe(1);
   });
 
   it('returns a 400 with an invalid email', async () => {
