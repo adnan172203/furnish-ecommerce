@@ -19,6 +19,17 @@ describe('User Registration', () => {
       .expect(200);
   });
 
+  it('returns a 400 with an invalid email', async () => {
+    return request(app)
+      .post('/api/v1/users')
+      .send({
+        email: 'alskdflaskjfd',
+        password: 'password',
+      })
+      .expect('Content-Type', /json/)
+      .expect(400);
+  });
+
   it('returns 400  when provide no email or password', async () => {
     return request(app)
       .post('/api/v1/users')
