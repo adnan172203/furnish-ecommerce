@@ -21,30 +21,33 @@ module.exports.getUser = asyncHandler(async (req, res) => {
 });
 
 // add user
-module.exports.addUser = asyncHandler(async (req, res) => {
-  const errors = validationResult(req);
+module.exports.addUser = async (req, res) => {
+  try {
+    const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    return res.status(400).send(errors);
+    if (!errors.isEmpty()) {
+      return res.status(400).send(errors);
+    }
+    const { name, email, password, isAdmin } = req.body;
+
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    user = new User({
+      name,
+      email,
+      password,
+      isAdmin,
+    });
+    user = await user.save();
+
+    sendTokenResponse(user, 200, res);
+  } catch (err) {
+    console.log(err);
   }
-  const { name, email, password, isAdmin } = req.body;
-
-  let user = await User.findOne({ email });
-  if (user) {
-    return res.status(400).json({ message: 'User already exists' });
-  }
-
-  user = new User({
-    name,
-    email,
-    password,
-    isAdmin,
-  });
-
-   user = await user.save();
-
-  sendTokenResponse(user, 200, res);
-});
+};
 
 //login user
 module.exports.login = asyncHandler(async (req, res, next) => {
