@@ -13,7 +13,47 @@ describe('User Authentication', () => {
     });
   };
 
+  it('fails when email and password not provide', async () => {
+    await request(app)
+      .post('/api/v1/users/login')
+      .send({
+        email: '',
+        password: '',
+      })
+      .expect(404);
+  });
+
   it('fails when email does not exist in the database', async () => {
     await postValidUser().expect(400);
   });
+
+  it('fails when email does not exist in the database', async () => {
+    await request(app)
+      .post('/api/v1/users/login')
+      .send({
+        email: 'abc@gmail.com',
+        password: 'abc123',
+      })
+      .expect(400);
+  });
+
+  it('returns 200 when credentials are correct', async () => {
+    await request(app)
+      .post('/api/v1/users')
+      .send({
+        name: 'micheal',
+        email: 'abc@gmail.com',
+        password: 'abc123',
+      })
+      .expect(200);
+
+    await request(app)
+      .post('/api/v1/users/login')
+      .send({
+        email: 'abc@gmail.com',
+        password: 'abc123',
+      })
+      .expect(200);
+  });
 });
+// .expect('Content-Type', /json/)
