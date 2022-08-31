@@ -37,6 +37,21 @@ describe('User Authentication', () => {
       .expect(400);
   });
 
+  it('returns user ,success and token when login success', async () => {
+    await request(app)
+      .post('/api/v1/users')
+      .send({
+        name: 'micheal',
+        email: 'abc@gmail.com',
+        password: 'abc123',
+      })
+      .expect(200);
+
+    const response = await postValidUser();
+
+    expect(Object.keys(response.body)).toEqual(['user', 'success', 'token']);
+  });
+
   it('returns 200 when credentials are correct', async () => {
     await request(app)
       .post('/api/v1/users')
@@ -56,4 +71,3 @@ describe('User Authentication', () => {
       .expect(200);
   });
 });
-// .expect('Content-Type', /json/)
