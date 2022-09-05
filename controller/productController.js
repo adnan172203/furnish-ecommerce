@@ -114,6 +114,10 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
     stock,
     reviews,
   });
+  // console.log(
+  //   'product controller=================>>>>>>>>>>>>>>>>>>>>>>',
+  //   req.headers
+  // );
   const newProduct = await product.save();
   if (newProduct) {
     return res

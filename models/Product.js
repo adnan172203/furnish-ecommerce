@@ -29,8 +29,8 @@ const productSchema = new Schema({
   sold: {
     type: Number,
   },
-  rating:{
-    type:Number
+  rating: {
+    type: Number,
   },
   image: {
     type: Object,

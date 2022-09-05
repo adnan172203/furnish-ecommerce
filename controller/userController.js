@@ -28,7 +28,7 @@ module.exports.addUser = async (req, res) => {
     if (!errors.isEmpty()) {
       return res.status(400).send(errors);
     }
-    const { name, email, password, isAdmin } = req.body;
+    const { name, email, password, role } = req.body;
 
     let user = await User.findOne({ email });
     if (user) {
@@ -39,7 +39,7 @@ module.exports.addUser = async (req, res) => {
       name,
       email,
       password,
-      isAdmin,
+      role,
     });
     user = await user.save();
 
