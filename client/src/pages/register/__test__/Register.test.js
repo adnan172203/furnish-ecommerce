@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import RootWrapper from '../../../setupTest';
+import baseUrl from '../../../utils/baseUrl';
 import '@testing-library/jest-dom';
 
 import Register from '../Register';
@@ -44,7 +45,7 @@ describe('register component', () => {
 
   it('sends register information to backend after clicking the button', async () => {
     mock
-      .onPost('/api/v1/users', {
+      .onPost(`${baseUrl}/api/v1/users`, {
         name: 'john',
         email: 'test@gmail.com',
         password: '1234',

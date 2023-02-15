@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import RootWrapper from '../../../setupTest';
+import baseUrl from '../../../utils/baseUrl';
 import '@testing-library/jest-dom';
 
 import Login from '../Login';
@@ -57,7 +58,7 @@ describe('login component interaction', () => {
 
   it('form behaviour', async () => {
     mock
-      .onPost('/api/v1/users/login')
+      .onPost(`${baseUrl}/api/v1/users/login`)
       .reply(404, { message: 'Please provide an email and password' });
 
     renderComponent();
@@ -74,7 +75,7 @@ describe('login component interaction', () => {
 
   it('email register or not', async () => {
     mock
-      .onPost('/api/v1/users/login')
+      .onPost(`${baseUrl}/api/v1/users/login`)
       .reply(404, { message: 'This email does not exist.' });
 
     renderComponent();
@@ -91,7 +92,7 @@ describe('login component interaction', () => {
 
   it('password authentication', async () => {
     mock
-      .onPost('/api/v1/users/login')
+      .onPost(`${baseUrl}/api/v1/users/login`)
       .reply(404, { message: 'Password is incorrect.' });
 
     renderComponent();
@@ -108,7 +109,7 @@ describe('login component interaction', () => {
 
   it('sends email and password to backend after clicking the button', async () => {
     mock
-      .onPost('/api/v1/users/login', {
+      .onPost(`${baseUrl}/api/v1/users/login`, {
         email: 'test@gmail.com',
         password: '1234',
       })

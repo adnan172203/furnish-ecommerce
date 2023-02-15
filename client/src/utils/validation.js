@@ -13,15 +13,15 @@ const valid = ({ name, email, password, confirmPassword }) => {
     err.email = 'Email format is incorrect.';
   }
 
-  //   if(!password) {
-  //       err.password = "Please add your password."
-  //   }else if(password.length < 6){
-  //       err.password = "Password must be at least 6 characters."
-  //   }
+  if (!password) {
+    err.password = 'Please add your password.';
+  } else if (password.length < 6) {
+    err.password = 'Password must be at least 6 characters.';
+  }
 
-  //   if(password !== confirmPassword) {
-  //       err.confirmPassword = "Confirm password did not match."
-  //   }
+  if (password !== confirmPassword) {
+    err.confirmPassword = 'Confirm password did not match.';
+  }
 
   return {
     errMsg: err,
