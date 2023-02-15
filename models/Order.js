@@ -11,23 +11,23 @@ const orderSchema = mongoose.Schema(
     },
     orderItems: [
       {
-        name: { type: String, required: true },
-        qty: { type: Number, required: true },
-        image: { type: Object, required: true },
-        price: { type: Number, required: true },
+        name: { type: String },
+        qty: { type: Number },
+        image: { type: Object },
+        price: { type: Number },
         productId: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
+
           ref: 'Product',
         },
       },
     ],
     shippingAddress: {
-      name: { type: String, required: true },
-      address: { type: String, required: true },
-      country: { type: String, required: true },
-      city: { type: String, required: true },
-      phone: { type: Number, required: true },
+      name: { type: String },
+      address: { type: String },
+      country: { type: String },
+      city: { type: String },
+      phone: { type: Number },
     },
     paymentMethod: {
       type: String,
@@ -44,7 +44,7 @@ const orderSchema = mongoose.Schema(
     },
     totalPrice: {
       type: Number,
-      
+
       default: 0.0,
     },
     isPaid: {

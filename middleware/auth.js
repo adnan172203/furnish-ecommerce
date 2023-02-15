@@ -2,25 +2,36 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 module.exports.auth = async (req, res, next) => {
-  if (req.signedCookies) {
-    //accessing token
-    const token = req.signedCookies['token'];
+  // if (req.signedCookies) {
+  //   //accessing token
+  //   const token = req.signedCookies['token'];
 
-    try {
-      //verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+  //   try {
+  //     //verify token
+  //     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-      //Getting user
-      const user = await User.findById(decoded.id);
+  //     //Getting user
+  //     const user = await User.findById(decoded.id);
 
-      req.user = user;
+  //     req.user = user;
 
-      next();
-    } catch (err) {
-      res.status(401).json({ msg: 'unauthorized token' });
-    }
-  } else {
-    res.status(500).json({ msg: 'Server Error' });
+  //     next();
+  //   } catch (err) {
+  //     res.status(401).json({ msg: 'unauthorized token' });
+  //   }
+  // } else {
+  //   res.status(500).json({ msg: 'Server Error' });
+  // }
+
+  const { authorization } = req.headers;
+  try {
+    const token = authorization.split(' ')[1];
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { id } = decoded;
+    req.user = id;
+    next();
+  } catch (err) {
+    next('Authentication failure!');
   }
 };
 

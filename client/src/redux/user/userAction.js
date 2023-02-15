@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../../utils/baseUrl';
 
 import valid from '../../utils/validation';
 import { CART_CLEAR_ITEMS } from '../cart/cartTypes';
@@ -17,7 +18,6 @@ import {
 } from './userTypes';
 
 export const register = (user) => async (dispatch) => {
-
   const check = valid(user);
   if (check.errLength > 0) {
     return dispatch({ type: USER_REGISTER_FAIL, payload: check.errMsg });
@@ -29,7 +29,7 @@ export const register = (user) => async (dispatch) => {
       },
     };
 
-    const {data} = await axios.post('/api/v1/users', user, config);
+    const { data } = await axios.post(`${baseUrl}/api/v1/users`, user, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -55,7 +55,11 @@ export const login = (user) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post('/api/v1/users/login', user, config);
+    const { data } = await axios.post(
+      `${baseUrl}/api/v1/users/login`,
+      user,
+      config
+    );
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -85,9 +89,20 @@ export const logout = () => (dispatch) => {
   document.location.href = '/login';
 };
 
-export const listUsers = () => async (dispatch) => {
+export const listUsers = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get('/api/v1/users');
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`${baseUrl}/api/v1/users`, config);
 
     dispatch({
       type: USER_LIST_SUCCESS,
@@ -107,7 +122,19 @@ export const listUsers = () => async (dispatch) => {
 
 export const getUserDetails = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get(`/api/v1/users/me`);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`${baseUrl}/api/v1/users/me`, config);
+
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
@@ -132,7 +159,11 @@ export const updateUserProfile = (user) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.put(`/api/v1/users/profile`, user, config);
+    const { data } = await axios.put(
+      `${baseUrl}/api/v1/users/profile`,
+      user,
+      config
+    );
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,

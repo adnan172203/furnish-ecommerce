@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import baseUrl from '../../utils/baseUrl';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   listProducts,
   createProduct,
@@ -43,7 +45,7 @@ const {
   admin_product_price,
   loaded_image,
   delete_icon,
-  close_form
+  close_form,
 } = Styles;
 
 const AdminProduct = ({ history }) => {
@@ -63,7 +65,8 @@ const AdminProduct = ({ history }) => {
   const [display, setDisplay] = useState(false);
 
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product);
+  const { products, error } = useSelector((state) => state.product);
+  console.log(error);
 
   const {
     userInfo: { user },
@@ -95,7 +98,11 @@ const AdminProduct = ({ history }) => {
         },
       };
 
-      const { data } = await axios.post('/api/v1/uploads', formData, config);
+      const { data } = await axios.post(
+        `${baseUrl}/api/v1/uploads`,
+        formData,
+        config
+      );
       setLoading(false);
       setImage(data);
     } catch (error) {
@@ -122,6 +129,7 @@ const AdminProduct = ({ history }) => {
 
   return (
     <>
+      {error && <Toaster position='bottom-center' reverseOrder={false} />}
       <div className={display ? `${body_overlay}` : ''}></div>
       <div className={dark_back}>
         <div className={create_product_btn}>
@@ -136,7 +144,7 @@ const AdminProduct = ({ history }) => {
         >
           <div className={create_product_form} id='create-product-display'>
             <div className={inner_form}>
-              <TiDeleteOutline onClick={onFormChange} className={close_form}/>
+              <TiDeleteOutline onClick={onFormChange} className={close_form} />
               <label className={label_edit} htmlFor='create_product_name'>
                 Name
               </label>

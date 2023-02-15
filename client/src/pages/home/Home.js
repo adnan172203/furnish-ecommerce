@@ -14,8 +14,8 @@ const Home = () => {
       <LatestProducts />
       <Countdown date={Date.now() + 100000000} renderer={Deal} />
       <BestSelling />
-      <ItemOnSale />
-      <Footer/>
+      {/* <ItemOnSale /> */}
+      <Footer />
     </>
   );
 };

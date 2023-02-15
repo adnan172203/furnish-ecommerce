@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import baseUrl from '../../utils/baseUrl';
 import axios from 'axios';
 import {
   singleProductDetails,
@@ -79,7 +80,11 @@ const ProductUpdate = ({ match }) => {
         },
       };
 
-      const { data } = await axios.post('/api/v1/uploads', formData, config);
+      const { data } = await axios.post(
+        `${baseUrl}/api/v1/uploads`,
+        formData,
+        config
+      );
       setLoading(false);
       setImage(data);
     } catch (error) {
@@ -101,7 +106,7 @@ const ProductUpdate = ({ match }) => {
         sku,
         sold,
         stock,
-        image:image ? image : formData.image,
+        image: image ? image : formData.image,
       })
     );
   };
@@ -192,17 +197,17 @@ const ProductUpdate = ({ match }) => {
               <div className={loaded_image}>
                 {loading ? (
                   <img src={loadgif} alt='loading' />
-                ) : (
-                  image ? image.url.map((url, i) => (
+                ) : image ? (
+                  image.url.map((url, i) => (
                     <img src={url} alt='loadimage' key={i} />
-                  )):
+                  ))
+                ) : (
                   formData.image &&
                   formData.image.url.map((url, i) => (
                     <img src={url} alt='loadimage' key={i} />
                   ))
                 )}
               </div>
-
 
               <button type='submit' className={`${btn} ${common_btn}`}>
                 Update Product

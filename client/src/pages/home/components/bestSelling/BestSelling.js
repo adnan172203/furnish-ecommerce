@@ -9,14 +9,13 @@ import { bestsellingProducts } from '../../../../redux/product/product-action';
 //css
 import Styles from './BestSelling.module.css';
 
-
 const {
   best_selling_items,
   best_selling_heading,
   heading_background,
   slide_items,
   selling_slide,
-  product_name
+  product_name,
 } = Styles;
 
 const BestSelling = () => {
@@ -75,14 +74,15 @@ const BestSelling = () => {
         </div>
         <div>
           <Slider {...settings} className={selling_slide}>
-            {bestSellProducts.map((product) => (
-              <div className={slide_items} key={product._id}>
-                <img src={product.image.url[0]} alt='' />
-                <div className={product_name}>
-                  <p>{product.name}</p>
+            {bestSellProducts.length > 0 &&
+              bestSellProducts.map((product) => (
+                <div className={slide_items} key={product._id}>
+                  <img src={product.image.url[0]} alt='' />
+                  <div className={product_name}>
+                    <p>{product.name}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </Slider>
         </div>
       </section>

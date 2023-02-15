@@ -10,14 +10,14 @@ import {
   TOP_PRODUCT,
   LATEST_PRODUCTS,
   BEST_SELLING_PRODUCTS,
-  LOW_SOLD_PRODUCT
+  LOW_SOLD_PRODUCT,
 } from './product-types';
 
 const initialState = {
   products: [],
   topProducts: [],
   bestSellProducts: [],
-  itemsOnSale:[],
+  itemsOnSale: [],
   product: null,
   error: {},
 };
@@ -82,7 +82,7 @@ const product = (state = initialState, action) => {
         ...state,
         bestSellProducts: payload,
       };
-      
+
     case LOW_SOLD_PRODUCT:
       return {
         ...state,
@@ -98,6 +98,6 @@ const product = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default product;

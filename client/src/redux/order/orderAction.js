@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../../utils/baseUrl';
 import { CART_CLEAR_ITEMS } from '../cart/cartTypes';
 import {
   ORDER_CREATE,
@@ -7,15 +8,24 @@ import {
   MY_ORDER_LIST,
 } from './orderTypes';
 
-export const createOrder = (order) => async (dispatch) => {
+export const createOrder = (order) => async (dispatch, getState) => {
   try {
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.post(`/api/v1/orders`, order, config);
+    const { data } = await axios.post(
+      `${baseUrl}/api/v1/orders`,
+      order,
+      config
+    );
 
     dispatch({
       type: ORDER_CREATE,
@@ -41,9 +51,20 @@ export const createOrder = (order) => async (dispatch) => {
   }
 };
 
-export const listOrders = () => async (dispatch) => {
+export const listOrders = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get(`/api/v1/orders`);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`${baseUrl}/api/v1/orders`, config);
 
     dispatch({
       type: ORDER_LIST,
@@ -62,9 +83,23 @@ export const listOrders = () => async (dispatch) => {
   }
 };
 
-export const myOrderList = () => async (dispatch) => {
+export const myOrderList = () => async (dispatch, getState) => {
   try {
-    const { data } = await axios.get(`/api/v1/orders/myorders`);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(
+      `${baseUrl}/api/v1/orders/myorders`,
+      config
+    );
 
     dispatch({
       type: MY_ORDER_LIST,

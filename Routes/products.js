@@ -36,16 +36,16 @@ router.get('/onsale', lowsoldProducts);
 router.get('/:id', getProduct);
 
 //add product
-router.post('/', auth, authorize('admin'), addProduct);
+router.post('/', auth, addProduct);
 
 //update product
-router.put('/:id', auth, authorize('admin'), updateProduct);
+router.put('/:id', auth, updateProduct);
 
 //add review
 router.post('/:id/reviews', auth, createProductReview);
 
 //delete product
-router.delete('/:id', auth, authorize('admin'), deleteProduct);
+router.delete('/:id', auth, deleteProduct);
 
 // search
 router.post('/search/filters', searchFilters);

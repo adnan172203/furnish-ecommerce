@@ -6,6 +6,6 @@ const { createPaymentIntent } = require('../controller/paymentController');
 //middleware
 const { auth } = require('../middleware/auth');
 
-router.post("/create-payment-intent", auth, createPaymentIntent);
+router.post('/create-payment-intent', auth, createPaymentIntent);
 
 module.exports = router;

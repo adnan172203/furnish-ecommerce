@@ -35,38 +35,38 @@ const LatestProducts = () => {
         <div className='container'>
           <div className={featured_heading}>
             <div className={featured_heading_background}>
-
-            <h1>Latest Products</h1>
+              <h1>Latest Products</h1>
             </div>
           </div>
           <div className={featured_items}>
-            {products.map((product, i) =>
-              i % 2 !== 0 ? (
-                <div className={column_one} key={product._id}>
-                  <div className={one}>
+            {products.length > 0 &&
+              products.map((product, i) =>
+                i % 2 !== 0 ? (
+                  <div className={column_one} key={product._id}>
+                    <div className={one}>
+                      <Link to={`/product/${product._id}`}>
+                        <img src={product.image.url[0]} alt='' />
+                        <div className={one_text}>
+                          <h4>{product.name}</h4>
+                          <p className={feature_price}>${product.price}</p>
+                        </div>
+                      </Link>
+                    </div>
+                  </div>
+                ) : (
+                  <div className={column_two} key={product._id}>
                     <Link to={`/product/${product._id}`}>
-                      <img src={product.image.url[0]} alt='' />
-                      <div className={one_text}>
-                        <h4>{product.name}</h4>
-                        <p className={feature_price}>${product.price}</p>
+                      <div className={three}>
+                        <img src={product.image.url[0]} alt='' />
+                        <div className={three_text}>
+                          <h4 className=''>{product.name}</h4>
+                          <p className={feature_price}>${product.price}</p>
+                        </div>
                       </div>
                     </Link>
                   </div>
-                </div>
-              ) : (
-                <div className={column_two} key={product._id}>
-                  <Link to={`/product/${product._id}`}>
-                    <div className={three}>
-                      <img src={product.image.url[0]} alt='' />
-                      <div className={three_text}>
-                        <h4 className=''>{product.name}</h4>
-                        <p className={feature_price}>${product.price}</p>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              )
-            )}
+                )
+              )}
           </div>
         </div>
       </section>

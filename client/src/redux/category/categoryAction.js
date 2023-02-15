@@ -1,9 +1,10 @@
 import axios from 'axios';
+import baseUrl from '../../utils/baseUrl';
 import {
   CREATE_CATEGORY,
   CATEGORY_LIST,
   CATEGORY_ERROR,
-  CATEGORY_DELETE
+  CATEGORY_DELETE,
 } from './categoryTypes';
 
 export const createCategory = (category) => async (dispatch) => {
@@ -14,7 +15,11 @@ export const createCategory = (category) => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.post(`/api/v1/category`, category, config);
+    const { data } = await axios.post(
+      `${baseUrl}/api/v1/category`,
+      category,
+      config
+    );
 
     dispatch({
       type: CREATE_CATEGORY,
@@ -35,7 +40,7 @@ export const createCategory = (category) => async (dispatch) => {
 
 export const categoryList = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/category`);
+    const { data } = await axios.get(`${baseUrl}/api/v1/category`);
 
     dispatch({
       type: CATEGORY_LIST,
@@ -56,7 +61,7 @@ export const categoryList = () => async (dispatch) => {
 
 export const deleteCategory = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/api/v1/category/${id}`);
+    await axios.delete(`${baseUrl}/api/v1/category/${id}`);
 
     dispatch({
       type: CATEGORY_DELETE,

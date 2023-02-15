@@ -40,39 +40,44 @@ const ItemOnSale = () => {
             </div>
           </div>
           <div className={on_sale_items}>
-            {itemsOnSale.map((product, i) =>
-              i % 2 !== 0 ? (
-                <div className={column_one} key={product._id}>
-                  <div className={one}>
-                    <div className={sale_discount_one}>
-                      <h3>-25%</h3>
-                    </div>
-                    <Link to={`/product/${product._id}`}>
-                      <img src={product.image.url[0]} alt='' />
-                      <div className={one_text}>
-                        <h4 className=''>{product.name}</h4>
-                        <p className={sale_price}>${product.price}</p>
+            {itemsOnSale &&
+              itemsOnSale.map((product, i) =>
+                i % 2 !== 0 ? (
+                  <div className={column_one} key={product._id}>
+                    <div className={one}>
+                      <div className={sale_discount_one}>
+                        <h3>-25%</h3>
                       </div>
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <div className={column_two} key={product._id}>
-                  <div className={two}>
-                    <div className={sale_discount_two}>
-                      <h3>-25%</h3>
+                      {product.image.url[0] && (
+                        <Link to={`/product/${product._id}`}>
+                          <img src={product.image.url[0]} alt='' />
+                          <div className={one_text}>
+                            <h4 className=''>{product.name}</h4>
+                            <p className={sale_price}>${product.price}</p>
+                          </div>
+                        </Link>
+                      )}
                     </div>
-                    <Link to={`/product/${product._id}`}>
-                      <img src={product.image.url[0]} alt='' />
-                      <div className={two_text}>
-                        <h4>{product.name}</h4>
-                        <p className={sale_price}>${product.price}</p>
-                      </div>
-                    </Link>
                   </div>
-                </div>
-              )
-            )}
+                ) : (
+                  <div className={column_two} key={product._id}>
+                    <div className={two}>
+                      <div className={sale_discount_two}>
+                        <h3>-25%</h3>
+                      </div>
+                      {product.image.url[0] && (
+                        <Link to={`/product/${product._id}`}>
+                          <img src={product.image.url[0]} alt='' />
+                          <div className={two_text}>
+                            <h4>{product.name}</h4>
+                            <p className={sale_price}>${product.price}</p>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                )
+              )}
           </div>
         </div>
       </section>

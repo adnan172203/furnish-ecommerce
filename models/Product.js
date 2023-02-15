@@ -5,20 +5,15 @@ const { ObjectId } = Schema;
 const productSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    unique: true,
   },
   description: {
     type: String,
-    required: true,
   },
   price: {
     type: Number,
-    required: true,
   },
   category: {
     type: String,
-    required: true,
   },
   quantity: {
     type: Number,
@@ -36,7 +31,6 @@ const productSchema = new Schema({
     type: Object,
   },
   stock: {
-    required: true,
     type: Boolean,
   },
   reviews: [

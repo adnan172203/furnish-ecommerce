@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseUrl from '../../utils/baseUrl';
 import {
   PRODUCT_LIST,
   PRODUCT_CREATE,
@@ -16,7 +17,7 @@ import {
 
 export const listProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios.get('/api/v1/products');
+    const { data } = await axios.get(`${baseUrl}/api/v1/products`);
 
     dispatch({
       type: PRODUCT_LIST,
@@ -33,25 +34,32 @@ export const listProducts = () => async (dispatch) => {
   }
 };
 
-export const createProduct = (product) => async (dispatch) => {
+export const createProduct = (product) => async (dispatch, getState) => {
   try {
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
     const config = {
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.post(`/api/v1/products`, product, config);
+    const { data } = await axios.post(
+      `${baseUrl}/api/v1/products`,
+      product,
+      config
+    );
 
     dispatch({
       type: PRODUCT_CREATE,
       payload: data.data,
     });
   } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+    const message = error.response && error.response.data.error;
+
     dispatch({
       type: PRODUCT_ERROR,
       payload: message,
@@ -61,7 +69,7 @@ export const createProduct = (product) => async (dispatch) => {
 
 export const singleProductDetails = (id) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/products/${id}`);
+    const { data } = await axios.get(`${baseUrl}/api/v1/products/${id}`);
 
     dispatch({
       type: SINGLE_PRODUCT,
@@ -78,9 +86,19 @@ export const singleProductDetails = (id) => async (dispatch) => {
   }
 };
 
-export const deleteProduct = (id) => async (dispatch) => {
+export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
-    await axios.delete(`/api/v1/products/${id}`);
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    await axios.delete(`${baseUrl}/api/v1/products/${id}`, config);
 
     dispatch({
       type: PRODUCT_DELETE,
@@ -99,11 +117,23 @@ export const deleteProduct = (id) => async (dispatch) => {
   }
 };
 
-export const updateProduct = (product) => async (dispatch) => {
+export const updateProduct = (product) => async (dispatch, getState) => {
   try {
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
     const { data } = await axios.put(
-      `/api/v1/products/${product._id}`,
-      product
+      `${baseUrl}/api/v1/products/${product._id}`,
+      product,
+      config
     );
 
     dispatch({
@@ -132,7 +162,7 @@ export const createProductReview = (productId, review) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/v1/products/${productId}/reviews`,
+      `${baseUrl}/api/v1/products/${productId}/reviews`,
       review,
       config
     );
@@ -163,7 +193,7 @@ export const productFilter = (arg) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `/api/v1/products/search/filters`,
+      `${baseUrl}/api/v1/products/search/filters`,
       arg,
       config
     );
@@ -187,7 +217,7 @@ export const productFilter = (arg) => async (dispatch) => {
 
 export const topProduct = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/products/top`);
+    const { data } = await axios.get(`${baseUrl}/api/v1/products/top`);
 
     dispatch({
       type: TOP_PRODUCT,
@@ -206,7 +236,7 @@ export const topProduct = () => async (dispatch) => {
 
 export const latestProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/products/latest`);
+    const { data } = await axios.get(`${baseUrl}/api/v1/products/latest`);
 
     dispatch({
       type: LATEST_PRODUCTS,
@@ -225,7 +255,7 @@ export const latestProducts = () => async (dispatch) => {
 
 export const bestsellingProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/products/best`);
+    const { data } = await axios.get(`${baseUrl}/api/v1/products/best`);
 
     dispatch({
       type: BEST_SELLING_PRODUCTS,
@@ -244,7 +274,7 @@ export const bestsellingProducts = () => async (dispatch) => {
 
 export const itemsOnSaleProducts = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/v1/products/onsale`);
+    const { data } = await axios.get(`${baseUrl}/api/v1/products/onsale`);
 
     dispatch({
       type: LOW_SOLD_PRODUCT,

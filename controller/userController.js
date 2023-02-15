@@ -14,7 +14,7 @@ module.exports.getUsers = asyncHandler(async (req, res) => {
 //get single  user profile
 
 module.exports.getUser = asyncHandler(async (req, res) => {
-  const id = req.user._id;
+  const id = req.user;
   const user = await User.findById(id, '-password');
   if (!user) return res.status(404).json({ msg: 'user not exist' });
   res.status(200).json(user);
@@ -78,7 +78,7 @@ module.exports.login = asyncHandler(async (req, res, next) => {
 
 //update user
 module.exports.updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user);
 
   if (user) {
     user.name = req.body.name || user.name;
@@ -120,7 +120,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     options.secure = true;
   }
 
-  res.status(statusCode).cookie('token', token, options).json({
+  res.status(statusCode).json({
     user,
     success: true,
     token,

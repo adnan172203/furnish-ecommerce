@@ -114,11 +114,9 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
     stock,
     reviews,
   });
-  // console.log(
-  //   'product controller=================>>>>>>>>>>>>>>>>>>>>>>',
-  //   req.headers
-  // );
+
   const newProduct = await product.save();
+
   if (newProduct) {
     return res
       .status(201)
@@ -137,14 +135,14 @@ module.exports.updateProduct = asyncHandler(async (req, res, next) => {
   }
 
   // Make sure user is product owner
-  if (req.user.role !== 'admin') {
-    return next(
-      new ErrorResponse(
-        `User ${req.params.id} is not authorized to update this product`,
-        401
-      )
-    );
-  }
+  // if (req.user.role !== 'admin') {
+  //   return next(
+  //     new ErrorResponse(
+  //       `User ${req.params.id} is not authorized to update this product`,
+  //       401
+  //     )
+  //   );
+  // }
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
