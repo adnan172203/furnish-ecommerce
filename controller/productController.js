@@ -272,7 +272,6 @@ const handlePrice = asyncHandler(async (req, res, price) => {
       $lte: price,
     },
   });
-
   res.json(products);
 });
 

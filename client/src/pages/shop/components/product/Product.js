@@ -62,7 +62,9 @@ const Product = ({ product }) => {
       <div className={product_item} key={product._id}>
         <Link to={`/product/${product._id}`}>
           <div className={product_img}>
-            <img src={product.image.url[0]} alt='' />
+            {product.image && product.image.url.length > 0 && (
+              <img src={product.image.url[0]} alt='' />
+            )}
           </div>
         </Link>
         <div className={desc_item}>

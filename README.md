@@ -1,8 +1,6 @@
 ## Live Demo
 
-# [Furnish](https://furnish-shop.herokuapp.com)
-
-
+# [Furnish](https://furnish-ecommerce-shop.vercel.app/)
 
 <img src="./demo/banner.PNG">
 <img src="./demo/shop.PNG">
@@ -16,8 +14,6 @@
 - React.js
 - Redux
 - MongoDB Atlas
-
-
 
 ## Quick Start 🚀 🚀 🚀
 
@@ -45,7 +41,7 @@
 # add uri of your mongodb connection for example
 
  "MONGO_URI": "mongodb://localhost:27017/furnish",
- 
+
 ```
 
 ```bash

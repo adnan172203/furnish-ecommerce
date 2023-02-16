@@ -40,7 +40,7 @@ const ItemOnSale = () => {
             </div>
           </div>
           <div className={on_sale_items}>
-            {itemsOnSale &&
+            {itemsOnSale.length > 0 &&
               itemsOnSale.map((product, i) =>
                 i % 2 !== 0 ? (
                   <div className={column_one} key={product._id}>
@@ -65,7 +65,7 @@ const ItemOnSale = () => {
                       <div className={sale_discount_two}>
                         <h3>-25%</h3>
                       </div>
-                      {product.image.url[0] && (
+                      {product.image && product.image.url.length > 0 && (
                         <Link to={`/product/${product._id}`}>
                           <img src={product.image.url[0]} alt='' />
                           <div className={two_text}>

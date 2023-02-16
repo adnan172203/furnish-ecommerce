@@ -44,13 +44,15 @@ const LatestProducts = () => {
                 i % 2 !== 0 ? (
                   <div className={column_one} key={product._id}>
                     <div className={one}>
-                      <Link to={`/product/${product._id}`}>
-                        <img src={product.image.url[0]} alt='' />
-                        <div className={one_text}>
-                          <h4>{product.name}</h4>
-                          <p className={feature_price}>${product.price}</p>
-                        </div>
-                      </Link>
+                      {product.image && product.image.url.length > 0 && (
+                        <Link to={`/product/${product._id}`}>
+                          <img src={product.image.url[0]} alt='' />
+                          <div className={one_text}>
+                            <h4>{product.name}</h4>
+                            <p className={feature_price}>${product.price}</p>
+                          </div>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 ) : (

@@ -28,7 +28,9 @@ const ShopProduct = () => {
           ? Array(10)
               .fill()
               .map((item, i) => <ProductSkeletons key={i} />)
-          : products.map((product, i) => <Product product={product} key={i} />)}
+          : products &&
+            products.length > 0 &&
+            products.map((product, i) => <Product product={product} key={i} />)}
       </div>
     </>
   );
