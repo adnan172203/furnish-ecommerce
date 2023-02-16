@@ -16,12 +16,12 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(cors());
 
 // Route files
-const usersRoute = require('./routes/users');
-const productsRoute = require('./routes/products');
-const ordersRoute = require('./routes/orders');
-const uploadsRoute = require('./routes/upload');
-const categoryRoute = require('./routes/category');
-const paymentRoute = require('./routes/payment');
+const usersRoute = require('./Routes/users');
+const productsRoute = require('./Routes/products');
+const ordersRoute = require('./Routes/orders');
+const uploadsRoute = require('./Routes/upload');
+const categoryRoute = require('./Routes/category');
+const paymentRoute = require('./Routes/payment');
 
 // Mount routers
 app.use('/api/v1/users', usersRoute);
