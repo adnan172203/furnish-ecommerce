@@ -25,7 +25,7 @@ const {
 const ItemOnSale = () => {
   const dispatch = useDispatch();
   const { itemsOnSale } = useSelector((state) => state.product);
-
+  console.log(itemsOnSale);
   useEffect(() => {
     dispatch(itemsOnSaleProducts());
   }, [dispatch]);
@@ -48,7 +48,7 @@ const ItemOnSale = () => {
                       <div className={sale_discount_one}>
                         <h3>-25%</h3>
                       </div>
-                      {product.image.url[0] && (
+                      {product.image && product.image.url.length > 0 && (
                         <Link to={`/product/${product._id}`}>
                           <img src={product.image.url[0]} alt='' />
                           <div className={one_text}>

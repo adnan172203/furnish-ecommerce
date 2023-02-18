@@ -36,7 +36,7 @@ router.get('/onsale', lowsoldProducts);
 router.get('/:id', getProduct);
 
 //add product
-router.post('/', auth, addProduct);
+router.post('/', addProduct);
 
 //update product
 router.put('/:id', auth, updateProduct);
