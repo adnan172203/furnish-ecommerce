@@ -25,7 +25,7 @@ const {
 const ItemOnSale = () => {
   const dispatch = useDispatch();
   const { itemsOnSale } = useSelector((state) => state.product);
-  console.log(itemsOnSale);
+
   useEffect(() => {
     dispatch(itemsOnSaleProducts());
   }, [dispatch]);

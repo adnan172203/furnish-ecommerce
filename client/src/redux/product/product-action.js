@@ -1,5 +1,6 @@
 import axios from 'axios';
 import baseUrl from '../../utils/baseUrl';
+import { productValidation } from '../../utils/validation';
 import {
   PRODUCT_LIST,
   PRODUCT_CREATE,
@@ -15,9 +16,11 @@ import {
   LOW_SOLD_PRODUCT,
 } from './product-types';
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (page) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/api/v1/products`);
+    const { data } = await axios.get(
+      `${baseUrl}/api/v1/products?page=${page}&limit=6`
+    );
 
     dispatch({
       type: PRODUCT_LIST,
@@ -35,6 +38,11 @@ export const listProducts = () => async (dispatch) => {
 };
 
 export const createProduct = (product) => async (dispatch, getState) => {
+  let check = productValidation(product);
+
+  if (check.errLength > 0) {
+    return dispatch({ type: PRODUCT_ERROR, payload: check.errMsg });
+  }
   try {
     const {
       userLogin: { userInfo },
@@ -58,8 +66,8 @@ export const createProduct = (product) => async (dispatch, getState) => {
       payload: data.data,
     });
   } catch (error) {
-    const message = error.response && error.response.data.error;
-
+    const message = error.response && error.response.data;
+    // console.log('action error=====>>>', message);
     dispatch({
       type: PRODUCT_ERROR,
       payload: message,

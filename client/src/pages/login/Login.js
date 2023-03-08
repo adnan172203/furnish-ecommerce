@@ -58,7 +58,10 @@ const Login = ({ history }) => {
             <form onSubmit={(e) => onSubmit(e)} data-testid='form'>
               <h2>Login</h2>
               {error && error.message ? (
-                <div className={form_warning_message}  data-testid='error_message'>
+                <div
+                  className={form_warning_message}
+                  data-testid='error_message'
+                >
                   {error.message}
                 </div>
               ) : (

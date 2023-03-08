@@ -46,6 +46,8 @@ const {
   loaded_image,
   delete_icon,
   close_form,
+  form_validation_text,
+  backend_error,
 } = Styles;
 
 const AdminProduct = ({ history }) => {
@@ -64,21 +66,51 @@ const AdminProduct = ({ history }) => {
   const { name, description, price, category, sku, sold } = formData;
   const [display, setDisplay] = useState(false);
 
-  const dispatch = useDispatch();
   const { products, error } = useSelector((state) => state.product);
-  console.log(error);
+  const [productCard, setProductCard] = useState([]);
+  const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
+
+  // console.log('productcard====>>>', products);
 
   const {
     userInfo: { user },
   } = useSelector((state) => state.userLogin);
 
   useEffect(() => {
+    // dispatch(listProducts(page));
     if (user && user.role === 'admin') {
-      dispatch(listProducts());
+      const dataFetch = async () => {
+        const { data } = await axios.get(
+          `${baseUrl}/api/v1/products?page=${page}&limit=8`
+        );
+        setProductCard((prev) => [...prev, ...data.products]);
+      };
+
+      dataFetch();
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, user]);
+  }, [dispatch, history, user, page]);
+
+  const handelInfiniteScroll = async () => {
+    try {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 >=
+        document.documentElement.scrollHeight
+      ) {
+        // setLoading(true);
+        setPage((prev) => prev + 1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handelInfiniteScroll);
+    return () => window.removeEventListener('scroll', handelInfiniteScroll);
+  }, []);
 
   const uploadFileHandler = async (e) => {
     setLoading(true);
@@ -114,6 +146,10 @@ const AdminProduct = ({ history }) => {
     e.preventDefault();
 
     dispatch(createProduct({ ...formData, image }));
+
+    if (products) {
+      error.error = '';
+    }
   };
 
   const onChange = (e) =>
@@ -156,6 +192,7 @@ const AdminProduct = ({ history }) => {
                 name='name'
                 onChange={(e) => onChange(e)}
               />
+              <p className={form_validation_text}>{error?.name}</p>
               <label
                 className={label_edit}
                 htmlFor='create_product_description'
@@ -169,6 +206,7 @@ const AdminProduct = ({ history }) => {
                 value={description || ''}
                 onChange={(e) => onChange(e)}
               ></textarea>
+              <p className={form_validation_text}>{error?.description}</p>
               <label className={label_edit} htmlFor='create_product_price'>
                 Price
               </label>
@@ -180,6 +218,7 @@ const AdminProduct = ({ history }) => {
                 value={price || ''}
                 onChange={(e) => onChange(e)}
               />
+              <p className={form_validation_text}>{error?.price}</p>
               <label className={label_edit} htmlFor='create_product_price'>
                 Category
               </label>
@@ -191,6 +230,7 @@ const AdminProduct = ({ history }) => {
                 name='category'
                 onChange={(e) => onChange(e)}
               />
+              <p className={form_validation_text}>{error?.category}</p>
               <label className={label_edit} htmlFor='create_product_sku'>
                 Sku
               </label>
@@ -202,6 +242,7 @@ const AdminProduct = ({ history }) => {
                 value={sku || ''}
                 onChange={(e) => onChange(e)}
               />
+              <p className={form_validation_text}>{error?.sku}</p>
               <label className={label_edit} htmlFor='create_product_sold'>
                 Sold
               </label>
@@ -213,6 +254,7 @@ const AdminProduct = ({ history }) => {
                 value={sold || ''}
                 onChange={(e) => onChange(e)}
               />
+              <p className={form_validation_text}>{error?.sold}</p>
               <label className={label_edit} htmlFor='create_product_image'>
                 Image
               </label>
@@ -223,6 +265,7 @@ const AdminProduct = ({ history }) => {
                 className={create_product_image}
                 onChange={uploadFileHandler}
               />
+              <p className={form_validation_text}>{error?.image}</p>
 
               <div className={loaded_image}>
                 {loading ? (
@@ -249,6 +292,10 @@ const AdminProduct = ({ history }) => {
                 <input type='radio' id='false' name='stock' value='false' />
                 <label htmlFor='false'>false</label>
               </div>
+              <p className={form_validation_text}>{error?.stock}</p>
+
+              {error.error && <p className={backend_error}>{error?.error}</p>}
+
               <input
                 type='submit'
                 value='Create Product'
@@ -261,8 +308,8 @@ const AdminProduct = ({ history }) => {
 
       <div className={admin_main_shop}>
         <div className={admin_product}>
-          {products &&
-            products.map((product) => (
+          {productCard &&
+            productCard.map((product) => (
               <div className={admin_product_item} key={product._id}>
                 <TiDeleteOutline
                   onClick={() => deleteHandler(product._id)}

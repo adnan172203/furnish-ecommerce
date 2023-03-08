@@ -1,6 +1,5 @@
-const valid = ({ name, email, password, confirmPassword }) => {
+export const valid = ({ name, email, password, confirmPassword }) => {
   const err = {};
-
   if (!name) {
     err.name = 'Please add your full name.';
   } else if (name.length > 25) {
@@ -36,4 +35,60 @@ function validateEmail(email) {
   return re.test(email);
 }
 
-export default valid;
+export const productValidation = ({
+  name,
+  description,
+  price,
+  category,
+  quantity,
+  sku,
+  sold,
+  image,
+  stock,
+}) => {
+  const productFormError = {};
+
+  if (!name) {
+    productFormError.name = 'Please write a name.';
+  } else if (name.length > 25) {
+    productFormError.name = 'Full name is up to 25 characters long.';
+  }
+
+  if (!description) {
+    productFormError.description = 'Please add product details.';
+  }
+
+  if (!price) {
+    productFormError.price = 'Please add price for this product.';
+  } else if (price.length < 0) {
+    productFormError.price = 'Price must be at least 1 character.';
+  }
+
+  if (!category) {
+    productFormError.category = 'Please add category';
+  }
+
+  // if (!quantity) {
+  //   productFormError.quantity = 'Please add quantity';
+  // }
+
+  if (!sku) {
+    productFormError.sku = 'Please add sku';
+  }
+
+  if (!sold) {
+    productFormError.sold = 'Please add total sold';
+  }
+
+  if (!image) {
+    productFormError.image = 'Please upload image';
+  }
+  if (!stock) {
+    productFormError.stock = 'Please add the stock';
+  }
+
+  return {
+    errMsg: productFormError,
+    errLength: Object.keys(productFormError).length,
+  };
+};

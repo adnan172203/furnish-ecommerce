@@ -41,7 +41,6 @@ let mongod;
     })
     .then((result) => {
       // console.log('ready-state====.>>>>>', result.connection);
-      console.log(result.connection.host);
     })
     .catch((err) => {});
 })();

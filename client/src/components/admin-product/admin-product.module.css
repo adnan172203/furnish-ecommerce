@@ -30,15 +30,18 @@
   transition: 0.2s;
   height: 95%;
   overflow-y: scroll;
+  opacity: 0;
+  visibility: hidden;
 }
 
-.dark_back .active .create_product_form{
+.dark_back .active .create_product_form {
   right: 0;
   transition: 0.5s;
+  opacity: 1;
+  visibility: visible;
 }
 
-
-.create_product_form_slide{
+.create_product_form_slide {
   animation-name: slide-in-right;
   animation-duration: 0.4s;
   animation-timing-function: ease;
@@ -47,7 +50,6 @@
   animation-direction: normal;
   animation-fill-mode: none;
 }
-
 
 @keyframes slide-in-right {
   0% {
@@ -62,8 +64,7 @@
   }
 }
 
-
-.form_back_slide{
+.form_back_slide {
   animation-name: slide-in-left;
   animation-duration: 1s;
   animation-timing-function: ease;
@@ -74,12 +75,12 @@
 }
 
 @keyframes slide-in-left {
-  0%{
+  0% {
     -webkit-transform: translateX(-1000px);
     transform: translateX(-1000px);
     opacity: 0;
   }
-  100%{
+  100% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
@@ -88,7 +89,7 @@
 
 .create_product_form input,
 .create_product_form textarea {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   margin-top: -6px;
 }
 
@@ -110,12 +111,12 @@
   outline-color: #42b883;
 }
 
-.inner_form{
+.inner_form {
   display: flex;
   flex-direction: column;
 }
 
-.close_form{
+.close_form {
   font-size: 24px;
   cursor: pointer;
   color: #6a5b5b;
@@ -208,7 +209,6 @@ input.create_product_submit {
   cursor: pointer;
 }
 
-
 .body_overlay {
   position: fixed;
   top: 0;
@@ -220,4 +220,19 @@ input.create_product_submit {
   z-index: 2;
   visibility: visible;
   opacity: 1;
+}
+
+.form_validation_text {
+  color: red;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+.backend_error {
+  text-align: center;
+  border: 1px solid red;
+  padding: 6px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: red;
 }

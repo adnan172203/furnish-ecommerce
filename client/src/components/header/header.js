@@ -38,8 +38,6 @@ const Header = ({ history }) => {
 
   //user info
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { registerInfo } = useSelector((state) => state.userRegister);
-
 
   //cart item
   const { cartItems } = useSelector((state) => state.cartReducer);
@@ -59,7 +57,7 @@ const Header = ({ history }) => {
   const handleShopEssential = () => {
     setShopEssential(!shopEssential);
   };
-
+  console.log('user info===>>>', userInfo);
   return (
     <>
       <header className={main_header}>
@@ -68,7 +66,12 @@ const Header = ({ history }) => {
             <Link to='/'>Home</Link>
             <Link to='/shop'>Shop</Link>
             <Link to='/cart'>Cart</Link>
-            {userInfo && <Link to='/dashboard/adminproduct'>Dashboard</Link>}
+            {userInfo && userInfo.user.role === 'admin' && (
+              <Link to='/dashboard/adminproduct'>Dashboard</Link>
+            )}
+            {userInfo && userInfo.user.role === 'user' && (
+              <Link to='/dashboard/profile'>Dashboard</Link>
+            )}
           </ul>
         </nav>
 
@@ -93,23 +96,19 @@ const Header = ({ history }) => {
 
         <div className={shop_essentials} id={shopEssential ? show_item : ''}>
           <div className={shop_essentials_icon}>
-            {userInfo && userInfo.user ? (
+            {userInfo && userInfo.user.role === 'admin' ? (
               <Link to='/dashboard/profile' className={user_name}>
                 {userInfo.user.name.split(' ').slice(0, 1)}
               </Link>
             ) : null}
 
-            {registerInfo && registerInfo.user ? (
+            {userInfo && userInfo.user.role === 'user' ? (
               <Link to='/dashboard/profile' className={user_name}>
-                {registerInfo.user.name.split(' ').slice(0, 1)}
+                {userInfo.user.name.split(' ').slice(0, 1)}
               </Link>
             ) : null}
 
             {userInfo ? (
-              <Link to='' onClick={logoutHandler}>
-                Log out
-              </Link>
-            ) : registerInfo ? (
               <Link to='' onClick={logoutHandler}>
                 Log out
               </Link>

@@ -22,7 +22,6 @@ const {
 } = Styles;
 
 const Register = () => {
-
   let history = useHistory();
 
   const [formData, setFormData] = useState({
@@ -35,13 +34,13 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const { error, registerInfo } = useSelector((state) => state.userRegister);
+  const { error, userInfo } = useSelector((state) => state.userRegister);
 
   useEffect(() => {
-    if (registerInfo) {
+    if (userInfo) {
       history.push('/dashboard/profile');
     }
-  }, [history, registerInfo]);
+  }, [history, userInfo]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -54,7 +53,7 @@ const Register = () => {
 
     setTimeout(function () {
       setLoading(false);
-    }, 1000);
+    }, 2000);
   };
 
   return (
@@ -113,7 +112,11 @@ const Register = () => {
                 />
               </div>
               <p className={form_validation_text}>{error?.confirmPassword}</p>
-              <button type='submit' className={`${btn} ${common_btn}`}   data-testid='register-form'>
+              <button
+                type='submit'
+                className={`${btn} ${common_btn}`}
+                data-testid='register-form'
+              >
                 <span>Register</span>{' '}
                 <span>{loading ? <div className={loader}></div> : ''}</span>
               </button>

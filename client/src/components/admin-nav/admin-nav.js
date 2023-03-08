@@ -17,7 +17,6 @@ const { admin_nav, rm } = Styles;
 
 const AdminNav = ({ url }) => {
   const { userInfo } = useSelector((state) => state.userLogin);
-  const { registerInfo } = useSelector((state) => state.userRegister);
 
   return (
     <div className={admin_nav}>
@@ -52,21 +51,11 @@ const AdminNav = ({ url }) => {
             <FaRegAddressCard className={rm} />
             Profile
           </Link>
-        ) : registerInfo ? (
-          <Link to={`${url}/profile`}>
-            <FaRegAddressCard className={rm} />
-            Profile
-          </Link>
         ) : (
           ''
         )}
 
         {userInfo && userInfo.user.role === 'user' ? (
-          <Link to={`${url}/myorders`}>
-            <FaUsers className={rm} />
-            My Order
-          </Link>
-        ) : registerInfo && registerInfo.user.role === 'user' ? (
           <Link to={`${url}/myorders`}>
             <FaUsers className={rm} />
             My Order

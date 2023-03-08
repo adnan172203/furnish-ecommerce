@@ -1,7 +1,7 @@
 import axios from 'axios';
 import baseUrl from '../../utils/baseUrl';
 
-import valid from '../../utils/validation';
+import { valid } from '../../utils/validation';
 import { CART_CLEAR_ITEMS } from '../cart/cartTypes';
 import {
   USER_REGISTER_SUCCESS,
@@ -35,7 +35,7 @@ export const register = (user) => async (dispatch) => {
       type: USER_REGISTER_SUCCESS,
       payload: data,
     });
-    localStorage.setItem('registerInfo', JSON.stringify(data));
+    localStorage.setItem('userInfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,

@@ -44,9 +44,9 @@ const Profile = () => {
             {orders ? orders.length : 0}
           </p>
 
-            <Link to={`/user/edit/${user._id}`}>
-              <FaRegEdit />
-            </Link>
+          {/* <Link to={`/user/edit/${user._id}`}>
+            <FaRegEdit />
+          </Link> */}
         </div>
       </div>
     </>

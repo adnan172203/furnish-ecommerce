@@ -7,67 +7,70 @@ const Product = require('../models/Product');
 
 //Get All Product
 module.exports.getProducts = asyncHandler(async (req, res, next) => {
-  let query;
+  // // Copy req.query
+  // const reqQuery = { ...req.query };
 
-  // Copy req.query
-  const reqQuery = { ...req.query };
+  // // Fields to exclude
+  // const removeFields = ['page', 'limit'];
 
-  // Fields to exclude
-  const removeFields = ['page', 'limit'];
+  // // Loop over removeFields and delete them from reqQuery
+  // removeFields.forEach((param) => delete reqQuery[param]);
 
-  // Loop over removeFields and delete them from reqQuery
-  removeFields.forEach((param) => delete reqQuery[param]);
+  // // Create query string
+  // let queryStr = JSON.stringify(reqQuery);
 
-  // Create query string
-  let queryStr = JSON.stringify(reqQuery);
+  // // Create operators ($gt, $gte, etc)
+  // queryStr = queryStr.replace(
+  //   /\b(gt|gte|lt|lte|in)\b/g,
+  //   (match) => `$${match}`
+  // );
 
-  // Create operators ($gt, $gte, etc)
-  queryStr = queryStr.replace(
-    /\b(gt|gte|lt|lte|in)\b/g,
-    (match) => `$${match}`
-  );
-
-  query = Product.find(JSON.parse(queryStr));
+  let query = Product.find({});
 
   // Pagination
-  const page = parseInt(req.query.page, 1) || 1;
-  const limit = parseInt(req.query.limit, 3) || 20;
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
-  const total = await Product.countDocuments();
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 3;
 
-  query = query.skip(startIndex).limit(limit);
+  let skip = (page - 1) * limit;
+
+  query = query.skip(skip).limit(limit);
+
+  // const startIndex = (page - 1) * limit;
+  // const endIndex = page * limit;
+  // const total = await Product.countDocuments();
+
+  // query = query.skip(startIndex).limit(limit);
 
   const products = await query;
 
   // Pagination result
-  const pagination = {};
+  // const pagination = {};
 
-  if (endIndex < total) {
-    pagination.next = {
-      page: page + 1,
-      limit,
-    };
-  }
+  // if (endIndex < total) {
+  //   pagination.next = {
+  //     page: page + 1,
+  //     limit,
+  //   };
+  // }
 
-  if (startIndex > 0) {
-    pagination.prev = {
-      page: page - 1,
-      limit,
-    };
-  }
+  // if (startIndex > 0) {
+  //   pagination.prev = {
+  //     page: page - 1,
+  //     limit,
+  //   };
+  // }
 
-  res.status(200).json({ pagination, products });
+  res.status(200).json({ products });
 });
 
 //get single Product
 module.exports.getProduct = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const product = await Product.findById(id);
-  if (!product)
-    return next(
-      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
-    );
+  // if (!product)
+  //   return next(
+  //     new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+  //   );
 
   res.status(200).json(product);
 });
@@ -76,10 +79,10 @@ module.exports.getProduct = asyncHandler(async (req, res, next) => {
 module.exports.getProduct = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const product = await Product.findById(id);
-  if (!product)
-    return next(
-      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
-    );
+  // if (!product)
+  //   return next(
+  //     new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+  //   );
 
   res.status(200).json(product);
 });
@@ -116,7 +119,7 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
   });
 
   const newProduct = await product.save();
-
+  console.log('new product=======>>>>>>>', newProduct);
   if (newProduct) {
     return res
       .status(201)
@@ -128,11 +131,11 @@ module.exports.addProduct = asyncHandler(async (req, res) => {
 module.exports.updateProduct = asyncHandler(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
 
-  if (!product) {
-    return next(
-      new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
-    );
-  }
+  // if (!product) {
+  //   return next(
+  //     new ErrorResponse(`Product not found with id of ${req.params.id}`, 404)
+  //   );
+  // }
 
   // Make sure user is product owner
   // if (req.user.role !== 'admin') {
