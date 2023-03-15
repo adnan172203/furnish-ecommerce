@@ -1,0 +1,24 @@
+.product_tag_filter {
+  background-color: #fff;
+  border: 1px solid #eee;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.product_tag_filter h3 {
+  margin-bottom: 20px;
+}
+
+.product_tag_filter ul li {
+  list-style: none;
+  margin-right: 20px;
+  border: 1px solid #bfbfbf;
+  padding: 7px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product_tag_filter ul {
+  display: flex;
+  flex-wrap: wrap;
+}
