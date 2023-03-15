@@ -23,36 +23,27 @@ const ShopProduct = () => {
   const { products } = useSelector((state) => state.product);
 
   useEffect(() => {
-    // dispatch(listProducts());
+    dispatch(listProducts());
+    setLoading(false);
+  }, [dispatch]);
 
-    const dataFetch = async () => {
-      const { data } = await axios.get(
-        `${baseUrl}/api/v1/products?page=${page}&limit=9`
-      );
-      setProductCard((prev) => [...prev, ...data.products]);
-      setLoading(false);
-    };
+  // const handelInfiniteScroll = async () => {
+  //   try {
+  //     if (
+  //       window.innerHeight + document.documentElement.scrollTop + 1 >=
+  //       document.documentElement.scrollHeight
+  //     ) {
+  //       setPage((prev) => prev + 1);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-    dataFetch();
-  }, [dispatch, page]);
-
-  const handelInfiniteScroll = async () => {
-    try {
-      if (
-        window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.scrollHeight
-      ) {
-        setPage((prev) => prev + 1);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handelInfiniteScroll);
-    return () => window.removeEventListener('scroll', handelInfiniteScroll);
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handelInfiniteScroll);
+  //   return () => window.removeEventListener('scroll', handelInfiniteScroll);
+  // }, []);
 
   return (
     <>
@@ -67,11 +58,9 @@ const ShopProduct = () => {
               <Product product={product} key={i} />
             ))} */}
 
-        {productCard &&
-          productCard.length > 0 &&
-          productCard.map((product, i) => (
-            <Product product={product} key={i} />
-          ))}
+        {products &&
+          products.length > 0 &&
+          products.map((product, i) => <Product product={product} key={i} />)}
 
         {isLoading &&
           Array(10)

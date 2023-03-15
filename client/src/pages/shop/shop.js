@@ -4,7 +4,7 @@ import ShopProduct from './components/shopProducts/ShopProduct';
 import ProductCategories from './components/ProductCategories/ProductCategories';
 import PriceFilter from './components/priceFilter/PriceFilter';
 import Search from './components/search/Search';
-
+import ProductColor from './components/productColor/ProductColor';
 import { productFilter } from '../../redux/product/product-action';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -25,7 +25,7 @@ const {
 
 const Shop = () => {
   const [price, setPrice] = useState(0);
-  const [query, setQuery] = useState('');
+
   const [fire, setFire] = useState(false);
 
   const dispatch = useDispatch();
@@ -35,10 +35,6 @@ const Shop = () => {
   useEffect(() => {
     dispatch(productFilter({ price }));
   }, [dispatch, fire, price]);
-
-  useEffect(() => {
-    dispatch(productFilter({ query }));
-  }, [dispatch, query]);
 
   const handleCategory = (e) => {
     let category = e.target.value;
@@ -53,10 +49,6 @@ const Shop = () => {
     }, 300);
   };
 
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-  };
-
   return (
     <>
       <section className={main_shop}>
@@ -64,29 +56,30 @@ const Shop = () => {
           <div className={main_product}>
             <div className={product_filter}>
               <ProductCategories handleCategory={handleCategory} />
-              <Search handleSearch={handleSearch} />
+              <Search />
               <PriceFilter handlePrice={handlePrice} price={price} />
+              <ProductColor />
             </div>
-            
+
             <ShopProduct />
 
-            <Link to="/cart">
-            <div className={responsive_cart_item}>
-              <div className={responsive_cart_item_length}>
-                <span>
-                  <CgShoppingCart />
-                </span>
-                {cartItems.length} {cartItems.length <= 1 ? 'Item' : 'Items'}
-              </div>
+            <Link to='/cart'>
+              <div className={responsive_cart_item}>
+                <div className={responsive_cart_item_length}>
+                  <span>
+                    <CgShoppingCart />
+                  </span>
+                  {cartItems.length} {cartItems.length <= 1 ? 'Item' : 'Items'}
+                </div>
 
-              <span className={responsive_cart_item_total}>
-                $
-                {cartItems.reduce(
-                  (acc, item) => acc + item.qty * item.price,
-                  0
-                )}
-              </span>
-            </div>
+                <span className={responsive_cart_item_total}>
+                  $
+                  {cartItems.reduce(
+                    (acc, item) => acc + item.qty * item.price,
+                    0
+                  )}
+                </span>
+              </div>
             </Link>
           </div>
         </div>

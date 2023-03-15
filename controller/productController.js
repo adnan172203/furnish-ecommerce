@@ -6,25 +6,7 @@ const asyncHandler = require('../middleware/async');
 const Product = require('../models/Product');
 
 //Get All Product
-module.exports.getProducts = asyncHandler(async (req, res, next) => {
-  // // Copy req.query
-  // const reqQuery = { ...req.query };
-
-  // // Fields to exclude
-  // const removeFields = ['page', 'limit'];
-
-  // // Loop over removeFields and delete them from reqQuery
-  // removeFields.forEach((param) => delete reqQuery[param]);
-
-  // // Create query string
-  // let queryStr = JSON.stringify(reqQuery);
-
-  // // Create operators ($gt, $gte, etc)
-  // queryStr = queryStr.replace(
-  //   /\b(gt|gte|lt|lte|in)\b/g,
-  //   (match) => `$${match}`
-  // );
-
+module.exports.getProducts = asyncHandler(async (req, res) => {
   let query = Product.find({});
 
   // Pagination
@@ -35,30 +17,7 @@ module.exports.getProducts = asyncHandler(async (req, res, next) => {
 
   query = query.skip(skip).limit(limit);
 
-  // const startIndex = (page - 1) * limit;
-  // const endIndex = page * limit;
-  // const total = await Product.countDocuments();
-
-  // query = query.skip(startIndex).limit(limit);
-
   const products = await query;
-
-  // Pagination result
-  // const pagination = {};
-
-  // if (endIndex < total) {
-  //   pagination.next = {
-  //     page: page + 1,
-  //     limit,
-  //   };
-  // }
-
-  // if (startIndex > 0) {
-  //   pagination.prev = {
-  //     page: page - 1,
-  //     limit,
-  //   };
-  // }
 
   res.status(200).json({ products });
 });
@@ -260,6 +219,7 @@ module.exports.searchFilters = async (req, res) => {
   }
 
   if (query) {
+    console.log('search===>>>', query);
     await handleQuery(req, res, query);
   }
 };
@@ -278,7 +238,11 @@ const handlePrice = asyncHandler(async (req, res, price) => {
   res.json(products);
 });
 
-const handleQuery = asyncHandler(async (req, res, query) => {
-  let products = await Product.find({ name: { $regex: query } });
-  res.json(products);
-});
+const handleQuery = async (req, res, query) => {
+  try {
+    let products = await Product.find({ name: { $regex: query } });
+    res.json(products);
+  } catch (error) {
+    console.log('error===>>>', error);
+  }
+};

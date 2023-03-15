@@ -19,7 +19,7 @@ import {
 export const listProducts = (page) => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `${baseUrl}/api/v1/products?page=${page}&limit=6`
+      `${baseUrl}/api/v1/products?page=${page}&limit=12`
     );
 
     dispatch({
@@ -199,12 +199,12 @@ export const productFilter = (arg) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     };
-
     const { data } = await axios.post(
       `${baseUrl}/api/v1/products/search/filters`,
       arg,
       config
     );
+    console.log('data===>>>', data);
 
     dispatch({
       type: PRODUCT_CATEGORY_FILTER,

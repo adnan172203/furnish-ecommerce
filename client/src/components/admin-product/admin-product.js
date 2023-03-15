@@ -71,8 +71,6 @@ const AdminProduct = ({ history }) => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
-  // console.log('productcard====>>>', products);
-
   const {
     userInfo: { user },
   } = useSelector((state) => state.userLogin);
