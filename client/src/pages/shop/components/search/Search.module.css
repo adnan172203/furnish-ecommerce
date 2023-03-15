@@ -1,13 +1,14 @@
 .search_product {
   position: relative;
   margin-top: 75px;
+  border: 1px solid #eee;
 }
 
 .search_product #psearch {
   position: relative;
   background: white;
-  border: none;
-  box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06);
+  border: 1px solid #eee;
+  /* box-shadow: 0px 2px 15px 0px rgb(0 0 0 / 0.06); */
   padding: 16px 46px;
   width: 100%;
 }

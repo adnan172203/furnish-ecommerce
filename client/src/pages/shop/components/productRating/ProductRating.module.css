@@ -1,0 +1,29 @@
+.product_rating_star {
+  background-color: #fff;
+  border: 1px solid #eee;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.product_rating_star h3 {
+  margin-bottom: 10px;
+}
+
+.product_rating_star ul li {
+  width: 18px;
+  list-style: none;
+  margin-right: 10px;
+}
+
+.product_rating_star ul li img {
+  width: 100%;
+}
+
+.product_rating_star ul {
+  display: flex;
+}
+
+.product_rating_star ul input {
+  margin-right: 10px;
+  width: 17px;
+}

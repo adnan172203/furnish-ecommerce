@@ -5,6 +5,7 @@ import ProductCategories from './components/ProductCategories/ProductCategories'
 import PriceFilter from './components/priceFilter/PriceFilter';
 import Search from './components/search/Search';
 import ProductColor from './components/productColor/ProductColor';
+import ProductRating from './components/productRating/ProductRating';
 import { productFilter } from '../../redux/product/product-action';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -59,6 +60,7 @@ const Shop = () => {
               <Search />
               <PriceFilter handlePrice={handlePrice} price={price} />
               <ProductColor />
+              <ProductRating />
             </div>
 
             <ShopProduct />
