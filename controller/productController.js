@@ -4,6 +4,7 @@ const asyncHandler = require('../middleware/async');
 
 //model
 const Product = require('../models/Product');
+const User = require('../models/User');
 
 //Get All Product
 module.exports.getProducts = asyncHandler(async (req, res) => {
@@ -125,43 +126,48 @@ module.exports.deleteProduct = asyncHandler(async (req, res) => {
 });
 
 //add review
-module.exports.createProductReview = asyncHandler(async (req, res) => {
-  const { rating, comment } = req.body;
+module.exports.createProductReview = async (req, res) => {
+  try {
+    const { rating, comment } = req.body;
 
-  const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id);
+    const user = await User.findById(req.user);
 
-  if (product) {
-    const alreadyReviewed = product.reviews.find(
-      (r) => r.user.toString() === req.user._id.toString()
-    );
+    if (product) {
+      const alreadyReviewed = product.reviews.find((r) => r.user === user._id);
 
-    if (alreadyReviewed) {
-      res.status(400);
-      throw new Error('Product already reviewed');
+      if (alreadyReviewed) {
+        res.status(400);
+        throw new Error('Product already reviewed');
+      }
+
+      const review = {
+        name: user.name,
+        rating: Number(rating),
+        comment,
+        user: user._id,
+      };
+
+      product.reviews.push(review);
+
+      product.numReviews = product.reviews.length;
+
+      let ratingAvg =
+        product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+        product.reviews.length;
+
+      product.rating = ratingAvg;
+
+      const resreview = await product.save();
+      res.status(201).json(resreview);
+    } else {
+      res.status(404);
+      throw new Error('Product not found');
     }
-
-    const review = {
-      name: req.user.name,
-      rating: Number(rating),
-      comment,
-      user: req.user._id,
-    };
-
-    product.reviews.push(review);
-
-    product.numReviews = product.reviews.length;
-
-    product.rating =
-      product.reviews.reduce((acc, item) => item.rating + acc, 0) /
-      product.reviews.length;
-
-    const resreview = await product.save();
-    res.status(201).json(resreview);
-  } else {
-    res.status(404);
-    throw new Error('Product not found');
+  } catch (error) {
+    console.log(error);
   }
-});
+};
 
 //get top products
 module.exports.getTopProducts = asyncHandler(async (req, res) => {
@@ -208,7 +214,7 @@ module.exports.lowsoldProducts = async (req, res) => {
 
 //Filter
 module.exports.searchFilters = async (req, res) => {
-  const { category, price, query } = req.body;
+  const { category, price, query, rating } = req.body;
 
   if (category) {
     await handleCategory(req, res, category);
@@ -219,8 +225,11 @@ module.exports.searchFilters = async (req, res) => {
   }
 
   if (query) {
-    console.log('search===>>>', query);
     await handleQuery(req, res, query);
+  }
+
+  if (rating) {
+    await handleRating(req, res, rating);
   }
 };
 
@@ -243,6 +252,15 @@ const handleQuery = async (req, res, query) => {
     let products = await Product.find({ name: { $regex: query } });
     res.json(products);
   } catch (error) {
-    console.log('error===>>>', error);
+    console.log(error);
+  }
+};
+const handleRating = async (req, res, rating) => {
+  try {
+    let products = await Product.find({ rating: { $eq: rating } });
+
+    res.json(products);
+  } catch (error) {
+    console.log(error);
   }
 };

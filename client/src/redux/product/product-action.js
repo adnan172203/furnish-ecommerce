@@ -161,36 +161,42 @@ export const updateProduct = (product) => async (dispatch, getState) => {
   }
 };
 
-export const createProductReview = (productId, review) => async (dispatch) => {
-  try {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+export const createProductReview =
+  (productId, review) => async (dispatch, getState) => {
+    try {
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const { data } = await axios.post(
-      `${baseUrl}/api/v1/products/${productId}/reviews`,
-      review,
-      config
-    );
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
 
-    dispatch({
-      type: PRODUCT_CREATE_REVIEW,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
+      const { data } = await axios.post(
+        `${baseUrl}/api/v1/products/${productId}/reviews`,
+        review,
+        config
+      );
 
-    dispatch({
-      type: PRODUCT_ERROR,
-      payload: message,
-    });
-  }
-};
+      dispatch({
+        type: PRODUCT_CREATE_REVIEW,
+        payload: data,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+
+      dispatch({
+        type: PRODUCT_ERROR,
+        payload: message,
+      });
+    }
+  };
 
 export const productFilter = (arg) => async (dispatch) => {
   try {
